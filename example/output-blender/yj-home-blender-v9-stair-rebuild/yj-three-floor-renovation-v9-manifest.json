@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "project_id": "yj-three-floor-whole-home-2026-09-v3",
+  "release_id": "yj-three-floor-renovation-v9-strict-review-v1",
+  "source_2d": "../../output-html/room.html",
+  "source_2d_sha256": "6cb35e877ceead8ec16d7f81e7796a006903305371198b873fbb1da5c9367937",
+  "floor_baseline_versions": {
+    "floor-1": 3,
+    "floor-2": 2,
+    "floor-3": 2
+  },
+  "units": "metres",
+  "render_engine": "BLENDER_EEVEE",
+  "resolution": [
+    640,
+    360
+  ],
+  "fps": 30,
+  "frames": 900,
+  "duration_seconds": 30,
+  "render_stride": 1,
+  "rendered_source_frames": 900,
+  "render_method": "Full timeline render",
+  "camera": "first-person, 25 mm, 1.62 m nominal eye height",
+  "shots": [
+    "一层迎宾台",
+    "一层堂屋",
+    "一层礼序端景",
+    "一层客厅",
+    "一层客餐连续轴",
+    "一层餐厅",
+    "一层玻璃厨房",
+    "返回一层堂屋",
+    "一层楼梯起步",
+    "抵达二层",
+    "二层家庭厅",
+    "二层南阳台",
+    "二层西南卧室",
+    "二层湿区",
+    "二层主卧",
+    "返回二层楼梯",
+    "二层楼梯起步",
+    "抵达三层",
+    "三层家庭厅",
+    "三层景观阳台",
+    "三层景观回望",
+    "三层书房",
+    "三层湿区",
+    "三层主卧",
+    "三层收束"
+  ],
+  "asset_policy": "Drawing-derived procedural architecture plus bundled Poly Haven CC0 1.0 PBR textures, residential-garden HDRI and selected furniture glTF models. Every remote file is checksummed and recorded in the copied PBR asset manifest.",
+  "material_layers": [
+    "diffuse colour",
+    "OpenGL tangent-space normal",
+    "roughness"
+  ],
+  "real_furniture_assets": [
+    "dining_chair_02",
+    "modern_arm_chair_01",
+    "modern_coffee_table_01"
+  ],
+  "lighting": "Poly Haven suburban_garden 1k HDRI, southeast directional Blender sun, window daylight portals, floor-specific visible downlights, kitchen counter washes and emissive practical/cove fixtures. Strict review output omits undocumented ambient ceiling-fill lights.",
+  "review_protocol": "fixed top/room cameras plus Presentation and Geometry Check view layers",
+  "stair_rebuild": {
+    "baseline": "stair-baseline-v1.json",
+    "geometry": "east-west dogleg stair with two parallel nine-riser flights, east half-landing, central well and continuous inner handrails",
+    "floor_3_ownership": "arrival landing and guard only; the descending stair remains owned by floor 2",
+    "site_measure": true
+  },
+  "interactive_viewer": {
+    "entry": "interactive-preview.html",
+    "hosted_entry": "interactive-preview-hosted.html",
+    "model": "yj-three-floor-renovation-v9-web.glb",
+    "compression": "EXT_meshopt_compression with node hierarchy preserved",
+    "direct_file_supported": true,
+    "threejs_network_required": true
+  },
+  "qa_design_features": {
+    "floor-1": [
+      "continuous living-dining-kitchen axis",
+      "full-height clear glazed kitchen partition",
+      "bathroom without fixed dry-wet screen",
+      "shrine rear remains undefined"
+    ],
+    "floor-2": [
+      "open electric light-kitchen proposed inside family lounge; MEP and gas conditions unresolved",
+      "dry-wet-separated bathroom"
+    ],
+    "floor-3": [
+      "study/game room with 1800 x 800 mm desk intent",
+      "dry-wet-separated bathroom"
+    ]
+  },
+  "textures_packed_into_blend": true,
+  "status": "concept visualisation; dimensions, structure, stairs, openings and MEP require site/professional verification",
+  "inferred_walkthrough_access": "Where the 2D baseline omits an internal door, a 1.05 m concept opening is added only between a public hall/lounge and a long adjacent room/wet-area edge. These openings are navigation assumptions, not drawing facts.",
+  "artifacts": {
+    "yj-three-floor-renovation-v9.blend": {
+      "bytes": 24094228,
+      "sha256": "6dbb1f25e00ac9066e8895af0d37e27dd8b496306ea0c01cd9b117fbe19e2a0a"
+    },
+    "yj-three-floor-renovation-v9.glb": {
+      "bytes": 52910380,
+      "sha256": "2f4161c90990b12fab963c8dfe13aaaf91694602caa7c1024797249295259ed0"
+    },
+    "yj-three-floor-renovation-v9-poster.png": {
+      "bytes": 207419,
+      "sha256": "703655637d839db91a2f25c3b573d38bc53b325cd918550afff910294fd0ff68"
+    },
+    "yj-three-floor-renovation-v9-pbr-assets.json": {
+      "bytes": 14276,
+      "sha256": "5575d7e16aaae71e56086d2a6fbfd200d79ad549a2345484eb0fdec05cba312b"
+    },
+    "yj-three-floor-renovation-v9-web.glb": {
+      "bytes": 16292924,
+      "sha256": "85859b57b95ece53a05c0c809da26d1c3702f6f9500e68b72321edf2b71265ea"
+    },
+    "interactive-preview.html": {
+      "bytes": 21737996,
+      "sha256": "1e9a119af763df916c07491b332a293c59d1fa51a3bfa5b0576df06dbc479ea1"
+    },
+    "interactive-preview-hosted.html": {
+      "bytes": 13973,
+      "sha256": "e0076b47d44928a368610fce6ae0d155f6e060d74485d905bc7c57813b887d68"
+    },
+    "interactive-preview-template.html": {
+      "bytes": 14122,
+      "sha256": "673a18bcbbfd6067d4e8225b8b54ababa0e1ec4e5df8b3774fb446c25bf26fe5"
+    },
+    "stair-baseline-v1.json": {
+      "bytes": 1684,
+      "sha256": "6c4a5304382fc2b35442e3f7050804fbf7b67cb950b158ea454d9b7316930278"
+    },
+    "iteration-review.yaml": {
+      "bytes": 1414,
+      "sha256": "cd8b3d3ab4c914c36a70211052a8fb95a4c9c83b7018fc6c77ef24bb0283e7a1"
+    },
+    "review-stair/floor-1-stair-plan-review.png": {
+      "bytes": 622103,
+      "sha256": "e7ce893d63d19ae763fddd704916f8b354fab14a45adaf6acaf214e74a1491b6"
+    },
+    "review-stair/floor-2-stair-plan-review.png": {
+      "bytes": 679243,
+      "sha256": "3cb09d20082fad017a6b231e913db5d5e70c9f7737e894004cfb3bd251f8b142"
+    },
+    "review-stair/floor-3-stair-plan-review.png": {
+      "bytes": 621293,
+      "sha256": "742f0ca34fa804d103c20e2c67ecffb8f9c35259ea64094b900267a97da59981"
+    },
+    "review-stair/interactive-preview-floor-1.png": {
+      "bytes": 373504,
+      "sha256": "79e3738aca1008f1f9d70e7df88975c17a6f2128cae704fe70b47aceb9f52c7e"
+    },
+    "review-stair/interactive-preview-floor-2.png": {
+      "bytes": 371396,
+      "sha256": "9fcba3231d55364e4a45b4bbf897687ae6673bca6cb3e9f165f97b3f223eb0a5"
+    },
+    "review-stair/interactive-preview-floor-3.png": {
+      "bytes": 335575,
+      "sha256": "6149799a678dbbe26ae18a1e0e49c7f38923482740c8fbb2c17ee3a0b1fa13cd"
+    }
+  }
+}

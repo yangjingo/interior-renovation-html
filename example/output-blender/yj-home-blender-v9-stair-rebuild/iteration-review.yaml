@@ -1,0 +1,28 @@
+iteration_id: yj-home-blender-v9-stair-rebuild
+parent_iteration: yj-home-blender-v8
+source_html: ../../output-html/room.html
+source_drawing: ../../input/yj方案改2.pdf
+baseline_versions:
+  floor-1: 3
+  floor-2: 2
+  floor-3: 2
+change_request: rebuild the stairs from each floor plan and rerender without deleting the previous model
+root_cause:
+  - the previous generator used one generic 18-step straight run along the north-south axis
+  - the plan-specific stair footprint and the return flight relationship were not used as geometry constraints
+  - floor 3 had no explicit arrival-platform ownership rule
+fix:
+  - rebuild floor 1 and floor 2 as east-west dogleg stairs with two nine-riser flights
+  - connect parallel flights using an east half-landing and preserve the central stair well
+  - add continuous inner handrails and a floor-3 arrival guard
+  - show the stair from the storey below when reviewing floor 2 or floor 3
+checks:
+  - floor 1 fixed-camera stair render completed
+  - floor 2 fixed-camera stair render completed
+  - floor 3 fixed-camera arrival render completed
+  - top material and clay renders completed for all three floors
+  - old v8 output remains unchanged
+status: accepted_for_concept_review
+limitations:
+  - stair rise, tread, headroom, structure and guarding require site measurement and professional review
+  - the 3D model is a plan-aligned concept, not construction documentation

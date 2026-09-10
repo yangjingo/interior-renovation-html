@@ -1,0 +1,14 @@
+Use case: cinematic product workflow
+Primary request: the raw input objects on an architect's warm paper worktable become an organised evidence set
+Scene/background: top-down warm off-white paper desk, matching opening-inputs.png
+Subject: three visibly different floor-plan sheets, transparent metric ruler, tape measure, blank QA cards, one neutral mood image, restrained material swatches
+Action: in three deliberate beats, the ruler aligns the plans, the QA cards square into a stack, and one rust-orange marker connects the sources; no hands are visible
+Camera: locked true overhead shot with an extremely slow dolly-in
+Lighting/mood: soft north-window daylight, calm and analytical
+Color palette: warm cream, charcoal, concrete grey, smoked brown, exactly one rust-orange accent
+Style/format: refined editorial product film, tactile paper and subtle scan grain
+Timing/beats: align plans; organise QA; connect sources
+Text: no text
+Constraints: three plans remain structurally different; no completed render or screen yet; no people, logos or watermarks
+Avoid: jitter, flicker, duplicated objects, distorted plans, blue neon, busy motion
+

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "project_id": "golden-sanitised-third-floor",
+  "input_fingerprint": "94733bdf5226c6e06c7a72761dedc16832d6f5aa750e16cff2b8e4e2785a9972",
+  "input_fingerprint_method": "sha256 of the sanitised input-manifest.yaml bytes",
+  "is_golden_example": true,
+  "scope_type": "selected-floor",
+  "locale": "zh-CN",
+  "target": {
+    "id": "floor-3",
+    "label": "third floor",
+    "floor_ids": ["floor-3"],
+    "primary_floor_id": "floor-3",
+    "area_value": 180,
+    "area_unit": "m2",
+    "area_basis": "printed gross floor area",
+    "source_id": "F-AREA-01"
+  },
+  "required_panels": ["overview", "drawing", "openings", "balcony", "visuals", "materials", "furniture"],
+  "features": {
+    "plan": true,
+    "modifications": true,
+    "special_areas": ["balcony", "wet-area"],
+    "interactive_3d": true,
+    "budget": true,
+    "sourcing": true,
+    "multi_floor": false,
+    "review_notes": true
+  },
+  "special_area_panels": {"balcony": "balcony", "wet-area": "materials"},
+  "minimum_visuals": {"static_3d": 3, "final_renders": 5},
+  "required_preflight_categories": ["moisture_mould", "demolition_hazards", "electrical", "gas_combustion_co", "smoke_egress_fire", "door_swings", "plumbing_drainage_ventilation", "structural_facade"],
+  "preflight_status_labels": {"unknown": "未知", "clear": "已核清", "issue": "发现问题", "not_applicable": "不适用"},
+  "asset_policy": {
+    "allow_source_photo": false,
+    "allow_face": false,
+    "allow_watermark": false,
+    "allow_private_plan": false
+  },
+  "budget": {
+    "currency_code": "CNY",
+    "currency_symbol": "¥",
+    "unit_divisor": 10000,
+    "unit_label": "万",
+    "price_date": "2026-09",
+    "contingency_rate": 0.10,
+    "required_optional_categories": ["doors_windows", "structural_assessment", "hvac", "appliances"]
+  },
+  "vertical_assumptions": {
+    "status": "proposal_pending_site_measure",
+    "model_wall_height_mm": 2820,
+    "model_window_sill_mm": 720,
+    "model_window_head_mm": 2370,
+    "model_glazed_divider_height_mm": 2350
+  }
+}

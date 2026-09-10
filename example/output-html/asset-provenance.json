@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "scope": "private user project deliverable",
+  "entry_inheritance": "Every manifest asset and direct visual inherits defaults; an entry must override each value that differs.",
+  "defaults": {
+    "origin": "generated and reviewed for the current third-floor design workflow",
+    "contains_source_photo": false,
+    "contains_face": false,
+    "contains_watermark": false,
+    "contains_private_plan": false,
+    "reuse_scope": "the user's private project use",
+    "rights_note": "project output for the user's private reuse; do not imply third-party endorsement",
+    "review": ["function and geometry checked against the third-floor baseline", "no original reference photo embedded", "no identifying title block or personal path"]
+  },
+  "direct_visuals": {
+    "planSchematic": {"type": "generated-schematic", "binding": "img#planImage", "origin": "generated from sanitised facts; not the source PDF"}
+  },
+  "assets": {
+    "previewBird": {"type": "static-3d-preview"},
+    "previewBalcony": {"type": "static-3d-preview"},
+    "previewPrivate": {"type": "static-3d-preview"},
+    "finalLoungeToBalcony": {"type": "plan-specific-final-render"},
+    "finalBalconyToLounge": {"type": "plan-specific-final-render"},
+    "finalStudy": {"type": "plan-specific-final-render"},
+    "finalMaster": {"type": "plan-specific-final-render"},
+    "finalMasterBath": {"type": "plan-specific-final-render"},
+    "refLivingWide": {"type": "earlier-generated-style-reference"},
+    "refLivingPortrait": {"type": "earlier-generated-style-reference"},
+    "refFoyer": {"type": "earlier-generated-style-reference"},
+    "refKitchen": {"type": "earlier-generated-style-reference"},
+    "refMaster": {"type": "earlier-generated-style-reference"},
+    "refGuest": {"type": "earlier-generated-style-reference"},
+    "refStudyDay": {"type": "earlier-generated-style-reference"},
+    "refStudyRest": {"type": "earlier-generated-style-reference"},
+    "refStudyWindow": {"type": "earlier-generated-style-reference"},
+    "refStudyNight": {"type": "earlier-generated-style-reference"},
+    "refMasterBath": {"type": "earlier-generated-style-reference"},
+    "refCommonBath": {"type": "earlier-generated-style-reference"}
+  }
+}

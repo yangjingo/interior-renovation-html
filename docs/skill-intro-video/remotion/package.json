@@ -1,0 +1,29 @@
+{
+  "name": "floorplan-renovation-skill-intro",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "npm run render:2d",
+    "render:2d": "remotion render src/index.ts SkillIntro2D ../output/2d/floorplan-to-renovation-preview-2d.mp4 --codec h264 --crf 18",
+    "render:2d:web": "remotion ffmpeg -y -i ../output/2d/floorplan-to-renovation-preview-2d.mp4 -vf scale=1280:720 -an -c:v libx264 -crf 24 -preset medium -movflags +faststart ../output/2d/floorplan-to-renovation-preview-2d-web.mp4",
+    "render:3d": "remotion render src/index.ts SkillIntro3D ../output/3d/floorplan-to-renovation-preview-3d.mp4 --codec h264 --crf 18",
+    "render:3d:web": "remotion ffmpeg -y -i ../output/3d/floorplan-to-renovation-preview-3d.mp4 -vf scale=1280:720 -an -c:v libx264 -crf 24 -preset medium -movflags +faststart ../output/3d/floorplan-to-renovation-preview-3d-web.mp4",
+    "render:all": "npm run render:2d && npm run render:2d:web && npm run render:3d && npm run render:3d:web && npm run poster:2d && npm run poster:3d",
+    "poster:2d": "remotion still src/index.ts SkillIntro2DPoster ../output/2d/floorplan-to-renovation-preview-2d-poster.png",
+    "poster:3d": "remotion still src/index.ts SkillIntro3DPoster ../output/3d/floorplan-to-renovation-preview-3d-poster.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/media": "^4.0.0",
+    "@remotion/transitions": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

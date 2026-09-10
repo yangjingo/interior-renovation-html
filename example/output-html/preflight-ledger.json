@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "case_stage": "concept",
+  "jurisdiction": "unknown",
+  "release_rule": "No demolition, concealed-work or procurement release until the applicable entries are surveyed and signed off locally.",
+  "entries": [
+    {"category": "moisture_mould", "status": "unknown", "required_check": "survey balconies, wet cores, slabs, walls and ceilings for ingress, mould, rot, corrosion and substrate failure", "release_by": "building surveyor or relevant qualified trade"},
+    {"category": "demolition_hazards", "status": "unknown", "required_check": "identify region- and building-age-relevant hazardous materials before disturbance", "release_by": "licensed local assessor where applicable"},
+    {"category": "electrical", "status": "unknown", "required_check": "verify service capacity, earthing/grounding, residual-current protection, circuit separation and wet-area protection", "release_by": "licensed electrician"},
+    {"category": "gas_combustion_co", "status": "unknown", "required_check": "confirm whether gas or combustion appliances exist and verify exhaust, make-up air and carbon-monoxide detection", "release_by": "licensed gas/combustion professional"},
+    {"category": "smoke_egress_fire", "status": "unknown", "required_check": "verify smoke detection, escape route, stair/corridor separation and door-swing obstruction", "release_by": "architect or local fire-safety professional"},
+    {"category": "door_swings", "status": "unknown", "required_check": "measure each opening and check swing, clear width, furniture, accessibility, services and adjacent doors", "release_by": "architect/interior designer plus site measurement"},
+    {"category": "plumbing_drainage_ventilation", "status": "unknown", "required_check": "verify water pressure, shut-offs, stacks, drain elevations, traps, ventilation, falls and maintenance access", "release_by": "licensed plumber and waterproofing trade"},
+    {"category": "structural_facade", "status": "unknown", "required_check": "verify wall, beam, lintel, slab edge, balcony connection, facade module, wind/rain and approval constraints", "release_by": "architect/structural engineer and applicable authority or property body"}
+  ]
+}

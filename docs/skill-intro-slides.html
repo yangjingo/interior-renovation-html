@@ -1,0 +1,1218 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interior Renovation HTML Skill：从户型图、尺寸、生活 QA、风格与材料偏好生成分层装修方案、3D 预览与单文件 HTML。"
+    />
+    <title>Interior Renovation HTML · Skill Introduction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --c-bg: #100904;
+        --c-bg-alt: #382416;
+        --c-bg-light: #100904;
+        --c-bg-light-alt: #1a100a;
+        --c-fg: #ffedd7;
+        --c-fg-2: #a99b8b;
+        --c-fg-3: #6c5f51;
+        --c-fg-light: #ffedd7;
+        --c-fg-light-2: #a99b8b;
+        --c-fg-light-3: #6c5f51;
+        --c-accent: #dc5000;
+        --c-border: #40372e;
+        --c-border-light: #40372e;
+        --c-paper: #1a100a;
+        --f-display: "Bahnschrift", "Aptos Display", "Noto Sans SC", system-ui, sans-serif;
+        --f-heading: "Bahnschrift", "Aptos Display", "Noto Sans SC", system-ui, sans-serif;
+        --f-body: "Aptos", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+        --f-mono: "JetBrains Mono", monospace;
+        --sz-display: min(8vw, 132px);
+        --sz-h1: min(5.2vw, 84px);
+        --sz-h2: min(3.15vw, 52px);
+        --sz-h3: min(1.75vw, 30px);
+        --sz-lead: max(1.25vw, 18px);
+        --sz-body: max(0.98vw, 15px);
+        --sz-caption: max(0.72vw, 11px);
+        --sz-label: max(0.62vw, 10px);
+        --pad-x: 7vw;
+        --pad-y: 5.6vh;
+        --gap-lg: 4.4vh;
+        --gap-md: 2.5vh;
+        --gap-sm: 1.25vh;
+        --ease-slide: cubic-bezier(0.77, 0, 0.175, 1);
+        --dur-slide: 0.9s;
+        --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+        --dur-enter: 0.7s;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--c-bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.12;
+        z-index: 90;
+        background-image: repeating-linear-gradient(117deg, rgba(255, 237, 215, 0.05) 0, rgba(255, 237, 215, 0.05) 1px, transparent 1px, transparent 4px);
+        mix-blend-mode: soft-light;
+      }
+
+      #deck {
+        display: flex;
+        height: 100vh;
+        transition: transform var(--dur-slide) var(--ease-slide);
+        will-change: transform;
+      }
+
+      .slide {
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        padding: var(--pad-y) var(--pad-x);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        overflow: hidden;
+      }
+
+      .slide.dark {
+        background: var(--c-bg);
+        color: var(--c-fg);
+      }
+
+      .slide.light {
+        background: var(--c-bg-light);
+        color: var(--c-fg-light);
+      }
+
+      .slide.light::after,
+      .slide.dark::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 74% 4%, rgba(92, 54, 30, 0.22), transparent 30rem),
+          radial-gradient(circle at 16% 74%, rgba(220, 80, 0, 0.055), transparent 26rem);
+      }
+
+      .slide-body {
+        position: relative;
+        z-index: 2;
+        min-height: 0;
+      }
+
+      [data-anim] {
+        opacity: 0;
+      }
+
+      .slide.is-active [data-anim] {
+        animation-duration: var(--dur-enter);
+        animation-timing-function: var(--ease-enter);
+        animation-fill-mode: forwards;
+      }
+
+      .slide.is-active [data-anim="fade-up"] { animation-name: fade-up; }
+      .slide.is-active [data-anim="fade-in"] { animation-name: fade-in; }
+      .slide.is-active [data-anim="reveal-right"] { animation-name: reveal-right; }
+      .slide.is-active [data-anim="scale-in"] { animation-name: scale-in; }
+      [data-delay="0"] { animation-delay: 0s; }
+      [data-delay="1"] { animation-delay: 0.08s; }
+      [data-delay="2"] { animation-delay: 0.18s; }
+      [data-delay="3"] { animation-delay: 0.3s; }
+      [data-delay="4"] { animation-delay: 0.44s; }
+      [data-delay="5"] { animation-delay: 0.6s; }
+
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(28px); }
+        to { opacity: 1; transform: none; }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes reveal-right {
+        from { clip-path: inset(0 100% 0 0); opacity: 1; }
+        to { clip-path: inset(0 0 0 0); opacity: 1; }
+      }
+
+      @keyframes scale-in {
+        from { opacity: 0; transform: scale(0.94); }
+        to { opacity: 1; transform: none; }
+      }
+
+      .h1,
+      .h2,
+      .h3,
+      .display {
+        font-family: var(--f-heading);
+        font-weight: 500;
+      }
+
+      .display { font-size: var(--sz-display); line-height: 0.96; letter-spacing: -0.02em; }
+      .h1 { font-size: var(--sz-h1); line-height: 1.08; }
+      .h2 { font-size: var(--sz-h2); line-height: 1.15; }
+      .h3 { font-size: var(--sz-h3); line-height: 1.3; }
+      .h1 em, .h2 em, .h3 em, .display em { color: var(--c-accent); font-style: normal; }
+      .lead { font: 300 var(--sz-lead)/1.58 var(--f-body); }
+      .body { font: 300 var(--sz-body)/1.68 var(--f-body); }
+      .caption { font: 300 var(--sz-caption)/1.55 var(--f-body); }
+      .label { font: 500 var(--sz-label)/1.4 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+      .muted { color: var(--c-fg-2); }
+      .light .muted { color: var(--c-fg-light-2); }
+      .accent { color: var(--c-accent); }
+
+      a {
+        color: inherit;
+        text-decoration-color: var(--c-accent);
+        text-underline-offset: 0.25em;
+      }
+
+      .slide-chrome,
+      .slide-foot {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .slide-chrome {
+        padding-bottom: var(--gap-sm);
+        border-bottom: 1px dashed var(--c-border);
+        margin-bottom: var(--gap-md);
+      }
+
+      .slide-chrome span:last-child {
+        color: var(--c-accent);
+        background: transparent;
+        padding: 0;
+      }
+
+      .slide-foot {
+        padding-top: var(--gap-sm);
+        border-top: 1px dashed var(--c-border);
+        margin-top: var(--gap-md);
+      }
+
+      .light .slide-chrome,
+      .light .slide-foot { border-color: var(--c-border-light); }
+
+      .source-link { opacity: 0.72; transition: opacity 0.2s ease; }
+      .source-link:hover { opacity: 1; }
+      .kicker { font: 500 var(--sz-label)/1.4 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-accent); }
+      .rule { width: 58px; height: 1px; background: var(--c-accent); }
+
+      .grove-num {
+        position: absolute;
+        right: var(--pad-x);
+        bottom: -0.12em;
+        color: var(--c-fg-3);
+        opacity: 0.09;
+        font: 700 min(18vw, 290px)/1 var(--f-display);
+        pointer-events: none;
+      }
+
+      .light .grove-num { color: var(--c-fg-light-3); }
+
+      .slide--cover {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        isolation: isolate;
+      }
+
+      .cover-art {
+        position: absolute;
+        inset: 0 0 0 46%;
+        z-index: -2;
+        background-image: linear-gradient(90deg, var(--c-bg) 0%, rgba(16, 9, 4, 0.94) 24%, transparent 70%), url("skill-intro-video/remotion/public/opening-inputs.png");
+        background-size: cover;
+        background-position: center;
+        filter: saturate(0.32) contrast(1.04);
+      }
+
+      .cover-art::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(0deg, var(--c-bg), transparent 42%),
+          radial-gradient(circle at 76% 44%, rgba(220, 80, 0, 0.16), transparent 46%);
+      }
+
+      .cover-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 58%;
+      }
+
+      .cover-meta {
+        position: relative;
+        z-index: 4;
+        border-top: 1px solid var(--c-border);
+        padding-top: var(--gap-sm);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .statement-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--gap-md);
+      }
+
+      .input-grid,
+      .floor-grid,
+      .output-grid {
+        height: 100%;
+        display: grid;
+        gap: 1px;
+        padding: 1px;
+        background: var(--c-border);
+        align-items: stretch;
+      }
+
+      .input-grid { grid-template-columns: repeat(5, 1fr); }
+      .floor-grid { grid-template-columns: repeat(3, 1fr); }
+      .output-grid { grid-template-columns: 1.15fr 1fr 1fr 1fr; }
+
+      .project-inputs {
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--c-border-light);
+        background: var(--c-border-light);
+      }
+
+      .project-plan {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1.38fr) minmax(150px, 0.62fr);
+        gap: 1px;
+        background: var(--c-border-light);
+      }
+
+      .plan-stack {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 1px;
+        background: var(--c-border-light);
+      }
+
+      .input-artifact {
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+        color: var(--c-fg);
+        background: #e8e0d5;
+        text-decoration: none;
+      }
+
+      .input-artifact img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        filter: grayscale(1) contrast(0.92);
+        transition: transform 0.7s var(--ease-enter), filter 0.35s ease;
+      }
+
+      .input-artifact:hover img { transform: scale(1.025); filter: grayscale(0.55) contrast(0.96); }
+      .input-artifact--main img { object-position: 48% center; }
+
+      .artifact-caption {
+        position: absolute;
+        z-index: 2;
+        inset: auto 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1em;
+        padding: 1.05vw;
+        background: linear-gradient(transparent, rgba(16, 9, 4, 0.94));
+      }
+
+      .artifact-caption strong { display: block; margin-top: 0.25em; font: 400 var(--sz-h3)/1.1 var(--f-heading); }
+      .artifact-caption .label { color: var(--c-fg-2); }
+      .artifact-kind { color: var(--c-accent); white-space: nowrap; }
+
+      .project-input-side {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: 1.04fr 0.96fr;
+        gap: 1px;
+        background: var(--c-border-light);
+      }
+
+      .qa-evidence {
+        min-height: 0;
+        padding: 1.35vw;
+        color: var(--c-fg-light);
+        background: var(--c-paper);
+        text-decoration: none;
+      }
+
+      .qa-evidence:hover { background: #fff8ee; }
+      .qa-evidence .h3 { margin: 0.45em 0 0.75em; }
+      .qa-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--c-border-light); border: 1px solid var(--c-border-light); }
+      .qa-fact { min-height: 6.1vh; padding: 0.7vw; background: var(--c-paper); }
+      .qa-fact span { display: block; margin-bottom: 0.35em; color: var(--c-accent); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.08em; }
+      .qa-fact strong { font: 500 min(1.05vw, 17px)/1.3 var(--f-body); }
+
+      .style-evidence { background: #120c08; }
+      .style-evidence img { filter: saturate(0.78) contrast(1.02); object-position: center 47%; }
+      .style-evidence:hover img { filter: saturate(0.95) contrast(1.04); }
+      .style-evidence::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 9, 4, 0.9), transparent 65%); pointer-events: none; }
+      .style-evidence .artifact-caption { inset: 0 auto 0 0; width: 58%; flex-direction: column; align-items: flex-start; justify-content: flex-end; background: none; }
+      .style-note { max-width: 24em; color: var(--c-fg-2); font: 300 var(--sz-body)/1.45 var(--f-body); }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--gap-sm);
+        border: 1px solid var(--c-border);
+        padding: 1.5vw;
+        background: var(--c-paper);
+        text-decoration: none;
+        transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      }
+
+      .light .card { border-color: var(--c-border-light); background: var(--c-paper); }
+      .card:hover { transform: translateY(-5px); border-color: var(--c-accent); }
+      .card-index { color: var(--c-accent); font: 300 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.14em; }
+      .card-icon { font: 400 min(3.8vw, 62px)/1 var(--f-display); color: var(--c-accent); }
+      .card-copy { color: var(--c-fg-2); }
+      .light .card-copy { color: var(--c-fg-light-2); }
+      .card-media { display: block; height: 20vh; margin: -1.5vw -1.5vw 0; overflow: hidden; border-bottom: 1px dashed var(--c-border); background: var(--c-bg-alt); }
+      .card-media img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(0.82) contrast(1.03); transition: transform 0.7s var(--ease-enter); }
+      .card-media.plan img { object-fit: cover; object-position: center; filter: grayscale(1) contrast(0.9); }
+      .card:hover .card-media img { transform: scale(1.025); }
+
+      .split {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 5vw;
+        align-items: center;
+      }
+
+      .split-text { display: flex; flex-direction: column; gap: var(--gap-md); }
+      .media-frame { position: relative; height: 100%; min-height: 46vh; overflow: hidden; border: 1px solid var(--c-border-light); background: var(--c-bg-alt); }
+      .media-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.82); }
+      .media-frame figcaption { position: absolute; left: 1.2vw; bottom: 1.2vw; padding: 0.55em 0.8em; color: var(--c-fg); background: rgba(16, 9, 4, 0.88); }
+
+      .flow {
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1vw;
+        align-items: center;
+      }
+
+      .flow-step { position: relative; padding: 1.5vw; border-top: 1px solid var(--c-border); }
+      .light .flow-step { border-color: var(--c-border-light); }
+      .flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -0.78vw; top: 46%; color: var(--c-accent); font: 400 1.4vw/1 var(--f-heading); }
+      .flow-step .h3 { margin: var(--gap-sm) 0; }
+
+      .room-ledger {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 4vw;
+        align-items: center;
+      }
+
+      .room-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; overflow: hidden; background: var(--c-border); border: 1px solid var(--c-border); }
+      .room-cell { min-height: 12vh; padding: 1.2vw; background: var(--c-bg); display: flex; flex-direction: column; justify-content: space-between; }
+      .room-cell:nth-child(2), .room-cell:nth-child(5) { background: var(--c-bg-alt); }
+
+      .floor-card { position: relative; overflow: hidden; padding: 1.6vw; border: 1px solid var(--c-border-light); background: var(--c-paper); text-decoration: none; }
+      .floor-card::before { content: ""; position: absolute; inset: auto -12% -24% 22%; aspect-ratio: 1; border: 1px solid var(--c-border-light); transform: rotate(15deg); }
+      .floor-card .floor-no { color: var(--c-accent); font: italic 400 min(7vw, 112px)/0.9 var(--f-display); }
+      .floor-card .h3 { margin: var(--gap-sm) 0; }
+
+      .floor-map-grid {
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--c-border-light);
+        background: var(--c-border-light);
+      }
+
+      .floor-map {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: minmax(0, 0.42fr) minmax(0, 0.58fr);
+        gap: 1px;
+        background: var(--c-border-light);
+      }
+
+      .floor-asset {
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+        color: var(--c-fg);
+        background: var(--c-bg-alt);
+        text-decoration: none;
+      }
+
+      .floor-asset img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.7s var(--ease-enter); }
+      .floor-asset:hover img { transform: scale(1.025); }
+      .floor-asset--plan img { object-position: center; filter: grayscale(1) contrast(0.92); }
+      .floor-asset--model img { object-position: center; filter: saturate(0.84) contrast(0.98); }
+      .floor-asset-tag { position: absolute; z-index: 2; top: 0.75vw; left: 0.75vw; padding: 0.55em 0.7em; color: var(--c-fg); background: rgba(16, 9, 4, 0.9); }
+      .floor-asset-path { position: absolute; z-index: 2; inset: auto 0 0; padding: 0.72vw 0.8vw; color: var(--c-fg-2); background: linear-gradient(transparent, rgba(16, 9, 4, 0.96) 32%); font: 400 var(--sz-label)/1.25 var(--f-mono); letter-spacing: 0.04em; }
+      .floor-model-caption { display: flex; align-items: flex-end; justify-content: space-between; gap: 1em; }
+      .floor-model-caption strong { color: var(--c-fg); font: 400 var(--sz-h3)/1.1 var(--f-heading); }
+      .map-arrow { color: var(--c-accent); font-family: var(--f-mono); }
+
+      .workflow-map {
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--c-border);
+        background: var(--c-border);
+      }
+
+      .workflow-stage {
+        position: relative;
+        min-width: 0;
+        display: grid;
+        grid-template-rows: 15vh auto minmax(0, 1fr);
+        color: inherit;
+        background: var(--c-bg);
+        text-decoration: none;
+        transition: background 0.25s ease;
+      }
+
+      .workflow-stage:hover { background: var(--c-bg-alt); }
+      .workflow-stage:not(:last-child)::after { content: "→"; position: absolute; z-index: 5; right: -0.72em; top: 7vh; width: 1.4em; height: 1.4em; display: grid; place-items: center; color: var(--c-accent); border: 1px solid var(--c-border); background: var(--c-bg); font: 500 1.05vw/1 var(--f-mono); }
+      .workflow-media { min-height: 0; overflow: hidden; border-bottom: 1px dashed var(--c-border); background: #0a0806; }
+      .workflow-media img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(0.74) contrast(1.02); transition: transform 0.7s var(--ease-enter); }
+      .workflow-media--plan img { object-position: center; filter: grayscale(1) contrast(0.86) brightness(0.82); }
+      .workflow-stage:hover .workflow-media img { transform: scale(1.03); }
+      .workflow-doc { min-height: 0; display: flex; align-items: flex-end; padding: 1vw; border-bottom: 1px dashed var(--c-border); background: linear-gradient(145deg, var(--c-bg-alt), #080503); }
+      .workflow-doc strong { color: var(--c-accent); font: italic 400 min(3.7vw, 56px)/0.9 var(--f-display); }
+      .workflow-stage-head { padding: 0.9vw 1vw 0.7vw; }
+      .workflow-stage-head .h3 { margin-top: 0.35em; }
+      .workflow-assets { min-height: 0; display: flex; flex-direction: column; gap: 0.55em; padding: 0 1vw 1vw; }
+      .asset-chip { display: block; padding-top: 0.55em; overflow: hidden; color: var(--c-fg-2); border-top: 1px solid var(--c-border); font: 400 var(--sz-label)/1.35 var(--f-mono); letter-spacing: 0.025em; text-overflow: ellipsis; white-space: nowrap; }
+      .asset-role { margin-top: auto; color: var(--c-fg-2); font: 300 min(1.02vw, 16px)/1.35 var(--f-body); }
+
+      .floor-rebuild-ledger {
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--c-border-light);
+        background: var(--c-border-light);
+      }
+
+      .floor-rebuild-row {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 5.5vw minmax(180px, 0.7fr) minmax(300px, 1.08fr) minmax(260px, 1fr);
+        gap: 1px;
+        background: var(--c-border-light);
+      }
+
+      .floor-marker { display: flex; flex-direction: column; justify-content: space-between; padding: 0.9vw 0.75vw; color: var(--c-fg); background: var(--c-bg); }
+      .floor-marker strong { color: var(--c-accent); font: italic 400 min(3.6vw, 54px)/0.9 var(--f-display); }
+      .floor-marker span { font: 400 var(--sz-label)/1.2 var(--f-mono); letter-spacing: 0.08em; writing-mode: vertical-rl; transform: rotate(180deg); }
+      .floor-source, .floor-result { position: relative; min-height: 0; overflow: hidden; color: var(--c-fg); background: var(--c-bg-alt); text-decoration: none; }
+      .floor-source img, .floor-result img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.6s var(--ease-enter); }
+      .floor-source img { filter: grayscale(1) contrast(0.9); }
+      .floor-result img { filter: saturate(0.82) contrast(0.98); }
+      .floor-source:hover img, .floor-result:hover img { transform: scale(1.025); }
+      .asset-strip { position: absolute; z-index: 2; inset: auto 0 0; padding: 0.55vw 0.7vw; overflow: hidden; color: var(--c-fg-2); background: rgba(16, 9, 4, 0.92); font: 400 var(--sz-label)/1 var(--f-mono); text-overflow: ellipsis; white-space: nowrap; }
+      .floor-distinction { min-height: 0; display: grid; grid-template-columns: 1.1em 1fr; gap: 0.75vw; align-content: center; padding: 0.9vw 1vw; color: var(--c-fg-light); background: var(--c-paper); }
+      .floor-distinction::before { content: "→"; align-self: center; color: var(--c-accent); font: 500 1.3vw/1 var(--f-mono); }
+      .floor-distinction .h3 { margin-bottom: 0.35em; }
+      .floor-diff-list { display: flex; flex-wrap: wrap; gap: 0.4em; }
+      .floor-diff-list span { padding: 0.35em 0.5em; color: var(--c-fg-light-2); border: 1px solid var(--c-border-light); font: 400 var(--sz-label)/1.2 var(--f-mono); }
+
+      .workflow-asset-graph {
+        flex: 1;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(220px, 0.76fr) 3.2vw minmax(330px, 1.18fr) 3.2vw minmax(360px, 1.32fr);
+        gap: 1px;
+        align-items: stretch;
+      }
+
+      .graph-group { min-height: 0; display: grid; gap: 1px; padding: 1px; border: 1px solid var(--c-border); background: var(--c-border); }
+      .graph-group--input { grid-template-rows: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+      .graph-group--output { grid-template-rows: repeat(3, minmax(0, 1fr)); }
+      .graph-arrow { position: relative; display: grid; place-items: center; color: var(--c-accent); font: 400 min(2.5vw, 38px)/1 var(--f-display); }
+      .graph-arrow::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--c-accent); opacity: 0.58; }
+      .graph-arrow span { position: relative; z-index: 2; padding: 0.18em; background: var(--c-bg); }
+      .graph-asset { position: relative; min-height: 0; overflow: hidden; color: inherit; background: var(--c-bg); text-decoration: none; }
+      .graph-asset:hover { background: var(--c-bg-alt); }
+      .graph-asset--image img { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(0.76) contrast(1.02); transition: transform 0.6s var(--ease-enter); }
+      .graph-asset--image.plan img { filter: grayscale(1) contrast(0.86) brightness(0.8); }
+      .graph-asset--image:hover img { transform: scale(1.025); }
+      .graph-label { position: absolute; z-index: 2; inset: auto 0 0; padding: 0.75vw; background: linear-gradient(transparent, rgba(16, 9, 4, 0.97) 28%); }
+      .graph-label strong { display: block; margin: 0.3em 0; font: 400 var(--sz-h3)/1.1 var(--f-heading); }
+      .graph-label .asset-chip { padding-top: 0.35em; border-top: 0; }
+      .graph-qa { display: flex; flex-direction: column; justify-content: space-between; padding: 1vw; }
+      .graph-qa .h3 { margin: 0.35em 0; }
+      .graph-qa p { color: var(--c-fg-2); }
+      .baseline-hub { min-height: 0; display: grid; grid-template-rows: auto repeat(3, minmax(0, 1fr)) auto; padding: 0; overflow: hidden; border: 1px solid var(--c-border); background: var(--c-bg-alt); }
+      .baseline-head { display: grid; grid-template-columns: 1fr auto; gap: 1vw; align-items: end; padding: 1vw; border-bottom: 1px dashed var(--c-border); background: radial-gradient(circle at 84% 20%, rgba(220, 80, 0, 0.18), transparent 48%); }
+      .baseline-head .h3 { margin-top: 0.28em; }
+      .baseline-word { color: var(--c-accent); font: italic 400 min(3.5vw, 52px)/0.85 var(--f-display); }
+      .baseline-floor-row { min-height: 0; display: grid; grid-template-columns: 3.4em 1fr; gap: 0.85vw; align-items: center; padding: 0.72vw 1vw; border-bottom: 1px solid var(--c-border); background: rgba(16, 9, 4, 0.38); }
+      .baseline-floor-row:nth-child(3) { background: rgba(220, 80, 0, 0.055); }
+      .baseline-floor-no { color: var(--c-accent); font: italic 400 min(2.3vw, 35px)/1 var(--f-display); }
+      .baseline-floor-copy strong { display: block; margin-bottom: 0.28em; font: 400 min(1.25vw, 20px)/1.15 var(--f-heading); }
+      .baseline-floor-copy p { color: var(--c-fg-2); font: 300 min(0.92vw, 15px)/1.35 var(--f-body); }
+      .baseline-files { display: flex; flex-wrap: wrap; gap: 0.55em 0.8em; padding: 0.78vw 1vw; background: var(--c-bg); }
+      .baseline-files a { color: var(--c-fg-2); text-decoration: none; }
+      .baseline-files a:hover { color: var(--c-accent-2); }
+      .floor-baselines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--c-border); border: 1px solid var(--c-border); }
+      .floor-baselines span { padding: 0.75em 0.4em; color: var(--c-fg); background: var(--c-bg); text-align: center; font: 500 var(--sz-label)/1 var(--f-mono); }
+      .output-asset-row { min-height: 0; display: grid; grid-template-columns: 0.8fr 1.2fr; color: inherit; background: var(--c-bg); text-decoration: none; }
+      .output-asset-row img { width: 100%; height: 100%; min-height: 0; display: block; object-fit: cover; filter: saturate(0.78) contrast(1.02); }
+      .output-asset-copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 0.75vw; border-left: 1px dashed var(--c-border); }
+      .output-asset-copy strong { display: block; margin: 0.3em 0; font: 400 min(1.35vw, 21px)/1.15 var(--f-heading); }
+
+      .check-grid { height: 100%; display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 3vw; align-items: center; }
+      .check-list { list-style: none; display: flex; flex-direction: column; gap: var(--gap-md); }
+      .check-list li { display: grid; grid-template-columns: 2em 1fr; gap: 0.6em; font: 300 var(--sz-body)/1.62 var(--f-body); }
+      .check-list li::before { content: "✓"; color: var(--c-accent); font-family: var(--f-mono); }
+      .baseline-figure { position: relative; width: 100%; height: auto; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--c-border); background: #090604; }
+      .baseline-figure img { width: 100%; height: 100%; object-fit: contain; display: block; filter: saturate(0.82) contrast(0.98); }
+      .baseline-figure::after { content: "同一几何基线"; position: absolute; right: 1vw; top: 1vw; padding: 0.6em 0.8em; color: var(--c-fg); background: var(--c-accent); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
+
+      .case-layout { height: 100%; display: grid; grid-template-columns: 0.74fr 1.26fr; gap: 3vw; align-items: center; }
+      .case-copy { display: flex; flex-direction: column; gap: var(--gap-md); }
+      .case-points { list-style: none; display: grid; gap: 1.25vh; }
+      .case-points li { display: grid; grid-template-columns: 2.2em 1fr; gap: 0.8em; align-items: start; font: 300 var(--sz-body)/1.55 var(--f-body); }
+      .case-points li span { color: var(--c-accent); font-family: var(--f-mono); }
+      .evidence-pair { min-height: 52vh; display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 1px; overflow: hidden; background: var(--c-border); border: 1px solid var(--c-border); }
+      .light .evidence-pair { background: var(--c-border-light); border-color: var(--c-border-light); }
+      .evidence-shot { position: relative; overflow: hidden; background: var(--c-bg-alt); text-decoration: none; }
+      .evidence-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s var(--ease-enter); }
+      .evidence-shot:hover img { transform: scale(1.025); }
+      .evidence-shot .shot-label { position: absolute; left: 0.9vw; bottom: 0.9vw; padding: 0.55em 0.75em; color: var(--c-fg); background: rgba(16, 9, 4, 0.9); }
+
+      .rebuild-editorial {
+        position: relative;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--c-border);
+        background: #090604;
+      }
+
+      .rebuild-hero { position: absolute; inset: 0; color: var(--c-fg); text-decoration: none; }
+      .rebuild-hero img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 58% center; filter: saturate(0.52) sepia(0.1) contrast(1.08) brightness(0.72); transition: transform 0.9s var(--ease-enter); }
+      .rebuild-hero:hover img { transform: scale(1.012); }
+      .rebuild-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 9, 4, 0.98) 0%, rgba(16, 9, 4, 0.8) 32%, transparent 68%), linear-gradient(0deg, rgba(16, 9, 4, 0.88), transparent 46%), radial-gradient(circle at 72% 38%, rgba(220, 80, 0, 0.14), transparent 38%); pointer-events: none; }
+      .rebuild-hero-label { position: absolute; z-index: 3; top: 1.2vw; right: 1.2vw; padding: 0.65em 0.8em; color: var(--c-fg); border: 1px solid rgba(255, 237, 215, 0.26); background: rgba(16, 9, 4, 0.72); }
+      .rebuild-copy { position: absolute; z-index: 4; top: 1.7vw; left: 1.8vw; width: 50%; }
+      .rebuild-copy .h2 { margin: 0.25em 0 0.3em; font-size: min(3.8vw, 58px); }
+      .rebuild-copy .lead { max-width: 78%; }
+      .rebuild-plan-card { position: absolute; z-index: 5; left: 1.8vw; bottom: 1.55vw; width: 29%; height: 24vh; overflow: hidden; color: var(--c-fg); border: 1px solid rgba(255, 237, 215, 0.35); background: var(--c-paper); text-decoration: none; box-shadow: 1.1vw 1.1vw 0 rgba(220, 80, 0, 0.18); }
+      .rebuild-plan-card img { width: 100%; height: 100%; display: block; object-fit: cover; filter: grayscale(1) contrast(0.94); transition: transform 0.7s var(--ease-enter); }
+      .rebuild-plan-card:hover img { transform: scale(1.025); }
+      .rebuild-plan-caption { position: absolute; inset: auto 0 0; padding: 0.72vw; color: var(--c-fg); background: linear-gradient(transparent, rgba(16, 9, 4, 0.96) 36%); }
+      .rebuild-plan-caption strong { display: block; margin-top: 0.35em; font: 400 min(1.45vw, 23px)/1.1 var(--f-heading); }
+      .rebuild-audit { position: absolute; z-index: 5; right: 1.8vw; bottom: 1.55vw; width: 61%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--c-border); background: var(--c-border); }
+      .rebuild-check { min-height: 15vh; padding: 1vw; background: rgba(16, 9, 4, 0.9); backdrop-filter: blur(8px); }
+      .rebuild-check .card-index { display: block; margin-bottom: 0.55em; }
+      .rebuild-check strong { display: block; margin-bottom: 0.4em; font: 400 min(1.35vw, 22px)/1.15 var(--f-heading); }
+      .rebuild-check p { color: var(--c-fg-2); font: 300 min(1vw, 16px)/1.45 var(--f-body); }
+
+      .floor-proof-grid { height: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2vw; align-items: center; }
+      .floor-proof { position: relative; height: 51vh; overflow: hidden; border: 1px solid var(--c-border); background: var(--c-bg-alt); color: var(--c-fg); text-decoration: none; }
+      .floor-proof img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.84) contrast(0.98); transition: transform 0.7s var(--ease-enter); }
+      .floor-proof:hover img { transform: scale(1.03); }
+      .floor-proof figcaption { position: absolute; inset: auto 0 0; padding: 1.1vw; background: linear-gradient(transparent, rgba(16, 9, 4, 0.96)); }
+      .floor-proof strong { display: block; margin-bottom: 0.35em; font: 400 var(--sz-h3)/1.2 var(--f-heading); }
+
+      .delivery-map { height: 100%; display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 4vw; align-items: center; }
+      .output-lanes { display: grid; gap: 1.2vh; }
+      .output-lane { display: grid; grid-template-columns: 7.5em 1fr auto; gap: 1.2vw; align-items: center; padding: 1.25vw; border: 1px solid var(--c-border); color: inherit; text-decoration: none; }
+      .light .output-lane { border-color: var(--c-border-light); background: var(--c-paper); }
+      .output-lane:hover { border-color: var(--c-accent); }
+      .path-chip { color: var(--c-accent); font: 300 var(--sz-label)/1.35 var(--f-mono); letter-spacing: 0.08em; }
+      .lane-arrow { color: var(--c-accent); font: 400 1.7vw/1 var(--f-heading); }
+      .model-preview { position: relative; height: 50vh; overflow: hidden; border: 1px solid var(--c-border); background: var(--c-bg-alt); }
+      .model-preview img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+      .model-preview::before { content: "WEB GLB  /  FLOOR 01"; position: absolute; z-index: 2; inset: 0 0 auto; height: 2.35em; display: flex; align-items: center; padding: 0 1em; color: var(--c-fg); border-bottom: 1px dashed var(--c-border); background: #100904; font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
+      .model-preview::after { content: "可编辑 .blend  ·  网页 .glb"; position: absolute; left: 1vw; bottom: 1vw; padding: 0.65em 0.85em; color: var(--c-fg); background: rgba(16, 9, 4, 0.9); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
+
+      .mood-layout { height: 100%; display: grid; grid-template-columns: 1.14fr 0.86fr; gap: 3vw; align-items: center; }
+      .mood-gallery { height: 54vh; display: grid; grid-template-columns: 1.25fr 0.75fr; grid-template-rows: 1fr 1fr; gap: 1px; overflow: hidden; background: var(--c-border-light); border: 1px solid var(--c-border-light); }
+      .mood-gallery a { position: relative; overflow: hidden; background: var(--c-bg); }
+      .mood-gallery a:first-child { grid-row: 1 / 3; }
+      .mood-gallery img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.84); }
+      .mood-notes { display: flex; flex-direction: column; gap: var(--gap-md); }
+
+      .video-layout { height: 100%; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.58fr) minmax(300px, 0.62fr); gap: 1px; align-items: stretch; background: var(--c-border); border: 1px solid var(--c-border); }
+      .video-feature, .video-side { min-height: 0; background: var(--c-bg); }
+      .video-feature { display: flex; flex-direction: column; justify-content: center; background: #0a0806; }
+      .video-side { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+      .video-shell { position: relative; overflow: hidden; background: #0a0806; }
+      .video-feature .video-shell { flex: 0 0 auto; min-height: 0; display: flex; flex-direction: column; }
+      .video-feature .video-shell video { flex: 0 0 auto; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0a0806; }
+      .video-side .video-shell { border-bottom: 1px dashed var(--c-border); }
+      .video-side .video-shell video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0a0806; }
+      .video-tag { display: flex; justify-content: space-between; gap: 1em; padding: 0.8em 1em; color: var(--c-fg); border-bottom: 1px dashed var(--c-border); background: var(--c-bg); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+      .video-tag span:last-child { color: var(--c-accent); }
+      .video-copy { display: flex; min-height: 0; flex-direction: column; justify-content: center; gap: 1.4vh; padding: 1.55vw; }
+      .video-copy .h2 { font-size: min(2.2vw, 36px); }
+      .download-links { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--c-border); }
+      .download-links a { background: var(--c-bg); padding: 0.72em 0.86em; text-decoration: none; }
+      .download-links a:hover { background: var(--c-bg-alt); }
+
+      .slide--end { display: flex; flex-direction: column; justify-content: center; gap: var(--gap-md); }
+      .slide--end .closing-art { position: absolute; inset: 0 0 0 58%; background: linear-gradient(90deg, var(--c-bg), transparent 40%), url("skill-intro-video/remotion/public/closing-output.png") center/cover; opacity: 0.58; }
+
+      #nav-dots {
+        position: fixed;
+        bottom: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 7px;
+        z-index: 100;
+        padding: 8px 10px;
+        background: rgba(16, 9, 4, 0.88);
+        border: 1px solid var(--c-border);
+        box-shadow: none;
+        backdrop-filter: blur(8px);
+      }
+
+      .nav-dot { width: 12px; height: 2px; padding: 0; border: 0; border-radius: 0; background: var(--c-border); cursor: pointer; transition: transform 0.25s ease, background 0.25s ease; }
+      .nav-dot.is-active { background: var(--c-accent); transform: scale(1.55); }
+      #slide-counter { display: none; }
+
+      @media (max-width: 900px) {
+        :root {
+          --pad-x: 6vw;
+          --pad-y: 4vh;
+          --sz-h2: min(7vw, 46px);
+          --sz-h3: min(4vw, 25px);
+          --sz-lead: max(2.2vw, 16px);
+          --sz-body: max(1.9vw, 13px);
+        }
+        .input-grid { grid-template-columns: repeat(3, 1fr); }
+        .input-grid .card:nth-child(n+4) { display: none; }
+        .project-inputs { grid-template-columns: 1.08fr 0.92fr; }
+        .project-plan { grid-template-columns: 1fr; }
+        .plan-stack { display: none; }
+        .qa-facts { grid-template-columns: 1fr; }
+        .qa-fact:nth-child(n+4) { display: none; }
+        .output-grid { grid-template-columns: repeat(2, 1fr); }
+        .flow { grid-template-columns: repeat(3, 1fr); }
+        .flow-step:nth-child(n+4) { display: none; }
+        .cover-main { max-width: 78%; }
+        .cover-art { inset-inline-start: 54%; }
+        .floor-proof-grid { grid-template-columns: 1fr 1fr; }
+        .floor-proof:nth-child(3) { display: none; }
+        .floor-map-grid { grid-template-columns: repeat(3, 1fr); }
+        .workflow-stage { grid-template-rows: 13vh auto minmax(0, 1fr); }
+        .workflow-stage:not(:last-child)::after { top: 6vh; }
+        .floor-rebuild-row { grid-template-columns: 5vw minmax(150px, 0.68fr) minmax(240px, 1fr) minmax(220px, 0.92fr); }
+        .workflow-asset-graph { grid-template-columns: minmax(180px, 0.72fr) 2.5vw minmax(285px, 1.14fr) 2.5vw minmax(310px, 1.28fr); }
+        .rebuild-copy { width: 58%; }
+        .rebuild-plan-card { width: 31%; }
+        .rebuild-audit { width: 59%; }
+        .case-layout, .delivery-map, .mood-layout { grid-template-columns: 1fr 1fr; gap: 2.5vw; }
+        .video-layout { grid-template-columns: 1.38fr 0.72fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="nav-dots" aria-label="Slides navigation"></nav>
+    <div id="slide-counter" aria-live="polite"></div>
+
+    <main id="deck">
+      <section class="slide dark slide--cover">
+        <div class="cover-art" aria-hidden="true"></div>
+        <div class="grove-num">01</div>
+        <div class="cover-main">
+          <div class="kicker" data-anim="fade-in" data-delay="1">Interior Renovation HTML · Skill</div>
+          <div class="rule" data-anim="reveal-right" data-delay="2" style="margin: var(--gap-sm) 0 var(--gap-md)"></div>
+          <h1 class="h1" data-anim="fade-up" data-delay="3">把户型图，变成一份可讨论的<em>装修方案</em></h1>
+          <p class="lead muted" style="max-width: 78%; margin-top: var(--gap-md)" data-anim="fade-up" data-delay="4">分层读图 · 逐房间说明 · 3D / Imagen · 单文件 HTML</p>
+        </div>
+        <div class="cover-meta" data-anim="fade-in" data-delay="5">
+          <a class="label muted source-link" href="../SKILL.md">打开 Skill 说明 ↗</a>
+          <span class="label muted">方向键 / 滚轮 / 横向滑动</span>
+        </div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome">
+          <span class="label muted">01 · Input Objects</span>
+          <span class="label muted">02</span>
+        </div>
+        <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-sm)">
+          <div>
+            <div class="kicker" data-anim="fade-in" data-delay="1">Example · yj 三层住宅</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">先看这个项目，实际收到了<em>什么</em></h2>
+          </div>
+          <div class="project-inputs" data-anim="fade-up" data-delay="3">
+            <div class="project-plan">
+              <a class="input-artifact input-artifact--main" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅图纸 PDF">
+                <img src="../example/output-html/audit/page-01.png" alt="yj 三层住宅一层图纸实例" />
+                <div class="artifact-caption">
+                  <div><span class="label">01 / 分层图纸</span><strong>一层平面图</strong></div>
+                  <span class="label artifact-kind">几何事实 ↗</span>
+                </div>
+              </a>
+              <div class="plan-stack">
+                <a class="input-artifact" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅二层图纸">
+                  <img src="../example/output-html/audit/page-02.png" alt="yj 三层住宅二层图纸实例" />
+                  <div class="artifact-caption"><div><span class="label">FLOOR 02</span><strong>二层</strong></div></div>
+                </a>
+                <a class="input-artifact" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅三层图纸">
+                  <img src="../example/output-html/audit/page-03.png" alt="yj 三层住宅三层图纸实例" />
+                  <div class="artifact-caption"><div><span class="label">FLOOR 03</span><strong>三层</strong></div></div>
+                </a>
+              </div>
+            </div>
+            <div class="project-input-side">
+              <a class="qa-evidence" href="../example/input/DESIGN.md">
+                <span class="label artifact-kind">02 / 已填写 DESIGN QA ↗</span>
+                <h3 class="h3">生活方式与硬约束</h3>
+                <div class="qa-facts">
+                  <div class="qa-fact"><span>F1 AXIS</span><strong>客厅—餐厅—厨房连续</strong></div>
+                  <div class="qa-fact"><span>F2 KITCHEN</span><strong>开放式厨房</strong></div>
+                  <div class="qa-fact"><span>DESK</span><strong>书桌 180 × 80 cm</strong></div>
+                  <div class="qa-fact"><span>BATHROOM</span><strong>二、三层干湿分离</strong></div>
+                </div>
+              </a>
+              <a class="input-artifact style-evidence" href="../example/input/image.png" aria-label="打开项目风格参考图">
+                <img src="../example/input/image.png" alt="暖灰微水泥、深色木作与柔和日光的卧室风格参考" />
+                <div class="artifact-caption">
+                  <span class="label artifact-kind">03 / 风格与材料 ↗</span>
+                  <strong>暖灰 · 烟熏木 · 哑光黑</strong>
+                  <p class="style-note">图片约束质感、色调与光线，不改变图纸里的墙体关系。</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/input-contract.md">图纸 PDF · DESIGN QA · 风格图 / Input Contract ↗</a><span class="label muted">02 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">02 · Evidence Roles</span><span class="label muted">03</span></div>
+        <div class="slide-body">
+          <div class="statement-body">
+            <div class="kicker" data-anim="fade-in" data-delay="1">信息不能混成一团</div>
+            <div class="rule" data-anim="reveal-right" data-delay="2"></div>
+            <h1 class="h1" style="max-width:72%" data-anim="fade-up" data-delay="3">图纸决定<em>空间事实</em>，用户决定生活方式，风格图只决定气氛。</h1>
+            <p class="lead muted" style="max-width:58%" data-anim="fade-up" data-delay="4">系统必须始终区分：图纸事实、用户要求、设计推断、待确认项。缺失的信息不偷偷补齐。</p>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/data-schemas.md">Source · Evidence Schema ↗</a><span class="label muted">03 / 14</span></div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome"><span class="label muted">03 · Floor by Floor</span><span class="label muted">04</span></div>
+        <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-sm)">
+          <div>
+            <div class="kicker" data-anim="fade-in" data-delay="1">多层住宅的硬约束</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">每一层都要按自己的图纸<em>重新建模</em></h2>
+          </div>
+          <div class="floor-rebuild-ledger" data-anim="fade-up" data-delay="3">
+            <article class="floor-rebuild-row">
+              <div class="floor-marker"><strong>1F</strong><span>PUBLIC</span></div>
+              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-01.png" alt="一层原始图纸" /><span class="asset-strip">INPUT · page-01.png</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">公共生活层</h3><div class="floor-diff-list"><span>客餐厨连续轴</span><span>餐厨玻璃门</span><span>卫生间不分离</span></div></div></div>
+              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="一层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-1-top-material.png</span></a>
+            </article>
+            <article class="floor-rebuild-row">
+              <div class="floor-marker"><strong>2F</strong><span>FAMILY</span></div>
+              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-02.png" alt="二层原始图纸" /><span class="asset-strip">INPUT · page-02.png</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">家庭起居层</h3><div class="floor-diff-list"><span>开放式厨房</span><span>家庭起居厅</span><span>卫生间干湿分离</span></div></div></div>
+              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png" alt="二层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-2-top-material.png</span></a>
+            </article>
+            <article class="floor-rebuild-row">
+              <div class="floor-marker"><strong>3F</strong><span>PRIVATE</span></div>
+              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-03.png" alt="三层原始图纸" /><span class="asset-strip">INPUT · page-03.png</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">私密休憩层</h3><div class="floor-diff-list"><span>独立书房</span><span>卧室与到达平台</span><span>整层俯视 3D</span></div></div></div>
+              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png" alt="三层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-3-top-material.png</span></a>
+            </article>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/workflow.md">三张图纸 → 三套空间骨架 / 禁止换标签复用 ↗</a><span class="label muted">04 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">04 · Workflow</span><span class="label muted">05</span></div>
+        <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-sm)">
+          <div>
+            <div class="kicker" data-anim="fade-in" data-delay="1">Workflow · Evidence to delivery</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">图纸先变成分层基线，再分叉为<em>三类交付</em></h2>
+          </div>
+          <div class="workflow-asset-graph" data-anim="fade-up" data-delay="3">
+            <div class="graph-group graph-group--input">
+              <a class="graph-asset graph-asset--image plan" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-01.png" alt="分层图纸输入" /><div class="graph-label"><span class="card-index">SOURCE 01</span><strong>三层图纸</strong><span class="asset-chip">input/yj方案改2.pdf</span></div></a>
+              <a class="graph-asset graph-qa" href="../example/input/DESIGN.md"><div><span class="card-index">SOURCE 02</span><h3 class="h3">DESIGN QA</h3></div><p class="body">空间用途、尺寸、材料、禁忌与逐层要求。</p><span class="asset-chip">input/DESIGN.md</span></a>
+            </div>
+            <div class="graph-arrow" aria-hidden="true"><span>→</span></div>
+            <div class="baseline-hub">
+              <div class="baseline-head"><div><span class="card-index">CONTROL / SOURCE OF TRUTH</span><h3 class="h3">分层空间基线</h3></div><div class="baseline-word">BASE</div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">1F</span><div class="baseline-floor-copy"><strong>公共生活骨架</strong><p>客厅—餐厅—厨房连续；餐厨透明玻璃门。</p></div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">2F</span><div class="baseline-floor-copy"><strong>家庭起居骨架</strong><p>开放式厨房；卧室独立；卫生间干湿分离。</p></div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">3F</span><div class="baseline-floor-copy"><strong>私密休憩骨架</strong><p>书房、卧室、到达平台与洞口保护分别校验。</p></div></div>
+              <div class="baseline-files">
+                <a class="asset-chip" href="../example/output-html/plan-facts.json">plan-facts.json ↗</a>
+                <a class="asset-chip" href="../example/output-html/spatial-baseline-v1.json">spatial-baseline-v1.json ↗</a>
+                <a class="asset-chip" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/stair-baseline-v1.json">stair-baseline-v1.json ↗</a>
+              </div>
+            </div>
+            <div class="graph-arrow" aria-hidden="true"><span>↗<br />→<br />↘</span></div>
+            <div class="graph-group graph-group--output">
+              <a class="output-asset-row" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/yj-three-floor-renovation-v9.blend"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="可编辑 Blender 模型" /><span class="output-asset-copy"><span class="card-index">OUTPUT A</span><strong>分层 Blender</strong><span class="asset-chip">output-blender/*.blend</span></span></a>
+              <a class="output-asset-row" href="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp"><img src="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp" alt="逐房间效果图" /><span class="output-asset-copy"><span class="card-index">OUTPUT B</span><strong>逐房间渲染</strong><span class="asset-chip">room-renders/floor-*/</span></span></a>
+              <a class="output-asset-row" href="../example/output-html/room.html"><img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="响应式 HTML 与交互模型" /><span class="output-asset-copy"><span class="card-index">OUTPUT C</span><strong>HTML + Web GLB</strong><span class="asset-chip">output-html/room.html</span></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/workflow.md">Source · End-to-end Workflow ↗</a><span class="label muted">05 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">05 · Room Ledger</span><span class="label muted">06</span></div>
+        <div class="slide-body room-ledger">
+          <div class="split-text" data-anim="fade-up" data-delay="1">
+            <div class="kicker">不是只讲“风格”</div>
+            <h2 class="h2">每个房间都要回答<em>具体问题</em></h2>
+            <p class="lead muted">它在哪一层？和谁相邻？门窗在哪里？家具多大？哪些信息还要追问？</p>
+          </div>
+          <div class="room-list" data-anim="fade-up" data-delay="2">
+            <div class="room-cell"><span class="card-index">01</span><h3 class="h3">空间关系</h3><p class="caption muted">房间、走道、门洞、采光</p></div>
+            <div class="room-cell"><span class="card-index">02</span><h3 class="h3">关键尺寸</h3><p class="caption muted">桌、床垫、柜体与通道</p></div>
+            <div class="room-cell"><span class="card-index">03</span><h3 class="h3">功能选择</h3><p class="caption muted">开放 / 封闭、干湿分离</p></div>
+            <div class="room-cell"><span class="card-index">04</span><h3 class="h3">材料与气氛</h3><p class="caption muted">地面、墙面、木作、灯光</p></div>
+            <div class="room-cell"><span class="card-index">05</span><h3 class="h3">效果图</h3><p class="caption muted">每房间独立生成且可追溯</p></div>
+            <div class="room-cell"><span class="card-index">06</span><h3 class="h3">待确认项</h3><p class="caption muted">不知道，就继续问</p></div>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/input-contract.md">Source · User QA Input ↗</a><span class="label muted">06 / 14</span></div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome"><span class="label muted">06 · Visual Consistency</span><span class="label muted">07</span></div>
+        <div class="slide-body check-grid">
+          <div data-anim="fade-up" data-delay="1">
+            <div class="kicker">3D 与效果图不跑偏</div>
+            <h2 class="h2" style="margin:var(--gap-sm) 0 var(--gap-md)">所有视觉都要回到<em>图纸事实</em></h2>
+            <ul class="check-list">
+              <li>楼层整体俯视 3D 按该层真实长宽比例生成。</li>
+              <li>一层、二层、三层不能套用同一个空间骨架。</li>
+              <li>门窗、玻璃门、重点区域必须有对应视觉证据。</li>
+              <li>逐房间 Imagen 体现本层功能与统一装修风格。</li>
+            </ul>
+          </div>
+          <figure class="baseline-figure" data-anim="scale-in" data-delay="3">
+            <img src="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png" alt="户型图到装修方案视频海报" />
+          </figure>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/image-and-3d.md">Source · Image & 3D Rules ↗</a><span class="label muted">07 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">07 · Rebuild from Evidence</span><span class="label muted">08</span></div>
+        <div class="slide-body">
+          <div class="rebuild-editorial">
+            <a class="rebuild-hero" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-stair-plan-review.png" data-anim="scale-in" data-delay="1">
+              <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-stair-plan-review.png" alt="按二层图纸重建的折返楼梯" />
+              <span class="rebuild-hero-label label">BLENDER REBUILD · FLOOR 02 ↗</span>
+            </a>
+            <div class="rebuild-copy" data-anim="fade-up" data-delay="2">
+              <div class="kicker">Drawing fact → Editable geometry</div>
+              <h2 class="h2">楼梯不是摆进去的，<br />它从<em>图纸里长出来</em></h2>
+              <p class="lead muted">局部图纸先锁定梯井、梯段与到达方向，再进入可编辑 Blender 场景。</p>
+            </div>
+            <a class="rebuild-plan-card" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-plan-stair-crop.png" data-anim="fade-up" data-delay="3">
+              <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-plan-stair-crop.png" alt="二层图纸中的楼梯裁切" />
+              <span class="rebuild-plan-caption"><span class="card-index">EVIDENCE / PDF CROP</span><strong>二层梯井与方向</strong></span>
+            </a>
+            <div class="rebuild-audit" data-anim="fade-up" data-delay="4">
+              <div class="rebuild-check"><span class="card-index">01 / LOCATE</span><strong>逐层定位</strong><p>一、二层分别按本层图纸确认梯井与到达方向。</p></div>
+              <div class="rebuild-check"><span class="card-index">02 / BUILD</span><strong>两跑 × 9 级</strong><p>中间平台、净空、扶手和护栏保持连续。</p></div>
+              <div class="rebuild-check"><span class="card-index">03 / STOP</span><strong>顶层正确收口</strong><p>三层只保留到达平台与洞口保护，不复制整套楼梯。</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/stair-baseline-v1.json">Geometry baseline ↗</a><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/contact-sheet.html">Review sheet ↗</a><span class="label muted">08 / 14</span></div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome"><span class="label muted">08 · Three Floors, Three Identities</span><span class="label muted">09</span></div>
+        <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-md)">
+          <div>
+            <div class="kicker" data-anim="fade-in" data-delay="1">禁止换标签复用空间骨架</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">每层有自己的功能、开口与<em>空间气质</em></h2>
+          </div>
+          <div class="floor-proof-grid" data-anim="fade-up" data-delay="3">
+            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="一层材质俯视图" /><figcaption><strong>1F · 连续公共轴</strong><span class="caption">客厅—餐厅—厨房贯通；餐厨透明玻璃门；卫生间不做干湿分离。</span></figcaption></a>
+            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png" alt="二层材质俯视图" /><figcaption><strong>2F · 家庭起居层</strong><span class="caption">开放式厨房；卧室与起居空间独立；卫生间干湿分离。</span></figcaption></a>
+            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png" alt="三层材质俯视图" /><figcaption><strong>3F · 私密休憩层</strong><span class="caption">书房、卧室与到达平台各自成立；保留整层俯视 3D。</span></figcaption></a>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/iteration-review.yaml">Source · Per-floor Review ↗</a><span class="label muted">09 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">09 · Dual Outputs</span><span class="label muted">10</span></div>
+        <div class="slide-body delivery-map">
+          <div class="case-copy" data-anim="fade-up" data-delay="1">
+            <div class="kicker">一次建模，两种交付</div>
+            <h2 class="h2">工作证据分别进入<em>HTML 与 Blender</em></h2>
+            <div class="output-lanes">
+              <a class="output-lane" href="../example/output-html/room.html"><span class="path-chip">work → output-html</span><span><strong>room.html</strong><br /><span class="caption muted">图纸、QA、效果图、逐层交互与定位留言</span></span><span class="lane-arrow">↗</span></a>
+              <a class="output-lane" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/yj-three-floor-renovation-v9.blend"><span class="path-chip">work → output-blender</span><span><strong>.blend / .glb</strong><br /><span class="caption muted">可编辑模型、网页轻量模型与复核证据</span></span><span class="lane-arrow">↗</span></a>
+            </div>
+            <p class="body muted">Imagen 材质参考进入 Blender，Blender 的真实几何再进入网页交互；两条输出共用同一楼层基线。</p>
+          </div>
+          <a class="model-preview" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/interactive-preview.html" data-anim="scale-in" data-delay="2">
+            <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/interactive-preview-floor-1.png" alt="Blender GLB 网页交互预览" />
+          </a>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/blender-iterative-workflow.md">Source · Blender Workflow ↗</a><span class="label muted">10 / 14</span></div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome"><span class="label muted">10 · Light, Material, Life</span><span class="label muted">11</span></div>
+        <div class="slide-body mood-layout">
+          <div class="mood-gallery" data-anim="scale-in" data-delay="1">
+            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-public-axis.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-public-axis.png" alt="一层客餐厨连续轴灯光与材质" /></a>
+            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-open-kitchen.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-open-kitchen.png" alt="二层开放式厨房灯光与材质" /></a>
+            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-study.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-study.png" alt="三层书房灯光与材质" /></a>
+          </div>
+          <div class="mood-notes" data-anim="fade-up" data-delay="2">
+            <div class="kicker">不是传统低模像素感</div>
+            <h2 class="h2">光有来源，材料有尺度，房间有<em>生活痕迹</em></h2>
+            <ul class="check-list">
+              <li>日光、吊灯、壁灯与台灯共同塑造层次。</li>
+              <li>压住一层过曝，避免全屋平铺式补光。</li>
+              <li>木纹、石材、织物与玻璃按真实比例响应光线。</li>
+              <li>家具和常用灯具是真实可编辑的场景对象。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/image-and-3d.md">Source · Material & Lighting Rules ↗</a><span class="label muted">11 / 14</span></div>
+      </section>
+
+      <section class="slide dark">
+        <div class="slide-chrome"><span class="label muted">11 · Deliverable</span><span class="label muted">12</span></div>
+        <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-md)">
+          <div>
+            <div class="kicker" data-anim="fade-in" data-delay="1">最终交付，不是一堆散图</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">一个可在手机打开、可讨论、可回溯的<em>HTML</em></h2>
+          </div>
+          <div class="output-grid" data-anim="fade-up" data-delay="3">
+            <a class="card" href="../references/output-contract.md"><span class="card-media plan"><img src="../example/output-html/audit/page-01.png" alt="一层原始图纸素材" /></span><span class="card-index">01 / DRAWING</span><h3 class="h3">图纸与分区</h3><p class="body card-copy">嵌入清晰底图，展示楼层与空间事实。</p></a>
+            <a class="card" href="../references/output-contract.md"><span class="card-media"><img src="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp" alt="一层客餐厨逐房间效果素材" /></span><span class="card-index">02 / ROOMS</span><h3 class="h3">逐房间说明</h3><p class="body card-copy">尺寸、选择、材料、待确认项和效果图。</p></a>
+            <a class="card" href="../references/image-and-3d.md"><span class="card-media"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/interactive-preview-floor-1.png" alt="一层交互三维预览素材" /></span><span class="card-index">03 / 3D</span><h3 class="h3">交互 3D</h3><p class="body card-copy">每层独立模型，保留交互与降级方案。</p></a>
+            <a class="card" href="../references/public-review-and-notes.md"><span class="card-media"><img src="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png" alt="电脑与手机跨设备预览素材" /></span><span class="card-index">04 / REVIEW</span><h3 class="h3">定位留言</h3><p class="body card-copy">浮球拖动、区域定位、历史记录与导出。</p></a>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/output-contract.md">Source · Output Contract ↗</a><span class="label muted">12 / 14</span></div>
+      </section>
+
+      <section class="slide light">
+        <div class="slide-chrome"><span class="label muted">12 · 2D / 3D Preview</span><span class="label muted">13</span></div>
+        <div class="slide-body video-layout">
+          <div class="video-feature" data-anim="scale-in" data-delay="1">
+            <div class="video-shell">
+              <div class="video-tag"><span>3D · Spatial Feature</span><span>16:9 · Primary 72%</span></div>
+              <video controls preload="metadata" poster="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png">
+                <source src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4" type="video/mp4" />
+                当前浏览器无法播放 3D 视频。
+              </video>
+            </div>
+          </div>
+          <div class="video-side" data-anim="fade-up" data-delay="2">
+            <div class="video-shell">
+              <div class="video-tag"><span>2D · Workflow</span><span>16:9 · Supporting 28%</span></div>
+              <video controls preload="metadata" poster="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png">
+                <source src="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4" type="video/mp4" />
+                当前浏览器无法播放 2D 视频。
+              </video>
+            </div>
+            <div class="video-copy">
+              <div class="kicker">两个版本，两种讲法</div>
+              <h2 class="h2">3D 看空间，2D 看完整流程</h2>
+              <p class="body muted">主画面保留 16:9 比例展示逐层模型、切层和交互；辅画面说明输入如何变成最终 HTML。</p>
+              <div class="download-links caption">
+                <a href="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4">3D 轻量版 ↗</a>
+                <a href="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4">2D 轻量版 ↗</a>
+                <a href="skill-intro-video/storyboard.md">分镜说明 ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-foot"><a class="label muted source-link" href="skill-intro-video/README.md">Source · Video Package ↗</a><span class="label muted">13 / 14</span></div>
+      </section>
+
+      <section class="slide dark slide--end">
+        <div class="closing-art" aria-hidden="true"></div>
+        <div class="grove-num">14</div>
+        <div class="kicker" data-anim="fade-in" data-delay="0">Interior Renovation HTML</div>
+        <div class="rule" data-anim="reveal-right" data-delay="1"></div>
+        <h1 class="h1" style="max-width:58%; position:relative" data-anim="fade-up" data-delay="2">真正的输出不是一张漂亮图，而是一套<em>可以继续讨论的设计依据</em>。</h1>
+        <p class="lead muted" style="max-width:48%; position:relative" data-anim="fade-up" data-delay="3">图纸事实可追溯 · 每层独立 · 每房间可核对 · 3D 可交互 · HTML 可分享</p>
+        <a class="label muted source-link" style="position:relative; margin-top:var(--gap-lg)" href="../SKILL.md" data-anim="fade-in" data-delay="4">Read the full Skill ↗</a>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        'use strict';
+
+        const deck = document.getElementById('deck');
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const dotsEl = document.getElementById('nav-dots');
+        const counter = document.getElementById('slide-counter');
+        const total = slides.length;
+        let current = 0;
+        let animating = false;
+
+        function init() {
+          deck.style.width = total + '00vw';
+          slides.forEach(function (_, index) {
+            const button = document.createElement('button');
+            button.className = 'nav-dot';
+            button.setAttribute('aria-label', '前往第 ' + (index + 1) + ' 页');
+            button.addEventListener('click', function () { goTo(index); });
+            dotsEl.appendChild(button);
+          });
+          const requestedPage = Number.parseInt(window.location.hash.slice(1), 10);
+          const initialIndex = Number.isFinite(requestedPage) ? requestedPage - 1 : 0;
+          goTo(initialIndex, true);
+        }
+
+        function goTo(index, instant) {
+          index = Math.max(0, Math.min(total - 1, index));
+          if (index === current && !instant) return;
+          animating = true;
+
+          const previous = slides[current];
+          previous.classList.remove('is-active');
+          void previous.offsetWidth;
+
+          if (instant) {
+            deck.style.transition = 'none';
+            deck.style.transform = 'translateX(-' + index + '00vw)';
+            void deck.offsetWidth;
+            deck.style.transition = '';
+          } else {
+            deck.style.transform = 'translateX(-' + index + '00vw)';
+          }
+
+          current = index;
+          window.history.replaceState(null, '', '#' + (current + 1));
+          slides[current].classList.add('is-active');
+          Array.from(dotsEl.children).forEach(function (dot, dotIndex) {
+            dot.classList.toggle('is-active', dotIndex === current);
+          });
+          counter.textContent = current + 1 + ' / ' + total;
+
+          const delay = instant ? 0 : parseFloat(getComputedStyle(deck).transitionDuration) * 1000;
+          setTimeout(function () { animating = false; }, delay);
+        }
+
+        document.addEventListener('keydown', function (event) {
+          if (animating) return;
+          if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === ' ') {
+            event.preventDefault();
+            goTo(current + 1);
+          } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            goTo(current - 1);
+          } else if (event.key === 'Home') {
+            event.preventDefault();
+            goTo(0);
+          } else if (event.key === 'End') {
+            event.preventDefault();
+            goTo(total - 1);
+          }
+        });
+
+        let wheelCooldown = false;
+        document.addEventListener('wheel', function (event) {
+          if (event.target.closest('video')) return;
+          event.preventDefault();
+          if (animating || wheelCooldown) return;
+          wheelCooldown = true;
+          setTimeout(function () { wheelCooldown = false; }, 900);
+          goTo(current + (event.deltaY > 0 || event.deltaX > 0 ? 1 : -1));
+        }, { passive: false });
+
+        let touchStartX = null;
+        let touchStartY = null;
+        document.addEventListener('touchstart', function (event) {
+          touchStartX = event.touches[0].clientX;
+          touchStartY = event.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function (event) {
+          if (touchStartX === null) return;
+          const deltaX = touchStartX - event.changedTouches[0].clientX;
+          const deltaY = touchStartY - event.changedTouches[0].clientY;
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40 && !animating) {
+            goTo(current + (deltaX > 0 ? 1 : -1));
+          }
+          touchStartX = null;
+          touchStartY = null;
+        }, { passive: true });
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

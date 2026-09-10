@@ -1,0 +1,22 @@
+{
+  "previewBird": "../../../example/output-html/room-renders/embedded/floor3PreviewBird-refined.webp",
+  "previewBalcony": "../../../example/output-html/room-renders/embedded/floor3PreviewBird-refined.webp",
+  "previewPrivate": "../../../example/output-html/room-renders/embedded/floor3PreviewBird-refined.webp",
+  "finalLoungeToBalcony": "../../../example/output-html/renders/finalLoungeToBalcony.webp",
+  "finalBalconyToLounge": "../../../example/output-html/renders/finalBalconyToLounge.webp",
+  "finalStudy": "../../../example/output-html/renders/finalStudy.webp",
+  "finalMaster": "../../../example/output-html/renders/finalMaster.webp",
+  "finalMasterBath": "../../../example/output-html/renders/finalMasterBath.webp",
+  "refLivingWide": "../../../example/output-html/assets/refLivingWide.webp",
+  "refLivingPortrait": "../../../example/output-html/assets/refLivingPortrait.webp",
+  "refFoyer": "../../../example/output-html/assets/refFoyer.webp",
+  "refKitchen": "../../../example/output-html/assets/refKitchen.webp",
+  "refMaster": "../../../example/output-html/assets/refMaster.webp",
+  "refGuest": "../../../example/output-html/assets/refGuest.webp",
+  "refStudyDay": "../../../example/output-html/assets/refStudyDay.webp",
+  "refStudyRest": "../../../example/output-html/assets/refStudyRest.webp",
+  "refStudyWindow": "../../../example/output-html/assets/refStudyWindow.webp",
+  "refStudyNight": "../../../example/output-html/assets/refStudyNight.webp",
+  "refMasterBath": "../../../example/output-html/assets/refMasterBath.webp",
+  "refCommonBath": "../../../example/output-html/assets/refCommonBath.webp"
+}

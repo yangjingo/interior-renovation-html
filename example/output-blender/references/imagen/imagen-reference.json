@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "yj-imagen-material-reference",
+  "file": "yj-material-reference.png",
+  "generator": "OpenAI built-in image generation",
+  "use_case": "photorealistic-natural",
+  "role": "Blender material tone, plaster roughness, wood grain, textile response and daylight reference",
+  "geometry_authority": false,
+  "direct_surface_texture": false,
+  "identity_alias": "yj",
+  "privacy_constraints": [
+    "no people or personal belongings",
+    "no real exterior, address or landmark",
+    "no account ID, phone number or social-media UI",
+    "no logo or watermark other than the alias yj"
+  ],
+  "sha256": "195bab2e3049e16cf5fd375d924f947ef98a69330e7ccf091af40649f7aa2055"
+}

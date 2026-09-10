@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>yj home · Blender v9 交互预览</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif; background: #25231e; color: #f0ece3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; overflow: hidden; background: #25231e; }
+    #stage { position: fixed; inset: 0; background: #2b2923 url("yj-three-floor-renovation-v9-poster.png") center/cover no-repeat; }
+    #stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(25,23,19,.64), rgba(25,23,19,.1) 42%, transparent 64%), radial-gradient(circle at 68% 48%, transparent 26%, rgba(18,17,14,.2) 100%); }
+    canvas { position: absolute; inset: 0; width: 100%; height: 100%; outline: 0; z-index: 1; }
+    header { position: fixed; z-index: 3; top: 0; left: 0; width: min(470px, 100%); padding: 28px clamp(18px,4vw,42px); pointer-events: none; }
+    .eyebrow { color: #d1af71; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 9px 0 8px; font-size: clamp(28px,4vw,52px); font-weight: 520; letter-spacing: -.035em; }
+    header p { max-width: 390px; margin: 0; color: #c6c0b5; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 13px; line-height: 1.65; }
+    .toolbar { position: fixed; z-index: 4; left: clamp(16px,4vw,42px); bottom: max(20px, env(safe-area-inset-bottom)); display: flex; max-width: calc(100vw - 32px); gap: 8px; padding: 8px; overflow-x: auto; border: 1px solid rgba(255,255,255,.17); border-radius: 18px; background: rgba(40,37,31,.82); backdrop-filter: blur(18px); box-shadow: 0 18px 60px rgba(0,0,0,.24); font-family: "Noto Sans SC", system-ui, sans-serif; }
+    button { flex: 0 0 auto; min-height: 38px; padding: 0 14px; border: 0; border-radius: 12px; background: transparent; color: #c9c4ba; font: inherit; font-size: 12px; cursor: pointer; }
+    button:hover, button:focus-visible { background: rgba(255,255,255,.08); color: white; outline: none; }
+    button[aria-pressed="true"] { background: #eee8dc; color: #1a1915; }
+    .status { position: fixed; z-index: 4; right: clamp(16px,3vw,32px); top: 24px; display: flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: rgba(40,37,31,.8); color: #d2ccc1; font-family: "Noto Sans SC", system-ui, sans-serif; font-size: 11px; backdrop-filter: blur(14px); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #d1af71; box-shadow: 0 0 16px #d1af71; }
+    .hint { position: fixed; z-index: 3; right: 30px; bottom: 24px; color: #8d887f; font-size: 11px; pointer-events: none; }
+    .fallback { position: fixed; z-index: 5; inset: auto 20px 88px auto; display: none; width: min(360px, calc(100vw - 40px)); padding: 16px; border: 1px solid #53473a; border-radius: 14px; background: #211e19; color: #d8d2c8; font-size: 13px; line-height: 1.6; }
+    .fallback a { color: #e5c58a; }
+    @media (max-width: 720px) { header { padding-top: 22px; } header p { max-width: 290px; } .status { top: auto; bottom: 82px; } .hint { display: none; } .toolbar { right: 16px; } }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <div id="stage" aria-label="三层住宅交互式 3D 模型"></div>
+  <header>
+    <div class="eyebrow">Blender v9 · interactive model</div>
+    <h1>按图纸重建楼梯关系</h1>
+    <p>拖动旋转，滚轮缩放，右键平移。可逐层查看折返梯、半平台与三层到达防护。楼梯尺寸为概念假设，须现场复测。</p>
+  </header>
+  <div class="status" role="status" aria-live="polite"><span class="dot"></span><span id="statusText">正在加载 3D 模型…</span></div>
+  <nav class="toolbar" aria-label="3D 模型控制">
+    <button data-floor="whole" aria-pressed="true">整栋</button>
+    <button data-floor="floor-1" aria-pressed="false">一层</button>
+    <button data-floor="floor-2" aria-pressed="false">二层</button>
+    <button data-floor="floor-3" aria-pressed="false">三层</button>
+    <button id="topView" aria-pressed="false">俯视</button>
+    <button id="lightMode" aria-pressed="true">日暮</button>
+    <button id="fixtureToggle" aria-pressed="true">生活灯</button>
+    <button id="snapshot" aria-pressed="false">截图</button>
+  </nav>
+  <div class="hint">左键旋转 · 右键平移 · 滚轮缩放</div>
+  <div class="fallback" id="fallback">交互模型加载失败。请确认当前设备可以访问 Three.js CDN；模型数据已经内嵌，不再依赖旁边的 GLB 文件。也可以打开 <a href="interactive-preview-hosted.html">HTTP / 部署轻量版</a>。</div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+
+    const stage = document.querySelector('#stage');
+    const statusText = document.querySelector('#statusText');
+    const fallback = document.querySelector('#fallback');
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.68;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    stage.append(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x2b2923);
+    scene.fog = new THREE.FogExp2(0x2b2923, 0.0045);
+    const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.05, 180);
+    camera.position.set(17, 14, 20);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = false;
+    controls.target.set(0, 4.5, 0);
+    controls.minDistance = 4;
+    controls.maxDistance = 48;
+    controls.maxPolarAngle = Math.PI * 0.49;
+
+    const hemisphere = new THREE.HemisphereLight(0xffe8cf, 0x35312a, 0.48);
+    scene.add(hemisphere);
+    const key = new THREE.DirectionalLight(0xffddb8, 0.9);
+    key.position.set(8, 16, 9);
+    key.castShadow = true;
+    key.shadow.mapSize.set(1536, 1536);
+    scene.add(key);
+
+    const ranges = {
+      whole: [-Infinity, Infinity, 4.5],
+      'floor-1': [-0.2, 3.15, 1.35],
+      'floor-2': [3.15, 6.35, 4.55],
+      'floor-3': [6.35, 9.8, 7.75]
+    };
+    let model;
+    let activeFloor = 'whole';
+    let fixtureLights = [];
+    let lampsOn = true;
+    let evening = true;
+    window.__YJ_VIEWER_READY__ = false;
+    window.__YJ_VIEWER_STATE__ = { floor: activeFloor, evening, lampsOn };
+    let frameRequested = false;
+
+    function requestRender() {
+      if (frameRequested) return;
+      frameRequested = true;
+      requestAnimationFrame(() => {
+        renderer.render(scene, camera);
+        frameRequested = false;
+      });
+    }
+
+    controls.addEventListener('change', requestRender);
+
+    function updateState() {
+      window.__YJ_VIEWER_STATE__ = { floor: activeFloor, evening, lampsOn };
+    }
+
+    function applyFixtureVisibility() {
+      const [minY, maxY] = ranges[activeFloor];
+      fixtureLights.forEach(light => {
+        const y = light.userData.viewerY ?? light.getWorldPosition(new THREE.Vector3()).y;
+        light.userData.viewerY = y;
+        light.visible = lampsOn && (activeFloor === 'whole' || (y >= minY && y < maxY));
+      });
+    }
+
+    function setFloor(floorId) {
+      if (!model) return;
+      activeFloor = floorId;
+      const [minY, maxY, targetY] = ranges[floorId];
+      model.traverse(object => {
+        if (!object.isMesh && !object.isLight) return;
+        if (object.isLight && !object.name.startsWith('v9-')) {
+          object.visible = false;
+          return;
+        }
+        if (object.userData.viewerY === undefined) {
+          if (object.isMesh) {
+            const box = new THREE.Box3().setFromObject(object);
+            object.userData.viewerY = box.getCenter(new THREE.Vector3()).y;
+          } else {
+            object.userData.viewerY = object.getWorldPosition(new THREE.Vector3()).y;
+          }
+        }
+        const y = object.userData.viewerY;
+        let lineage = object.name;
+        for (let parent = object.parent; parent && parent !== model; parent = parent.parent) lineage += ` ${parent.name}`;
+        const isCover = /ceiling|roof/i.test(lineage);
+        const namedFloor = lineage.match(/(?:^|\s)(?:f|floor-)([123])-/i)?.[1];
+        const matchesNamedFloor = !namedFloor || namedFloor === floorId.at(-1);
+        const stairFromBelow = /stair/i.test(lineage) && ((floorId === 'floor-2' && namedFloor === '1') || (floorId === 'floor-3' && namedFloor === '2'));
+        object.visible = floorId === 'whole' || stairFromBelow || ((y >= minY && y < maxY) && matchesNamedFloor && !isCover);
+      });
+      applyFixtureVisibility();
+      controls.target.set(0, targetY, 0);
+      camera.position.set(15, targetY + (floorId === 'whole' ? 10 : 14), 17);
+      controls.update();
+      document.querySelectorAll('[data-floor]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.floor === floorId)));
+      document.querySelector('#topView').setAttribute('aria-pressed', 'false');
+      statusText.textContent = `${floorId === 'whole' ? '整栋' : floorId.replace('floor-', '') + ' 层'} · 3D 已就绪`;
+      location.hash = floorId;
+      updateState();
+      requestRender();
+    }
+
+    function setEvening(value) {
+      evening = value;
+      hemisphere.intensity = value ? 0.48 : 0.78;
+      key.intensity = value ? 0.9 : 1.05;
+      key.color.set(value ? 0xffddb8 : 0xfff3df);
+      scene.background.set(value ? 0x2b2923 : 0xaeb6b4);
+      scene.fog.color.copy(scene.background);
+      renderer.toneMappingExposure = value ? 0.68 : 0.84;
+      document.querySelector('#lightMode').setAttribute('aria-pressed', String(value));
+      document.querySelector('#lightMode').textContent = value ? '日暮' : '日间';
+      updateState();
+      requestRender();
+    }
+
+    const loader = new GLTFLoader();
+    loader.setMeshoptDecoder(MeshoptDecoder);
+    const gradedMaterials = new Set();
+    const embeddedModelUrl = 'data:model/gltf-binary;base64,__YJ_EMBEDDED_GLB_BASE64__';
+    const modelUrl = location.protocol === 'file:' ? embeddedModelUrl : 'yj-three-floor-renovation-v9-web.glb';
+    loader.load(
+      modelUrl,
+      gltf => {
+        model = gltf.scene;
+        model.traverse(object => {
+          if (object.isMesh) {
+            object.castShadow = true;
+            object.receiveShadow = true;
+            const materials = Array.isArray(object.material) ? object.material : [object.material];
+            materials.forEach(material => {
+              if (!material || gradedMaterials.has(material)) return;
+              gradedMaterials.add(material);
+              const isEmissive = material.emissive && Math.max(material.emissive.r, material.emissive.g, material.emissive.b) > 0.15;
+              const isPale = material.color && Math.min(material.color.r, material.color.g, material.color.b) > 0.72;
+              if (isPale && !isEmissive) material.color.multiplyScalar(0.84);
+            });
+          }
+          if (object.isLight) {
+            if (object.name.startsWith('v9-')) {
+              object.intensity *= 0.35;
+              fixtureLights.push(object);
+            }
+            else object.visible = false;
+          }
+        });
+        scene.add(model);
+        const requestedFloor = ranges[location.hash.slice(1)] ? location.hash.slice(1) : 'whole';
+        setFloor(requestedFloor);
+        setEvening(true);
+        window.__YJ_VIEWER_READY__ = true;
+      },
+      event => {
+        if (event.total) statusText.textContent = `加载模型 ${Math.round(event.loaded / event.total * 100)}%`;
+      },
+      error => {
+        console.error('GLB load failed', error);
+        statusText.textContent = '3D 模型加载失败';
+        fallback.style.display = 'block';
+        window.__YJ_VIEWER_ERROR__ = String(error);
+      }
+    );
+
+    document.querySelectorAll('[data-floor]').forEach(button => button.addEventListener('click', () => setFloor(button.dataset.floor)));
+    document.querySelector('#topView').addEventListener('click', event => {
+      const y = ranges[activeFloor][2];
+      camera.position.set(0.01, y + 19, 0.01);
+      controls.target.set(0, y, 0);
+      controls.update();
+      event.currentTarget.setAttribute('aria-pressed', 'true');
+      requestRender();
+    });
+    document.querySelector('#lightMode').addEventListener('click', () => setEvening(!evening));
+    document.querySelector('#fixtureToggle').addEventListener('click', event => {
+      lampsOn = !lampsOn;
+      applyFixtureVisibility();
+      event.currentTarget.setAttribute('aria-pressed', String(lampsOn));
+      event.currentTarget.textContent = lampsOn ? '生活灯' : '生活灯关';
+      updateState();
+      requestRender();
+    });
+    document.querySelector('#snapshot').addEventListener('click', () => {
+      renderer.render(scene, camera);
+      const link = document.createElement('a');
+      link.download = `yj-home-v9-${activeFloor}.png`;
+      link.href = renderer.domElement.toDataURL('image/png');
+      link.click();
+    });
+    addEventListener('resize', () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+      requestRender();
+    });
+    requestRender();
+  </script>
+</body>
+</html>

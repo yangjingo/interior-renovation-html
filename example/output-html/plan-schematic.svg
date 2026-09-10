@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1380" role="img" aria-label="第三层空间关系示意图">
+  <rect width="1400" height="1380" fill="#f1ede4"/>
+  <style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#273038}.title{font-size:34px;font-weight:700}.label{font-size:22px}.note{font-size:18px;fill:#687078}.wall{fill:none;stroke:#273038;stroke-width:16}.zone{stroke:#f1ede4;stroke-width:8}.dry{fill:#c9b299}.public{fill:#d5c5a6}.wet{fill:#9eafb1}.out{fill:#aeb5a4}.core{fill:#6c7174}.dim{stroke:#9a614c;stroke-width:3}</style>
+  <text x="70" y="75" class="title">第三层空间关系示意</text>
+  <text x="70" y="112" class="note">依据图纸尺寸链整理 · 不是测量图或施工图</text>
+  <rect x="90" y="180" width="1220" height="1080" class="wall"/>
+  <rect x="100" y="190" width="410" height="170" class="zone out"/><text x="220" y="275" class="label">生活阳台</text>
+  <rect x="100" y="360" width="410" height="380" class="zone dry"/><text x="205" y="550" class="label">书房 / 游戏房</text>
+  <rect x="100" y="740" width="410" height="510" class="zone out"/><text x="225" y="985" class="label">景观阳台</text>
+  <rect x="510" y="190" width="430" height="250" class="zone core"/><text x="680" y="315" class="label" fill="#fff">楼梯</text>
+  <rect x="510" y="440" width="430" height="620" class="zone public"/><text x="650" y="745" class="label">家庭厅</text>
+  <rect x="510" y="1060" width="430" height="190" class="zone out"/><text x="665" y="1155" class="label">前阳台</text>
+  <rect x="940" y="190" width="360" height="330" class="zone dry"/><text x="1080" y="355" class="label">次卧</text>
+  <rect x="940" y="520" width="360" height="260" class="zone wet"/><text x="1050" y="655" class="label">双卫生间</text>
+  <rect x="940" y="780" width="360" height="470" class="zone dry"/><text x="1065" y="1015" class="label">主卧</text>
+  <line x1="90" y1="1320" x2="1310" y2="1320" class="dim"/><text x="550" y="1360" class="note">4.8 m + 5.0 m + 4.2 m = 14.0 m</text>
+</svg>

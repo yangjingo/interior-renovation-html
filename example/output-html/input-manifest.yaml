@@ -1,0 +1,44 @@
+case_id: yj-third-floor-warm-cement-202609
+scope:
+  building: three-storey private residence
+  target: third floor only
+  printed_area_m2: 180
+  drawing_revision: 2026-08-14 PDF export
+
+inputs:
+  plan_pdf:
+    role: geometry, dimensions, adjacency, stairs, balconies, wet cores, doors and windows
+    page_count: 3
+    target_page_label: third floor
+    audit_renders: [audit/page-01.png, audit/page-02.png, audit/page-03.png]
+    release: original plan is not embedded in the final HTML
+  style_reference:
+    role: warm concrete palette, material texture, daylight and furniture density only
+    source: example/input/image.png
+    release: privacy-safe ImageGen reference generated for this example; contains only the alias yj and no real exterior, account ID or personal belongings
+  requirements:
+    role: user-completed room, furniture, bathroom, balcony, material and deliverable answers
+    source: example/input/DESIGN.md
+
+resolved_requirements:
+  spaces: [two bedrooms, study-game room, family lounge, two bathrooms, three balconies]
+  fixed_furniture:
+    sit_stand_desk_mm: [1800, 800]
+    main_mattress_mm: [1800, 2000]
+    guest_mattress_mm: [1500, 2000]
+  must_keep: [stair and arrival, three balconies, all unverified structural and facade conditions]
+  style: [warm grey mineral surfaces, smoked timber, matte black metal, low sparse furniture, layered warm light]
+  deliverable: one responsive Chinese HTML with interactive 3D, static fallback, five final renders, materials, budget and sourcing
+
+unknowns:
+  - project city and approval jurisdiction
+  - north orientation, view and noise directions
+  - structural system and opening feasibility
+  - measured ceiling, beam, sill and opening heights
+  - drainage elevations, electrical capacity and gas conditions
+
+authority_order:
+  geometry: plan PDF
+  needs: completed DESIGN questionnaire
+  atmosphere: style reference
+  structural_and_regulatory_release: qualified local professionals and authorities

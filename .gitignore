@@ -1,0 +1,28 @@
+# Dependencies and generated caches
+**/node_modules/
+**/.remotion/
+**/.cache/
+**/dist/
+
+# Local browser and editor state
+.playwright-cli/
+.vscode/
+.idea/
+*.log
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Python and Blender backups
+**/__pycache__/
+*.py[cod]
+*.blend1
+*.blend2
+
+# Historical Blender iterations retained locally only
+example/output-blender/yj-home-blender-v7/
+example/output-blender/yj-home-blender-v8/
+example/output-blender/yj-three-floor-walkthrough*
+example/output-blender/BLENDER-WALKTHROUGH.md

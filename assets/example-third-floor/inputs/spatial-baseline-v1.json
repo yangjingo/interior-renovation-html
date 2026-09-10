@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "floor_id": "floor-3",
+  "scope": "third floor",
+  "units": "m",
+  "origin": "drawing top-left exterior axis intersection; +x right, +z down",
+  "overall_bounds": {"x": 0, "z": 0, "width": 14.0, "depth": 13.78},
+  "orientation": {"north": "unknown"},
+  "source_state": "existing-drawing",
+  "preferred_visual_state": "option-a",
+  "zones": [
+    {"id": "service-balcony", "label": "service balcony", "approx_size": [4.8, 1.8], "bounds": {"x": 0, "z": 0, "width": 4.8, "depth": 1.8}, "classification": "exterior", "source_id": "I-BALCONY-02", "confidence": "medium", "site_measure": true},
+    {"id": "study-game", "label": "study/game room", "approx_size": [4.8, 4.8], "bounds": {"x": 0, "z": 1.8, "width": 4.8, "depth": 4.8}, "classification": "dry-interior", "source_id": "I-STUDY-01", "confidence": "medium", "site_measure": true},
+    {"id": "landscape-balcony", "label": "landscape balcony", "approx_size": [4.8, 5.0], "bounds": {"x": 0, "z": 6.6, "width": 4.8, "depth": 5.0}, "classification": "exterior", "source_id": "I-BALCONY-01", "confidence": "medium", "site_measure": true},
+    {"id": "stair", "label": "stair and arrival", "bounds": {"x": 4.8, "z": 0, "width": 5.0, "depth": 3.6}, "classification": "circulation", "confidence": "high", "site_measure": true},
+    {"id": "family-lounge", "label": "family lounge", "approx_size": [5.0, 8.0], "bounds": {"x": 4.8, "z": 3.6, "width": 5.0, "depth": 8.0}, "classification": "dry-interior", "source_id": "I-LOUNGE-01", "confidence": "medium", "site_measure": true},
+    {"id": "front-balcony", "label": "front balcony", "approx_size": [5.0, 2.18], "bounds": {"x": 4.8, "z": 11.6, "width": 5.0, "depth": 2.18}, "classification": "exterior", "source_id": "I-BALCONY-03", "confidence": "medium", "site_measure": true},
+    {"id": "guest-bedroom", "label": "guest bedroom", "bounds": {"x": 9.8, "z": 0, "width": 4.2, "depth": 3.6}, "classification": "dry-interior", "confidence": "medium", "site_measure": true},
+    {"id": "public-corridor", "label": "public circulation at wet core", "bounds": {"x": 9.8, "z": 3.6, "width": 1.5, "depth": 1.8}, "classification": "circulation", "confidence": "low", "site_measure": true},
+    {"id": "public-bath", "label": "public washroom/bath", "bounds": {"x": 11.3, "z": 3.6, "width": 2.7, "depth": 1.8}, "classification": "wet-interior", "confidence": "low", "site_measure": true},
+    {"id": "main-bath-existing", "label": "existing main bathroom zone", "bounds": {"x": 9.8, "z": 5.4, "width": 4.2, "depth": 1.8}, "classification": "wet-interior", "confidence": "low", "site_measure": true},
+    {"id": "main-bedroom", "label": "main bedroom", "bounds": {"x": 9.8, "z": 7.2, "width": 4.2, "depth": 4.4}, "classification": "dry-interior", "confidence": "medium", "site_measure": true}
+  ],
+  "shared_boundaries": [
+    {"a": "service-balcony", "b": "study-game", "segment": {"x1": 0, "z1": 1.8, "x2": 4.8, "z2": 1.8}},
+    {"a": "study-game", "b": "landscape-balcony", "segment": {"x1": 0, "z1": 6.6, "x2": 4.8, "z2": 6.6}},
+    {"a": "landscape-balcony", "b": "family-lounge", "segment": {"x1": 4.8, "z1": 6.6, "x2": 4.8, "z2": 11.6}},
+    {"a": "stair", "b": "family-lounge", "segment": {"x1": 4.8, "z1": 3.6, "x2": 9.8, "z2": 3.6}},
+    {"a": "family-lounge", "b": "front-balcony", "segment": {"x1": 4.8, "z1": 11.6, "x2": 9.8, "z2": 11.6}},
+    {"a": "guest-bedroom", "b": "public-corridor", "segment": {"x1": 9.8, "z1": 3.6, "x2": 11.3, "z2": 3.6}},
+    {"a": "public-bath", "b": "main-bath-existing", "segment": {"x1": 11.3, "z1": 5.4, "x2": 14.0, "z2": 5.4}},
+    {"a": "main-bath-existing", "b": "main-bedroom", "segment": {"x1": 9.8, "z1": 7.2, "x2": 14.0, "z2": 7.2}}
+  ],
+  "openings": [
+    {"id": "opening-lounge-landscape", "between": ["family-lounge", "landscape-balcony"], "modification_id": "P-OPEN-01"},
+    {"id": "opening-lounge-front", "between": ["family-lounge", "front-balcony"], "modification_id": "P-OPEN-02"},
+    {"id": "opening-study-service", "between": ["study-game", "service-balcony"], "modification_id": "P-OPEN-03"}
+  ],
+  "circulation": [
+    {"id": "arrival-to-lounge", "from": "stair", "to": "family-lounge", "target_clear_mm": 1200, "class": "proposal", "site_measure": true},
+    {"id": "public-indoor-outdoor-axis", "from": "stair", "via": ["family-lounge"], "to": "landscape-balcony", "target_clear_mm": 1200, "class": "proposal", "site_measure": true},
+    {"id": "private-route", "from": "family-lounge", "via": ["public-corridor"], "to": "main-bedroom", "target_clear_mm": 900, "class": "proposal", "site_measure": true}
+  ],
+  "variants": [
+    {"id": "existing", "label": "existing drawing state", "modification_ids": [], "zone_deltas": {"remove": [], "add": []}, "boundary_deltas": {"remove": [], "add": []}},
+    {
+      "id": "option-a",
+      "label": "preferred concept visualisation",
+      "modification_ids": ["P-OPEN-01", "P-OPEN-02", "P-OPEN-03", "P-DOOR-01", "P-WET-01", "P-WIN-01"],
+      "zone_deltas": {
+        "remove": ["main-bath-existing"],
+        "add": [
+          {"id": "main-bath-option-a", "label": "enlarged main bathroom proposal", "bounds": {"x": 9.8, "z": 5.4, "width": 4.2, "depth": 1.8}, "classification": "wet-interior", "confidence": "low", "site_measure": true, "modification_id": "P-WET-01"}
+        ]
+      },
+      "boundary_deltas": {
+        "remove": [["public-bath", "main-bath-existing"], ["main-bath-existing", "main-bedroom"]],
+        "add": [
+          {"a": "public-bath", "b": "main-bath-option-a", "segment": {"x1": 11.3, "z1": 5.4, "x2": 14.0, "z2": 5.4}},
+          {"a": "main-bath-option-a", "b": "main-bedroom", "segment": {"x1": 9.8, "z1": 7.2, "x2": 14.0, "z2": 7.2}}
+        ]
+      }
+    }
+  ],
+  "unmodelled_or_exterior_voids": [
+    {"id": "left-lower-remainder", "bounds": {"x": 0, "z": 11.6, "width": 4.8, "depth": 2.18}, "status": "drawing condition unresolved; intentionally no floor zone in the concept 3D"},
+    {"id": "right-lower-remainder", "bounds": {"x": 9.8, "z": 11.6, "width": 4.2, "depth": 2.18}, "status": "drawing condition unresolved; intentionally no floor zone in the concept 3D"}
+  ],
+  "fixed_furniture": [
+    {"id": "desk-01", "zone": "study-game", "size_mm": [1800, 800], "type": "dual-motor sit-stand desk"},
+    {"id": "mattress-main", "zone": "main-bedroom", "size_mm": [1800, 2000], "type": "mattress with ventilated base"},
+    {"id": "mattress-guest", "zone": "guest-bedroom", "size_mm": [1500, 2000], "type": "mattress with ventilated base"}
+  ],
+  "unresolved": ["orientation", "structure", "exact wall thicknesses", "ceiling and beam heights", "window sill heights", "drainage elevations", "facade approval", "right-hand lower facade/setback condition"]
+}

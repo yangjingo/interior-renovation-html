@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "provider": "Poly Haven",
+  "license": "CC0 1.0",
+  "license_url": "https://polyhaven.com/license",
+  "resolution": "1k",
+  "format": "jpg",
+  "assets": [
+    {
+      "id": "beige_wall_001",
+      "role": "warm mineral plaster",
+      "page_url": "https://polyhaven.com/a/beige_wall_001",
+      "maps": {
+        "Diffuse": {
+          "file": "beige_wall_001_diffuse_1k.jpg",
+          "bytes": 33074,
+          "md5": "a99610d7d72ec6fb20ae991ad69b3eb7",
+          "sha256": "72104704d0b9bd3713c5f6238971252b63eccf6e61263059c674caa8f3d0fa6d",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_diff_1k.jpg"
+        },
+        "nor_gl": {
+          "file": "beige_wall_001_nor_gl_1k.jpg",
+          "bytes": 153434,
+          "md5": "2f5fc5b63c425b359089468f4d719ef5",
+          "sha256": "cec747be50f91da0693986080b6f59ef868d53cb2ab7d577982165ece63ed75e",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_nor_gl_1k.jpg"
+        },
+        "Rough": {
+          "file": "beige_wall_001_rough_1k.jpg",
+          "bytes": 151256,
+          "md5": "40d8616d65055c4c984a2807ce933287",
+          "sha256": "fc8328f47f4d2d82d5311a75bcb5c8cd8979d171a0ee097ad9e44ca9c5a00d60",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_rough_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "wood_floor",
+      "role": "warm oak floor and light joinery",
+      "page_url": "https://polyhaven.com/a/wood_floor",
+      "maps": {
+        "Diffuse": {
+          "file": "wood_floor_diffuse_1k.jpg",
+          "bytes": 734493,
+          "md5": "b7e927d2bf2f8f103820ff3890c8407c",
+          "sha256": "2a1c07687b6dbb214c4b9213739c6d92d425f1f0fc8ab3ac157f105d78240789",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_floor/wood_floor_diff_1k.jpg"
+        },
+        "nor_gl": {
+          "file": "wood_floor_nor_gl_1k.jpg",
+          "bytes": 423303,
+          "md5": "620f174d2c09b579c5d02d37b2106668",
+          "sha256": "452247f0d0d1b7fc7f8324ff3b6ed60bcc6de1405f4284eeb8d9bce90d4939c2",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_floor/wood_floor_nor_gl_1k.jpg"
+        },
+        "Rough": {
+          "file": "wood_floor_rough_1k.jpg",
+          "bytes": 527754,
+          "md5": "36146634f1dbd1bc30cd071857584c10",
+          "sha256": "061f1e1293251b2d28c76e3fac1ea9452b0e8648bb8f9b3728e09db386166e5c",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/wood_floor/wood_floor_rough_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "dark_wood",
+      "role": "dark walnut cabinetry and furniture",
+      "page_url": "https://polyhaven.com/a/dark_wood",
+      "maps": {
+        "Diffuse": {
+          "file": "dark_wood_diffuse_1k.jpg",
+          "bytes": 754754,
+          "md5": "47fa883f1bb33acc5711245f64b75975",
+          "sha256": "d68da31655bf47024af893156a6a01a6c95bb60f55d97e2dc9bdd47be320e5b5",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_diff_1k.jpg"
+        },
+        "nor_gl": {
+          "file": "dark_wood_nor_gl_1k.jpg",
+          "bytes": 344338,
+          "md5": "ca74ffa4c1b7ff5afe7316bbfa87f9a0",
+          "sha256": "c42541f1bda0a14b39f120c24407eeba699af8ac85b371c7cef98ffd7d7b13bf",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_nor_gl_1k.jpg"
+        },
+        "Rough": {
+          "file": "dark_wood_rough_1k.jpg",
+          "bytes": 574415,
+          "md5": "b1acb7bf90785d3945a85eca408dbc6c",
+          "sha256": "47ea12dbf649109b02eaa164dde9732a74e839957f29ad0ec7f5266b575d1835",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/dark_wood/dark_wood_rough_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "floor_tiles_02",
+      "role": "warm stone and wet-area tile",
+      "page_url": "https://polyhaven.com/a/floor_tiles_02",
+      "maps": {
+        "Diffuse": {
+          "file": "floor_tiles_02_diffuse_1k.jpg",
+          "bytes": 354550,
+          "md5": "32de1779b8ddba55ad62df8d014264cd",
+          "sha256": "05988d474ecb1f9cd48e65d978db88212252ef8b5af8ed3833395c1f86b2b469",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_02/floor_tiles_02_diff_1k.jpg"
+        },
+        "nor_gl": {
+          "file": "floor_tiles_02_nor_gl_1k.jpg",
+          "bytes": 156697,
+          "md5": "0018f27bf5486fcf939232dff86dc68e",
+          "sha256": "5ce11f7e5f12a1d61588f226a79e27eb8b57b95d2f95d1d6cbde613110696669",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_02/floor_tiles_02_nor_gl_1k.jpg"
+        },
+        "Rough": {
+          "file": "floor_tiles_02_rough_1k.jpg",
+          "bytes": 304724,
+          "md5": "e32ffaaa6a49f4403af466c33f606fa2",
+          "sha256": "d4dd1404057206e2e22eea4d2de6b6c7b562ec0636b5d25887397aa7c94ec567",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_02/floor_tiles_02_rough_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "terlenka",
+      "role": "cream upholstery and linen surface",
+      "page_url": "https://polyhaven.com/a/terlenka",
+      "maps": {
+        "Diffuse": {
+          "file": "terlenka_diffuse_1k.jpg",
+          "bytes": 691195,
+          "md5": "202624e89023d9ace2845b372015490c",
+          "sha256": "74c4333ed05e133928b0cf6d52e732135c8c0ce6dc8623efa590fb31b90f15c0",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terlenka/terlenka_diff_1k.jpg"
+        },
+        "nor_gl": {
+          "file": "terlenka_nor_gl_1k.jpg",
+          "bytes": 877301,
+          "md5": "88d445044fb8519c516c97acabf93ef1",
+          "sha256": "05d7152ff680a6699018f5c37456a14e16eb1e70014a79d4d500dfd2e099c8f9",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terlenka/terlenka_nor_gl_1k.jpg"
+        },
+        "Rough": {
+          "file": "terlenka_rough_1k.jpg",
+          "bytes": 856303,
+          "md5": "e544dd3fc7d46744a7f1451b6b2687fe",
+          "sha256": "ec726afa814ff6bb92ae27e916bcbfc4d467acb5203d324355531a57cba4910d",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/terlenka/terlenka_rough_1k.jpg"
+        }
+      }
+    }
+  ],
+  "hdris": [
+    {
+      "id": "suburban_garden",
+      "role": "sunlit residential garden image-based lighting",
+      "page_url": "https://polyhaven.com/a/suburban_garden",
+      "file": "suburban_garden_1k.hdr",
+      "bytes": 1622533,
+      "md5": "d33bb37eed0e43fff8b63ea1d362b75f",
+      "sha256": "4f35c78e8664ae73ba0e3a18fab5e8dc784029af892a42b8b34b4200e481232b",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/suburban_garden_1k.hdr"
+    }
+  ],
+  "models": [
+    {
+      "id": "dining_chair_02",
+      "role": "upholstered dining chair",
+      "page_url": "https://polyhaven.com/a/dining_chair_02",
+      "entry_file": "models/dining_chair_02/dining_chair_02_1k.gltf",
+      "files": {
+        "dining_chair_02_1k.gltf": {
+          "bytes": 2723,
+          "md5": "5aff75016e0943e84161de89dcc3ceb8",
+          "sha256": "88352a44a17319846f61fe03ce75c79fb1849aa508b6a262366c149c1bbd06b8",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/dining_chair_02/dining_chair_02_1k.gltf"
+        },
+        "dining_chair_02.bin": {
+          "bytes": 544592,
+          "md5": "b7f8a91c0a5249d02de7885f3b242c4e",
+          "sha256": "c7f1ef858f73815176d2ab304472a69ccf6097e971e5258eb924a75f841d4af5",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/dining_chair_02/dining_chair_02.bin"
+        },
+        "textures/dining_chair_02_nor_gl_1k.jpg": {
+          "bytes": 119612,
+          "md5": "9c0e1003f9c8859a2e5c2c7f92a8f238",
+          "sha256": "348703512ca1215f8389e9108419c2d1a46537663db25f423c3ef900d20cfe61",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dining_chair_02/dining_chair_02_nor_gl_1k.jpg"
+        },
+        "textures/dining_chair_02_diff_1k.jpg": {
+          "bytes": 91518,
+          "md5": "6b7b8e4ac0a3aad9ecdf314a97b0ef75",
+          "sha256": "343990f764790da1149485a422dee2bc6797945a6af06a37d02d7a7de041acf5",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dining_chair_02/dining_chair_02_diff_1k.jpg"
+        },
+        "textures/dining_chair_02_arm_1k.jpg": {
+          "bytes": 162630,
+          "md5": "2b16c9ddb3ea83d200b02de54a4fdcb8",
+          "sha256": "0a81c0c886baa1e65d94fb6fb90ab4751bee319888ecf1c428ae62042d8a5b15",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/dining_chair_02/dining_chair_02_arm_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "modern_arm_chair_01",
+      "role": "modern lounge accent chair",
+      "page_url": "https://polyhaven.com/a/modern_arm_chair_01",
+      "entry_file": "models/modern_arm_chair_01/modern_arm_chair_01_1k.gltf",
+      "files": {
+        "modern_arm_chair_01_1k.gltf": {
+          "bytes": 5121,
+          "md5": "a5ce303bc2962fe98b733fcdfa5a842b",
+          "sha256": "d31be520add2603447b43acedbdacf9516866f7c89e9ea9230c9edbac9cc6e6a",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/modern_arm_chair_01/modern_arm_chair_01_1k.gltf"
+        },
+        "textures/modern_arm_chair_01_pillow_nor_gl_1k.jpg": {
+          "bytes": 302377,
+          "md5": "6804f34108fcc755f0c84dd3c638270c",
+          "sha256": "2717b9d22e1d3533e3c7436a0230b00b1d25bf396246679825c8db08edaba0a8",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_pillow_nor_gl_1k.jpg"
+        },
+        "textures/modern_arm_chair_01_legs_nor_gl_1k.jpg": {
+          "bytes": 560864,
+          "md5": "7cece7eccf75588af5b5df9b095d2c97",
+          "sha256": "af328e8530884907cf0d38a675338bb4e2b03c56ed2d21eb5abf505bb67c11de",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_legs_nor_gl_1k.jpg"
+        },
+        "textures/modern_arm_chair_01_pillow_arm_1k.jpg": {
+          "bytes": 321223,
+          "md5": "772495ddbf26ca3de4b31298f10113b9",
+          "sha256": "fec333290ddfd70e78428251874d30d5410d6d0a956dd84922b0d3f3596e4b7a",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_pillow_arm_1k.jpg"
+        },
+        "textures/modern_arm_chair_01_legs_diff_1k.jpg": {
+          "bytes": 460937,
+          "md5": "778f1897e07ff81b2bc338f3d463ad1f",
+          "sha256": "6291421a8db6cd9bbbc8c141aa087465d698427249f813d24c6e5ccdbf0bf536",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_legs_diff_1k.jpg"
+        },
+        "textures/modern_arm_chair_01_legs_arm_1k.jpg": {
+          "bytes": 577931,
+          "md5": "9c69cb001df175bddf6d1c2436567fb7",
+          "sha256": "c76b65200a52cf649a865baf7f879dc34277b923edaac7ec8164eaf7c51c935d",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_legs_arm_1k.jpg"
+        },
+        "modern_arm_chair_01.bin": {
+          "bytes": 240728,
+          "md5": "5a8f2ea1c79ea484140e484b2a621670",
+          "sha256": "8755f2f498c0bb165660379d1b045465751c16bbeaf553c8dd76bb14c16d1ff6",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/modern_arm_chair_01/modern_arm_chair_01.bin"
+        },
+        "textures/modern_arm_chair_01_pillow_diff_1k.jpg": {
+          "bytes": 228851,
+          "md5": "2e4f64c633c3cb1656ad3eabdb3f0607",
+          "sha256": "f1935436b460ad5c03ac7ff9d1e1b4aaedcdc9a503d79c257beb8cdac2e9e1f7",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_arm_chair_01/modern_arm_chair_01_pillow_diff_1k.jpg"
+        }
+      }
+    },
+    {
+      "id": "modern_coffee_table_01",
+      "role": "stone and wood coffee table",
+      "page_url": "https://polyhaven.com/a/modern_coffee_table_01",
+      "entry_file": "models/modern_coffee_table_01/modern_coffee_table_01_1k.gltf",
+      "files": {
+        "modern_coffee_table_01_1k.gltf": {
+          "bytes": 2771,
+          "md5": "f1c079ab5bc307630258cf3b40910511",
+          "sha256": "a35d811da4c174d0c888f23353dda21501763dbf5505c66f57fef4b3f613e50c",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/modern_coffee_table_01/modern_coffee_table_01_1k.gltf"
+        },
+        "modern_coffee_table_01.bin": {
+          "bytes": 154864,
+          "md5": "6e8f65bff935af308eab9eff062f6daa",
+          "sha256": "b8fe0d49041b879a5d5962685a39e3daf009679f7b6a88ced1347e6dc6c0851e",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/8k/modern_coffee_table_01/modern_coffee_table_01.bin"
+        },
+        "textures/modern_coffee_table_01_rough_1k.jpg": {
+          "bytes": 403959,
+          "md5": "6ccbc448fa0e2bed32eac52511e84e2c",
+          "sha256": "8013b48b0ebb845907f840afcae9cbc915a5205ac82ed99cbba31771febacb0f",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_coffee_table_01/modern_coffee_table_01_rough_1k.jpg"
+        },
+        "textures/modern_coffee_table_01_diff_1k.jpg": {
+          "bytes": 410569,
+          "md5": "356014e027b59c21b3c99ac112e645f9",
+          "sha256": "069b89dd3ef03ddcbb7b2e6a124b1903aa7848394509121aa19f87bd0ef0218c",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_coffee_table_01/modern_coffee_table_01_diff_1k.jpg"
+        },
+        "textures/modern_coffee_table_01_nor_gl_1k.jpg": {
+          "bytes": 359134,
+          "md5": "d263e6131abc518760d6771390bc5066",
+          "sha256": "43e0d317d0f8418b130c0058c645225ee83b808b1dc0e5e7236bead3bdd77139",
+          "source_url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/1k/modern_coffee_table_01/modern_coffee_table_01_nor_gl_1k.jpg"
+        }
+      }
+    }
+  ]
+}

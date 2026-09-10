@@ -1,0 +1,7 @@
+[
+  {"text": "把图纸，变成可以接近的空间。", "startMs": 0, "endMs": 5500, "timestampMs": null, "confidence": null},
+  {"text": "一层一层，拆开来看。", "startMs": 5700, "endMs": 10000, "timestampMs": null, "confidence": null},
+  {"text": "三层空间，三套独立骨架。", "startMs": 10200, "endMs": 15200, "timestampMs": null, "confidence": null},
+  {"text": "切换楼层，空间也随之改变。", "startMs": 15400, "endMs": 22400, "timestampMs": null, "confidence": null},
+  {"text": "一份 HTML，支持旋转、切层、定位和讨论。", "startMs": 22600, "endMs": 30000, "timestampMs": null, "confidence": null}
+]

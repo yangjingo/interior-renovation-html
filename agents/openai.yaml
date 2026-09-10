@@ -1,0 +1,4 @@
+interface:
+  display_name: "CAD 全屋装修 HTML"
+  short_description: "生成可交互、可下载并支持公开评审的装修方案 HTML"
+  default_prompt: "使用 $interior-renovation-html，根据我上传的 CAD PDF 或尺寸平面图、风格参考和居住需求，为指定范围生成完整装修方案 HTML；需要分享时，安全发布为公开预览并提供可定位、可导出的设计讨论。"

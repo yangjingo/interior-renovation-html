@@ -1,0 +1,73 @@
+{
+  "version": 9,
+  "generated_at": "2026-09-09T15:33:37+08:00",
+  "fps": 30,
+  "audio": false,
+  "delivery_mode": "two independent videos",
+  "versions": [
+    {
+      "id": "2d",
+      "duration_seconds": 40,
+      "composition": "SkillIntro2D",
+      "story": "input objects to floor-by-floor process to one complete HTML output",
+      "files": [
+        {
+          "path": "2d/floorplan-to-renovation-preview-2d.mp4",
+          "role": "2D 1080p master",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 32014975,
+          "sha256": "aa52efc0c293831bf0fbac949478d7051e44e2ed1a9d555d6568cd374dcd8ba8"
+        },
+        {
+          "path": "2d/floorplan-to-renovation-preview-2d-web.mp4",
+          "role": "2D 720p web share",
+          "width": 1280,
+          "height": 720,
+          "bytes": 3271371,
+          "sha256": "151eead9c239b54f4634830d9699f1f019b2a397f3f2c648a38d70287f8ad7ef"
+        },
+        {
+          "path": "2d/floorplan-to-renovation-preview-2d-poster.png",
+          "role": "2D poster",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 3060507,
+          "sha256": "471b94202366c82221bc784d163fef607731682e0ec03fe41212450c91a06799"
+        }
+      ]
+    },
+    {
+      "id": "3d",
+      "duration_seconds": 30,
+      "composition": "SkillIntro3D",
+      "story": "plan to spatial reveal with real isometric models, layered floor depth, independent floor switching, and a scrolling interactive HTML preview",
+      "files": [
+        {
+          "path": "3d/floorplan-to-renovation-preview-3d.mp4",
+          "role": "3D 1080p master",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 12518241,
+          "sha256": "4f38e3f309968cc0fbbcd66c1440ce869ec42ab7dbfb5c9995d6851d80da57f1"
+        },
+        {
+          "path": "3d/floorplan-to-renovation-preview-3d-web.mp4",
+          "role": "3D 720p web share",
+          "width": 1280,
+          "height": 720,
+          "bytes": 2112118,
+          "sha256": "a25e5e03ec02e37f9b1ed08fd8d7ccadf65048b531c2dbe70e6585eafc94d558"
+        },
+        {
+          "path": "3d/floorplan-to-renovation-preview-3d-poster.png",
+          "role": "3D poster",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 1053820,
+          "sha256": "11daaf59bb9b47bd26ac8fc9e751fb7bb1d00846f1c466bea7abd8894785c91e"
+        }
+      ]
+    }
+  ]
+}

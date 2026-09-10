@@ -1,0 +1,89 @@
+[
+  {
+    "id": "F-AREA-01",
+    "item": "printed third-floor gross area",
+    "value": 180,
+    "unit": "m2",
+    "class": "drawing_fact",
+    "source": {"page_label": "third floor", "region": "drawing area note", "raw_text": "180.00 m2"},
+    "confidence": "high",
+    "site_measure": false
+  },
+  {
+    "id": "F-WIDTH-01",
+    "item": "overall horizontal dimension chain",
+    "value": 14000,
+    "unit": "mm",
+    "class": "drawing_fact",
+    "source": {"page_label": "third floor", "region": "top horizontal dimension chain", "raw_text": "4800 + 5000 + 4200"},
+    "derivation": "sum of printed chained dimensions",
+    "confidence": "high",
+    "site_measure": true
+  },
+  {
+    "id": "I-DEPTH-01",
+    "item": "approximate overall depth",
+    "value": 13780,
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "outer vertical dimension chain", "raw_text": "approximate full chain read from target-floor drawing"},
+    "derivation": "drawing-led approximation because the scan does not expose a single machine-readable total",
+    "confidence": "medium",
+    "site_measure": true
+  },
+  {
+    "id": "I-STUDY-01",
+    "item": "left study bay",
+    "value": [4800, 4800],
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "left bay between service and landscape balconies", "raw_text": "4800 bay width and continuous depth chain"},
+    "derivation": "corrected from the full continuous chain; an early 4800 x 3300 reading was rejected",
+    "confidence": "medium",
+    "site_measure": true
+  },
+  {
+    "id": "I-LOUNGE-01",
+    "item": "central family lounge",
+    "value": [5000, 8000],
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "central bay below stair arrival", "raw_text": "5000 bay width and continuous depth chain"},
+    "derivation": "central-bay width plus drawing-led longitudinal zoning",
+    "confidence": "medium",
+    "site_measure": true
+  },
+  {
+    "id": "I-BALCONY-01",
+    "item": "landscape balcony",
+    "value": [4800, 5000],
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "left lower exterior zone", "raw_text": "4800 bay width and approximately 5000 depth"},
+    "derivation": "width chain combined with the balcony boundary read from the plan",
+    "confidence": "medium",
+    "site_measure": true
+  },
+  {
+    "id": "I-BALCONY-02",
+    "item": "service balcony",
+    "value": [4800, 1800],
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "left upper exterior strip", "raw_text": "4800 bay width and approximately 1800 depth"},
+    "derivation": "width chain combined with the shallow exterior strip on the plan",
+    "confidence": "medium",
+    "site_measure": true
+  },
+  {
+    "id": "I-BALCONY-03",
+    "item": "front balcony",
+    "value": [5000, 2180],
+    "unit": "mm",
+    "class": "design_inference",
+    "source": {"page_label": "third floor", "region": "central lower exterior strip", "raw_text": "5000 bay width and approximately 2180 depth"},
+    "derivation": "central width chain combined with the lower exterior strip on the plan",
+    "confidence": "medium",
+    "site_measure": true
+  }
+]

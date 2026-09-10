@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "blend": "yj-three-floor-renovation-v9.blend",
+  "view_layers": [
+    "Presentation",
+    "Geometry Check"
+  ],
+  "outputs": [
+    "floor-1-top-material.png",
+    "floor-1-top-clay.png",
+    "floor-1-public-axis.png",
+    "floor-1-stair-plan-review.png",
+    "floor-1-wet-open.png",
+    "floor-2-top-material.png",
+    "floor-2-top-clay.png",
+    "floor-2-open-kitchen.png",
+    "floor-2-stair-plan-review.png",
+    "floor-2-wet-separated.png",
+    "floor-3-top-material.png",
+    "floor-3-top-clay.png",
+    "floor-3-study.png",
+    "floor-3-stair-plan-review.png",
+    "floor-3-wet-separated.png"
+  ]
+}

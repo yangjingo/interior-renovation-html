@@ -1,0 +1,14 @@
+Use case: cinematic product reveal
+Primary request: three completed floor models connect into one polished renovation HTML shown on a tablet and responsive phone
+Scene/background: same warm paper worktable, matching closing-output.png
+Subject: three distinct furnished dollhouse floors at center, a thin landscape tablet showing a calm warm editorial renovation report, a phone showing the same responsive interface, and one small rust-orange anchored note orb
+Action: the tablet interface resolves from plan to 3D to room renders, the phone mirrors the final page, and the note orb lands gently over the 3D region
+Camera: locked overhead with a subtle lateral move toward the output screens
+Lighting/mood: soft north-window daylight, satisfying completion
+Color palette: warm cream, charcoal, concrete grey, smoked brown, exactly one rust-orange accent
+Style/format: premium editorial product film, tactile physical-digital hybrid, subtle scan grain
+Timing/beats: connect models; reveal HTML; mirror to phone; land note orb
+Text: no readable text
+Constraints: preserve the same scene and objects as closing-output.png; no hands, people, logos or watermarks
+Avoid: fake typing, unreadable large text, blue neon, generic dashboard, jitter, screen flicker
+

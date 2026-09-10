@@ -1,0 +1,14 @@
+Use case: cinematic architectural workflow
+Primary request: three paper floor plans independently transform into three distinct furnished miniature floor models
+Scene/background: same warm paper worktable, top-down architectural studio
+Subject: three different floor-plan sheets arranged vertically, each lifting into its own low dollhouse model with unique footprint, stair position, rooms and balcony edges
+Action: the models rise one after another, then a thin rust-orange route traces through each floor without merging their geometry
+Camera: slow 20-degree crane from top-down toward a shallow oblique angle
+Lighting/mood: soft daylight, precise, quietly premium
+Color palette: warm cream, charcoal, oak, mineral grey, one rust-orange accent
+Style/format: photoreal miniature architectural model, restrained editorial film, subtle paper grain
+Timing/beats: floor one rises; floor two rises; floor three rises; all settle
+Text: no text
+Constraints: every floor has a visibly different skeleton and furnishing layout; polished finished materials; no rough white engineering massing; no people
+Avoid: copied floor shapes, morphing walls, jitter, floating furniture, extra colors
+

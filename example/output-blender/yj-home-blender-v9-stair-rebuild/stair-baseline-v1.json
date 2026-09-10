@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "status": "concept_geometry_requires_site_verification",
+  "source": {
+    "drawing": "../../input/yj方案改2.pdf",
+    "floor_1_evidence": "review-stair/floor-1-plan-stair-crop.png",
+    "floor_2_evidence": "review-stair/floor-2-plan-stair-crop.png",
+    "floor_3_evidence": "review-stair/floor-3-plan-stair-crop.png"
+  },
+  "drawing_facts": {
+    "floor_1_core_m": { "width": 5.0, "depth": 3.3 },
+    "floor_2_core_m": { "width": 5.0, "depth": 4.2 },
+    "floor_3_core_m": { "width": 5.0, "depth": 4.2 },
+    "relationship": "The floor plans show parallel east-west flights connected by an east half-landing; each storey must be analysed independently."
+  },
+  "concept_assumptions": {
+    "floor_height_m": 3.2,
+    "total_risers_per_storey": 18,
+    "risers_per_flight": 9,
+    "riser_mm": 177.8,
+    "tread_mm": 266.7,
+    "flight_width_m": { "floor_1": 1.25, "floor_2": 1.35, "floor_3": 1.35 },
+    "east_half_landing_depth_m": 1.12,
+    "handrail_height_m": 0.92,
+    "central_well": true
+  },
+  "floor_logic": {
+    "floor_1": "Lower flight starts at the west side, rises east to the half-landing, then returns west to floor 2.",
+    "floor_2": "The same dogleg system rises from floor 2 to floor 3 and remains visible when reviewing floor 3.",
+    "floor_3": "Only the arrival landing and short protective guard are owned by floor 3; the descending flight remains owned by floor 2 to avoid duplicate geometry."
+  },
+  "unresolved": [
+    "Finished-floor-to-finished-floor dimensions",
+    "Structural slab and stair beam arrangement",
+    "Exact opening, headroom, guard and handrail dimensions",
+    "Local code compliance and site measurements"
+  ]
+}

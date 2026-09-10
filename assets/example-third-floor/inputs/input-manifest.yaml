@@ -1,0 +1,83 @@
+case_id: sanitised-third-floor-warm-cement
+scope:
+  building: multi-storey private residence
+  target: third floor only
+  printed_area_m2: 180
+  drawing_revision: unknown
+
+inputs:
+  project_contract:
+    file: project-config.json
+    authority: scope, target, feature flags, special-area mapping, validation profile, visual minimums, asset release policy, currency and example sentinel
+  plan_pdf:
+    original: withheld from reusable package
+    derived_files: [plan-facts.json, spatial-baseline-v1.json, modifications.json, preflight-ledger.json]
+    authority: geometry, dimensions, adjacency, stairs, balconies, wet cores, doors, windows
+  style_reference:
+    original: withheld from reusable package
+    derived_file: style-reference-brief.md
+    authority: palette, material character, lighting, furniture mood
+    restriction: original contained a third-party watermark and exterior view; do not redistribute or remove watermark
+  requirements:
+    file: user-constraints.md
+    authority: functions, priorities, furniture sizes, practical material choices, permitted concept changes
+  presentation_references:
+    - file: presentation-brief.md
+      authority: distilled HTML shell and optional explanatory diagram language
+  generated_visuals:
+    provenance_file: asset-provenance.json
+    authority: image origin, review status, privacy and reuse scope
+
+ignored_inputs:
+  - role: animated Excalidraw and Synapse instruction file
+    reason: unrelated to the requested deliverable; original file is not redistributed
+
+requirements:
+  spaces: [two bedrooms, study-game room, large family lounge, two bathrooms, three balconies]
+  style: warm concrete, wabi-sabi restraint, soft brutalism, comfortable minimalism
+  furniture:
+    sit_stand_desk_mm: [1800, 800]
+    beds: mattress only with ventilated moisture-control base
+  materials:
+    dry_floor: cement-based self-levelling plus matte sealer
+    wet_floor: waterproofing plus non-slip tile
+    balcony: exterior waterproofing, drainage falls, and outdoor-rated tile
+  must_keep: [three balconies, stair and arrival, existing structural and facade conditions until locally verified]
+  allowed_concept_changes: [door dimensions and swings, window dimensions and frames, verified non-structural partitions, fixture and glass-separation layout within the existing wet-service zone]
+  authorisation_boundary:
+    concept_only: all physical changes remain proposals pending site measurement and professional or authority review
+    default_fallback: preserve every existing wall, opening, window, wet stack and fixed service; change furniture, lighting and finishes only
+    not_authorised: [structural demolition, facade approval, wet-stack relocation, concealed MEP design, construction release]
+  safety_status: all preflight categories are explicitly unknown; physical changes require site verification and local professional approval
+
+deliverable:
+  format: one responsive downloadable HTML
+  tabs: [overview, plan, openings, balconies, 3D-and-renders, materials-and-budget, furniture-search]
+  includes: [interactive Three.js, static 3D fallback, embedded final renders, adjustable budget, sourcing keywords, draggable anchored review notes, JSON Markdown and CSV review export]
+  interactive_3d: pinned CDN with embedded static fallback
+  review_notes:
+    mode: local_export
+    label: 本机草稿
+    persistence: browser localStorage plus explicit import and export
+
+budget_context:
+  currency: CNY
+  price_basis: illustrative planning allowance, not a current local estimate
+  as_of: 2026-09
+  region: generic mainland China example; no city specified
+  quality_tier: practical value alternatives
+  contingency_percent: 10
+  sources: none; replace with current local sources in a real project
+
+unknowns:
+  - site location and approval jurisdiction
+  - north orientation, exterior views, and noise sides
+  - structural system and opening feasibility
+  - measured ceiling, sill, beam, and service heights
+  - verified drainage and electrical capacity
+
+authority_order:
+  geometry: plan PDF
+  needs: user requirements
+  atmosphere: style reference
+  structural_and_regulatory_release: qualified local professionals and authorities
