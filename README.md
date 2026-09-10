@@ -32,11 +32,15 @@
 <table>
   <tr>
     <td width="50%">
-      <video src="docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4" poster="docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png" width="100%" controls preload="metadata"></video>
+      <a href="docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4">
+        <img src="docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png" alt="播放 2D 工作流视频" width="100%" />
+      </a>
       <br /><strong>01 · 读图与建立分层基线</strong><br />逐页核对事实、需求、推断与待确认项。
     </td>
     <td width="50%">
-      <video src="docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4" poster="docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" width="100%" controls preload="metadata"></video>
+      <a href="docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4">
+        <img src="docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="播放 3D 分层交互视频" width="100%" />
+      </a>
       <br /><strong>02 · 独立建模与网页交付</strong><br />输出 Blender、Web GLB、房间渲染和最终 HTML。
     </td>
   </tr>
