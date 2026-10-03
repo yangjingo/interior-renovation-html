@@ -26,3 +26,9 @@ example/output-blender/yj-home-blender-v7/
 example/output-blender/yj-home-blender-v8/
 example/output-blender/yj-three-floor-walkthrough*
 example/output-blender/BLENDER-WALKTHROUGH.md
+
+# Private working project evidence and generated review artifacts
+example/input/*.pdf
+example/work/
+example/output-html/room-review.html
+example/output-html/room-input-manifest.yaml

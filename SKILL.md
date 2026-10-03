@@ -20,6 +20,7 @@ Use the original [2D workflow introduction](docs/skill-intro-video/output/2d/flo
 3. Read [references/workflow.md](references/workflow.md) before analysing a plan or producing deliverables.
 4. Read [references/data-schemas.md](references/data-schemas.md) when creating the facts table, coordinate baseline, option variants, staging files, or embedded-asset manifest.
 5. Read [references/safety-and-validation.md](references/safety-and-validation.md) whenever the request touches walls, doors, windows, balconies, stairs, wet areas, local rules, or budgets. This applies to most full renovation jobs.
+   When revised architectural, structural, plumbing, or electrical sheets arrive, also read [references/drawing-change-review.md](references/drawing-change-review.md) before updating the concept or publishing a review.
 6. Read [references/image-and-3d.md](references/image-and-3d.md) when 3D or room renders are requested.
 7. Read [references/blender-iterative-workflow.md](references/blender-iterative-workflow.md) when an editable Blender model, GLB, Blender renders, `bpy` automation or later real-time hand-off is requested.
 8. Read [references/output-contract.md](references/output-contract.md) before building the final HTML.

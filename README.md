@@ -24,6 +24,9 @@ This skill turns CAD-exported residential plans, household requirements, and sty
 
 The output supports spatial discussion and concept decisions. It does not replace site measurement, structural calculations, fire or permit documents, MEP design, construction drawings, or contractor quotations. Changes involving load-bearing walls, exterior windows, stairs, kitchen or bathroom relocation, waterproofing, or gas systems must retain explicit conditions and be reviewed by qualified local professionals.
 
+The public repository contains a reusable example, not the latest private client revision. New source drawings, room review reports, and project render work remain local. For revised structural and MEP sheets, use the [drawing change review](references/drawing-change-review.md) before updating a client deliverable.
+An [anonymized revision note](docs/anonymized-design-revision.md) records the recent concept changes without publishing source plans.
+
 | Input object | What it determines | Suggested file |
 | --- | --- | --- |
 | Floor-specific drawings | Walls, openings, stairs, dimensions, and room relationships | `input/plan.pdf` |
