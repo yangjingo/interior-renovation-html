@@ -13,9 +13,18 @@ Before generating atmospheric images, lock these items for every designed floor:
 - Stair/core anchor, room boundaries and adjacency graph.
 - Door/window wall, position, width and opening type.
 - Fixed furniture dimensions and orientation.
+- Entry-to-destination circulation routes, usable clearances, door swings and window/balcony access for each room.
 - Named camera IDs with position and look direction.
 
 Export a same-orientation orthographic/top view and compare it beside the source plan. The model fails if the drawing has different partitions, openings or balcony relationships but the generated floor differs only in labels, materials or furniture. Record the comparison in `visual-correspondence.json` before producing final renders.
+
+## Circulation, furniture and openings gate
+
+Before generating a room view, annotate the matching plan or 3D view with its entry, main destinations, onward route and any service route. Follow a person through the room with doors in their operating positions: can they reach the bed, sofa, dining/bar seat, counter, wardrobe, shower, toilet, balcony or stair without crossing a furniture footprint or door leaf? Check chair pull-out, wardrobe and appliance doors, bathroom dry/wet transitions, window operation, curtains, cleaning and maintenance access where relevant. Use verified drawing dimensions; where the plan omits a size, record an estimated clearance and mark it for site measurement. Do not infer legal compliance from the render.
+
+Place fixed fixtures and large furniture against this route first, then add movable pieces and decor. Keep bar stools, side tables, plants and other small objects out of the route and opening operation zones. Check bed access and wardrobe use, seating-to-balcony movement, kitchen preparation/serving movement and stair landing space when those uses exist. A photogenic arrangement fails if ordinary use blocks circulation.
+
+Keep the existing door/window position and type as the default drawing state. Evaluate a proposed change for its effect on the route, door swing, furniture, daylight/ventilation, privacy and maintenance, while preserving structural, façade, wet-stack and service constraints. Mark a proposed opening visibly as a proposal and retain a no-change fallback until feasibility is checked. Never invent or silently move a door or window to improve the image.
 
 ## Three.js model
 
@@ -82,11 +91,12 @@ Space: [room name], approximately [dimensions], connected to [adjacent space].
 Camera: [position], looking [direction], [lens/perspective].
 Geometry: [wall/opening/window/balcony facts and proposed opening label].
 Furniture: [items with dimensions and placement].
+Circulation: [entry → destinations → onward route; required clearances and their drawing or estimate source; door swings, window/balcony operation and furniture-use zones].
 Materials: [floor, wall, ceiling, joinery, metal, textiles].
 Light: [daylight direction], [artificial colour temperature], layered and low-glare.
 Mood: [short style synthesis].
 Practical details: [drainage, ventilation, cabling, waterproof surface, clearances].
-Exclude: [wrong room types, unwanted furniture, text, people, logos, unsafe details].
+Exclude: [blocked paths, furniture in door swings or window-access zones, invented openings, wrong room types, unwanted furniture, text, people, logos, unsafe details].
 ```
 
 ### Reference-image use
@@ -145,8 +155,10 @@ Before accepting a render, check:
 - Camera direction matches the intended wall and opening.
 - Adjacent room is correct.
 - Furniture count, size and orientation are plausible.
-- Circulation remains open.
+- Trace the entry-to-destination and onward routes on the matching plan/3D and image; furniture use and opened door leaves do not block them.
+- Window/balcony operation, curtains and maintenance access remain usable where applicable.
 - Doors, windows and balcony rails are not invented or missing.
+- Whole-floor and room-detail views agree on furniture placement, opening wall and door swing.
 - Materials are appropriate to dry, wet or exterior exposure.
 - The image contains no accidental text, watermark, logo or person unless requested.
 - The set feels like one home.

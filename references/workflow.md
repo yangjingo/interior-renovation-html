@@ -92,6 +92,8 @@ Decide in this order:
 6. Storage concentration, acoustics and night lighting.
 7. Furniture dimensions and maintenance clearances.
 
+For each room, mark its entry, destinations, primary route, secondary/service route where applicable, door leaf swing, window/balcony operation zone, fixed fixtures and large furniture footprints on the same floor baseline. Walk the route in use order: arrival to seating or bed, then storage, work or washing, then the next room or exit. Test the open-door state and the space needed to pull out a chair, open a wardrobe, use a counter, clean a window and maintain a fixture. Use plan dimensions where available; label any estimated clearance and site measurement still needed. If a path conflicts with furniture or an opening, adjust the proposal before freezing its render composition.
+
 For comfortable minimalism, select a small number of decisive changes. Keep the centre of the main room open; place low furniture at edges; preserve a complete wall; avoid decorative partitions that reduce usable space.
 
 ## Phase 6 — Evaluate modifications
@@ -104,6 +106,7 @@ For every proposed wall, door or window change, write:
 - `risk_level`: low, medium, high or unknown, plus a separate plain-language risk explanation.
 - Required drawings, inspection and approvals.
 - Drainage, waterproofing, fall-protection, curtain, HVAC and furniture conflicts.
+- How the opening and its leaf or panel movement affect arrival, through-route, adjacent furniture, window operation and maintenance access.
 - A fallback that keeps the existing opening.
 
 For every highlighted door/window decision, also define a matched visual pair: same floor, same room, same camera and surrounding geometry, with one existing view and one proposed view. A plan enlargement may explain dimensions, but the openings page still needs a 3D or plan-faithful effect view that makes the spatial consequence visible.
@@ -151,7 +154,7 @@ For a multi-floor project, the five-view list is a project minimum, not automati
 
 Never use a previous floor's render as the composition reference for a different floor. A common style reference may unify palette and materials, but plan crop and white-model/3D references must come from the floor being rendered.
 
-Review every image for wrong floors, wrong rooms, phantom kitchens, doors/windows in the wrong wall, impossible furniture sizes, unsafe wet details, unwanted text and inconsistent palette. Review all floors in one contact sheet: repeated wall/opening compositions are acceptable only when the floor-difference matrix supports them. Revise failures before embedding.
+Review every image for wrong floors, wrong rooms, phantom kitchens, doors/windows in the wrong wall, impossible furniture sizes, blocked room routes or door swings, inaccessible windows, unsafe wet details, unwanted text and inconsistent palette. Trace entry-to-destination paths on the matching plan/3D and room render; compare overall and detail views for the same furniture and opening locations. Review all floors in one contact sheet: repeated wall/opening compositions are acceptable only when the floor-difference matrix supports them. Revise failures before embedding.
 
 ## Phase 10 — Materials, lighting and budget
 

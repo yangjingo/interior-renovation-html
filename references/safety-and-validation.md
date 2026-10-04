@@ -92,6 +92,7 @@ Also verify:
 - Every touching zone pair has one canonical shared coordinate and one explicit `solid` / `fully-open` / `door-opening` / `glazed-partition` treatment; no overlap, sliver or near-parallel duplicate wall is visible.
 - When configured, static 3D previews come from the same plan version.
 - When configured, every final render matches its floor, named room, adjacent space, baseline version and camera record.
+- Each room's entry-to-use and onward routes can be traced on its baseline and render; furniture use, open door leaves and window/balcony operation zones remain usable, with unmeasured clearances labelled for site verification.
 - Every configured special-area/重点区域 card contains a visible decoded same-floor image; text-only cards fail even when the corresponding render exists in another panel.
 - Whole-floor previews have comparable user-facing fidelity across floors. A raw grey/white model cannot stand in for a polished furnished bird's-eye preview supplied for the other floors.
 - Every user-facing static 3D card is marked polished; rough models are explicitly supplemental and collapsed, or removed together with their asset/provenance/correspondence records.
@@ -126,6 +127,7 @@ Also verify:
 - [ ] Requested Blender output has an immutable prior snapshot, per-floor collections, fixed-camera plan/solid checks, an issue/recheck log, and refreshed affected-room renders.
 - [ ] Configured static 3D fallback embedded, or marked not applicable.
 - [ ] Configured final renders reviewed against `visual-correspondence.json`, paired with same-floor plan/3D evidence and compared across floors, or marked not applicable.
+- [ ] Furniture, door/window placement and operation checked against each room's circulation routes in both overall and detail views; unresolved dimensions are marked for site measurement.
 - [ ] Every named special area has a visible same-floor image in its mapped panel.
 - [ ] Every designed floor has a complete overall 3D preview at comparable presentation quality; raw models are supplemental when polished previews exist.
 - [ ] Materials scoped; enabled budget dated/scoped, or budget marked not applicable.
