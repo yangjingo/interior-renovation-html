@@ -26,6 +26,7 @@ The output supports spatial discussion and concept decisions. It does not replac
 
 The public repository contains a reusable example, not the latest private client revision. New source drawings, room review reports, and project render work remain local. For revised structural and MEP sheets, use the [drawing change review](references/drawing-change-review.md) before updating a client deliverable.
 An [anonymized revision note](docs/anonymized-design-revision.md) records the recent concept changes without publishing source plans.
+The [anonymized circulation scenarios](docs/anonymized-circulation-scenarios.md) cover arrival, meals, bathrooms, work, cleaning and night travel on all three floors without private plans or renders.
 
 | Input object | What it determines | Suggested file |
 | --- | --- | --- |

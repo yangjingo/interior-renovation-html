@@ -21,3 +21,5 @@ The latest private visual review compares the earlier and revised room previews 
 - Exterior garden: keep movable seating and planting away from the central activity and drain-maintenance route. Its actual entrance and any alteration to the exterior boundary remain unresolved until the architect and relevant specialists confirm them.
 
 The private HTML files include floor-specific renders and drawing crops. They are not reproduced in this public repository; this note records only the anonymized decisions and unresolved checks.
+
+The [anonymized circulation scenarios](anonymized-circulation-scenarios.md) expand the daily-use checks across all three floors, including arrival, meals, bathroom use, work, cleaning and night travel.
