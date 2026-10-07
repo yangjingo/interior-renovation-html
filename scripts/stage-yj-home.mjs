@@ -10,10 +10,15 @@ if (project.projectName !== 'yj-home' || !/^prj_[A-Za-z0-9]+$/.test(project.proj
   throw new Error('Unexpected Vercel project binding');
 }
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const privateNames = fs.readdirSync(path.join(root, 'example/input'))
+  .filter(name => name.toLowerCase().endsWith('.pdf'))
+  .map(name => name.match(/-([\p{Script=Han}]{2,3})(?=[（(]|\.pdf$)/u)?.[1]
+    || name.match(/^([\p{Script=Han}]{2,3})结构/u)?.[1])
+  .filter(Boolean);
 const readPage = name => {
   const bytes = fs.readFileSync(path.join(root, 'example/output-html', name));
   const html = bytes.toString('utf8');
-  for (const forbidden of ['file://', 'D:\\', 'C:\\', '\u6768\u9756']) {
+  for (const forbidden of ['file://', 'D:\\', 'C:\\', ...privateNames]) {
     if (html.includes(forbidden)) throw new Error(`Forbidden text in ${name}: ${forbidden}`);
   }
   return {bytes, html};
