@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Interior Renovation HTML Skill：从户型图、尺寸、生活 QA、风格与材料偏好生成分层装修方案、3D 预览与单文件 HTML。"
+      content="Interior Renovation HTML Skill：从建筑、结构与机电图纸及生活需求，生成分层动线、效果预览、施工图核对和可追溯 HTML。"
     />
     <title>Interior Renovation HTML · Skill Introduction</title>
+    <link rel="icon" href="data:," />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -684,8 +685,8 @@
       .lane-arrow { color: var(--c-accent); font: 400 1.7vw/1 var(--f-heading); }
       .model-preview { position: relative; height: 50vh; overflow: hidden; border: 1px solid var(--c-border); background: var(--c-bg-alt); }
       .model-preview img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
-      .model-preview::before { content: "WEB GLB  /  FLOOR 01"; position: absolute; z-index: 2; inset: 0 0 auto; height: 2.35em; display: flex; align-items: center; padding: 0 1em; color: var(--c-fg); border-bottom: 1px dashed var(--c-border); background: #100904; font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
-      .model-preview::after { content: "可编辑 .blend  ·  网页 .glb"; position: absolute; left: 1vw; bottom: 1vw; padding: 0.65em 0.85em; color: var(--c-fg); background: rgba(16, 9, 4, 0.9); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
+      .model-preview::before { content: "WORKFLOW / PUBLIC DEMO"; position: absolute; z-index: 2; inset: 0 0 auto; height: 2.35em; display: flex; align-items: center; padding: 0 1em; color: var(--c-fg); border-bottom: 1px dashed var(--c-border); background: #100904; font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
+      .model-preview::after { content: "教学视频海报 · 非当前项目版本"; position: absolute; left: 1vw; bottom: 1vw; padding: 0.65em 0.85em; color: var(--c-fg); background: rgba(16, 9, 4, 0.9); font: 500 var(--sz-label)/1 var(--f-mono); letter-spacing: 0.1em; }
 
       .mood-layout { height: 100%; display: grid; grid-template-columns: 1.14fr 0.86fr; gap: 3vw; align-items: center; }
       .mood-gallery { height: 54vh; display: grid; grid-template-columns: 1.25fr 0.75fr; grid-template-rows: 1fr 1fr; gap: 1px; overflow: hidden; background: var(--c-border-light); border: 1px solid var(--c-border-light); }
@@ -733,6 +734,19 @@
       .nav-dot.is-active { background: var(--c-accent); transform: scale(1.55); }
       #slide-counter { display: none; }
 
+      .input-artifact img[src$="-schematic.svg"],
+      .floor-source img[src$="-schematic.svg"],
+      .graph-asset--image.plan img[src$="-schematic.svg"],
+      .floor-proof img[src$="-schematic.svg"],
+      .card-media.plan img[src$="-schematic.svg"],
+      .rebuild-hero img[src$="-schematic.svg"],
+      .rebuild-plan-card img[src$="-schematic.svg"] {
+        object-fit: contain;
+        object-position: center;
+        background: #17120f;
+        filter: none;
+      }
+
       @media (max-width: 900px) {
         :root {
           --pad-x: 6vw;
@@ -767,6 +781,92 @@
         .case-layout, .delivery-map, .mood-layout { grid-template-columns: 1fr 1fr; gap: 2.5vw; }
         .video-layout { grid-template-columns: 1.38fr 0.72fr; }
       }
+
+      @media (max-width: 600px) {
+        :root {
+          --pad-x: 6vw;
+          --pad-y: 24px;
+          --sz-h1: 36px;
+          --sz-h2: 29px;
+          --sz-h3: 20px;
+          --sz-lead: 16px;
+          --sz-body: 15px;
+          --sz-caption: 13px;
+          --sz-label: 11px;
+          --gap-md: 18px;
+          --gap-sm: 10px;
+        }
+        .slide { height: 100dvh; padding-bottom: 72px; grid-template-rows: auto auto auto; align-content: start; gap: 14px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; }
+        .slide-body { height: auto !important; min-height: auto; }
+        .slide-chrome, .slide-foot { margin: 0; }
+        .h1, .h2 { max-width: none !important; }
+        .cover-main { max-width: 100%; }
+        .cover-art { inset-inline-start: 42%; opacity: 0.42; }
+        .cover-meta { gap: 10px; }
+        .statement-body { height: auto; min-height: 62vh; }
+        .statement-body .lead { max-width: 100% !important; }
+        .project-inputs { display: block; height: auto; overflow: visible; }
+        .project-plan { display: block; height: 250px; }
+        .input-artifact--main { display: block; height: 250px; }
+        .project-input-side { display: block; }
+        .qa-evidence { display: block; padding: 16px; }
+        .qa-facts { grid-template-columns: repeat(2, 1fr); }
+        .qa-fact { min-height: 72px; padding: 9px; }
+        .qa-fact:nth-child(n+4) { display: block; }
+        .qa-fact strong { font-size: 13px; }
+        .style-evidence { display: block; height: 220px; }
+        .style-evidence .artifact-caption { width: 75%; }
+        .artifact-caption { padding: 12px; }
+        .floor-rebuild-ledger { display: block; overflow: visible; }
+        .floor-rebuild-row { grid-template-columns: 50px minmax(0, 1fr); grid-template-rows: 170px auto 170px; margin-bottom: 1px; }
+        .floor-marker { grid-row: 1 / 4; padding: 12px 7px; }
+        .floor-marker strong { font-size: 32px; }
+        .floor-source, .floor-result { height: 170px; }
+        .floor-distinction { min-height: 110px; padding: 12px; }
+        .workflow-asset-graph { display: block; height: auto; }
+        .graph-group--input, .graph-group--output { display: block; }
+        .graph-group--input > *, .graph-group--output > * { display: block; min-height: 145px; margin-bottom: 1px; }
+        .graph-qa { padding: 16px; }
+        .graph-arrow { display: none; }
+        .baseline-head, .baseline-floor-row, .baseline-files { padding: 12px; }
+        .baseline-floor-no { font-size: 24px; }
+        .baseline-floor-copy strong, .output-asset-copy strong { font-size: 18px; }
+        .baseline-floor-copy p { font-size: 13px; }
+        .output-asset-row { display: grid !important; grid-template-columns: 38% 62%; }
+        .output-asset-copy { padding: 12px; }
+        .room-ledger, .check-grid, .delivery-map, .mood-layout { display: block; height: auto; }
+        .room-list { margin-top: 20px; }
+        .room-cell { min-height: 118px; padding: 12px; }
+        .check-list { gap: 12px; margin-bottom: 20px; }
+        .baseline-figure { margin-top: 18px; }
+        .rebuild-editorial { height: auto; overflow: visible; }
+        .rebuild-hero { position: relative; display: block; height: 235px; }
+        .rebuild-copy { position: relative; top: auto; left: auto; width: auto; padding: 18px; }
+        .rebuild-copy .h2 { font-size: var(--sz-h2); }
+        .rebuild-copy .lead { max-width: 100%; }
+        .rebuild-plan-card { display: none; }
+        .rebuild-audit { position: relative; right: auto; bottom: auto; width: auto; grid-template-columns: 1fr; }
+        .rebuild-check { min-height: auto; padding: 14px; }
+        .rebuild-check strong { font-size: 18px; }
+        .rebuild-check p { font-size: 14px; }
+        .floor-proof-grid { display: block; height: auto; }
+        .floor-proof { display: block; height: 280px; margin-bottom: 12px; }
+        .floor-proof:nth-child(3) { display: block; }
+        .floor-proof figcaption { padding: 16px; }
+        .output-lane { grid-template-columns: 1fr auto; padding: 14px; }
+        .path-chip { grid-column: 1 / -1; }
+        .model-preview { display: block; height: 250px; margin-top: 18px; }
+        .mood-gallery { height: 320px; margin-bottom: 18px; }
+        .output-grid { display: grid; height: auto; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .output-grid .card { min-height: 300px; padding: 12px; }
+        .card-media { height: 120px; margin: -12px -12px 0; }
+        .video-layout { display: block; height: auto; }
+        .video-side { display: block; }
+        .video-copy { padding: 16px; }
+        .video-copy .h2 { font-size: 25px; }
+        .slide--end { justify-content: center; }
+        #nav-dots { bottom: 10px; max-width: calc(100vw - 20px); overflow-x: auto; }
+      }
     </style>
   </head>
   <body>
@@ -781,7 +881,7 @@
           <div class="kicker" data-anim="fade-in" data-delay="1">Interior Renovation HTML · Skill</div>
           <div class="rule" data-anim="reveal-right" data-delay="2" style="margin: var(--gap-sm) 0 var(--gap-md)"></div>
           <h1 class="h1" data-anim="fade-up" data-delay="3">把户型图，变成一份可讨论的<em>装修方案</em></h1>
-          <p class="lead muted" style="max-width: 78%; margin-top: var(--gap-md)" data-anim="fade-up" data-delay="4">分层读图 · 逐房间说明 · 3D / Imagen · 单文件 HTML</p>
+          <p class="lead muted" style="max-width: 78%; margin-top: var(--gap-md)" data-anim="fade-up" data-delay="4">图纸校对 · 逐层动线 · 效果预览 · 施工建议 · 可复核 HTML</p>
         </div>
         <div class="cover-meta" data-anim="fade-in" data-delay="5">
           <a class="label muted source-link" href="../SKILL.md">打开 Skill 说明 ↗</a>
@@ -796,52 +896,52 @@
         </div>
         <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-sm)">
           <div>
-            <div class="kicker" data-anim="fade-in" data-delay="1">Example · yj 三层住宅</div>
-            <h2 class="h2" data-anim="fade-up" data-delay="2">先看这个项目，实际收到了<em>什么</em></h2>
+            <div class="kicker" data-anim="fade-in" data-delay="1">Sanitized teaching example</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">开始设计前，先收齐<em>三类依据</em></h2>
           </div>
           <div class="project-inputs" data-anim="fade-up" data-delay="3">
             <div class="project-plan">
-              <a class="input-artifact input-artifact--main" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅图纸 PDF">
-                <img src="../example/output-html/audit/page-01.png" alt="yj 三层住宅一层图纸实例" />
+              <a class="input-artifact input-artifact--main" href="../references/input-contract.md" aria-label="查看图纸输入要求">
+                <img src="skill-intro-assets/floor1-spatial-schematic.svg" alt="一层空间关系教学示意，非施工图" />
                 <div class="artifact-caption">
-                  <div><span class="label">01 / 分层图纸</span><strong>一层平面图</strong></div>
-                  <span class="label artifact-kind">几何事实 ↗</span>
+                  <div><span class="label">01 / 专业图纸</span><strong>建筑与结构基线</strong></div>
+                  <span class="label artifact-kind">教学示意 ↗</span>
                 </div>
               </a>
               <div class="plan-stack">
-                <a class="input-artifact" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅二层图纸">
-                  <img src="../example/output-html/audit/page-02.png" alt="yj 三层住宅二层图纸实例" />
-                  <div class="artifact-caption"><div><span class="label">FLOOR 02</span><strong>二层</strong></div></div>
+                <a class="input-artifact" href="../references/input-contract.md" aria-label="查看机电图纸输入要求">
+                  <img src="skill-intro-assets/floor2-spatial-schematic.svg" alt="二层空间关系教学示意，非施工图" />
+                  <div class="artifact-caption"><div><span class="label">MEP</span><strong>给排水与电气</strong></div></div>
                 </a>
-                <a class="input-artifact" href="../example/input/yj方案改2.pdf" aria-label="打开 yj 三层住宅三层图纸">
-                  <img src="../example/output-html/audit/page-03.png" alt="yj 三层住宅三层图纸实例" />
-                  <div class="artifact-caption"><div><span class="label">FLOOR 03</span><strong>三层</strong></div></div>
+                <a class="input-artifact" href="../references/data-schemas.md" aria-label="查看证据溯源要求">
+                  <img src="skill-intro-assets/floor3-spatial-schematic.svg" alt="三层空间关系教学示意，非施工图" />
+                  <div class="artifact-caption"><div><span class="label">TRACE</span><strong>页码与版本</strong></div></div>
                 </a>
               </div>
             </div>
             <div class="project-input-side">
-              <a class="qa-evidence" href="../example/input/DESIGN.md">
-                <span class="label artifact-kind">02 / 已填写 DESIGN QA ↗</span>
+              <a class="qa-evidence" href="../templates/DESIGN.template.md">
+                <span class="label artifact-kind">02 / DESIGN 模板 ↗</span>
                 <h3 class="h3">生活方式与硬约束</h3>
                 <div class="qa-facts">
-                  <div class="qa-fact"><span>F1 AXIS</span><strong>客厅—餐厅—厨房连续</strong></div>
-                  <div class="qa-fact"><span>F2 KITCHEN</span><strong>开放式厨房</strong></div>
-                  <div class="qa-fact"><span>DESK</span><strong>书桌 180 × 80 cm</strong></div>
-                  <div class="qa-fact"><span>BATHROOM</span><strong>二、三层干湿分离</strong></div>
+                  <div class="qa-fact"><span>ROUTE</span><strong>逐层生活场景</strong></div>
+                  <div class="qa-fact"><span>OPENING</span><strong>门窗与家具净空</strong></div>
+                  <div class="qa-fact"><span>MEP</span><strong>设备点位与图纸差异</strong></div>
+                  <div class="qa-fact"><span>STATUS</span><strong>事实 / 意向 / 待复核</strong></div>
                 </div>
               </a>
-              <a class="input-artifact style-evidence" href="../example/input/image.png" aria-label="打开项目风格参考图">
-                <img src="../example/input/image.png" alt="暖灰微水泥、深色木作与柔和日光的卧室风格参考" />
+              <a class="input-artifact style-evidence" href="../references/image-and-3d.md" aria-label="查看风格参考与效果图规则">
+                <img src="skill-intro-video/remotion/public/selected-renders/floor-2-lounge.png" alt="公开教学用的家庭起居效果示例，非当前项目版本" />
                 <div class="artifact-caption">
                   <span class="label artifact-kind">03 / 风格与材料 ↗</span>
-                  <strong>暖灰 · 烟熏木 · 哑光黑</strong>
-                  <p class="style-note">图片约束质感、色调与光线，不改变图纸里的墙体关系。</p>
+                  <strong>质感、色调、光线</strong>
+                  <p class="style-note">公开教学示例只说明画面气氛；实际门窗和墙体仍须回到本项目图纸核对。</p>
                 </div>
               </a>
             </div>
           </div>
         </div>
-        <div class="slide-foot"><a class="label muted source-link" href="../references/input-contract.md">图纸 PDF · DESIGN QA · 风格图 / Input Contract ↗</a><span class="label muted">02 / 14</span></div>
+        <div class="slide-foot"><a class="label muted source-link" href="../templates/DESIGN.template.md">获取 DESIGN 输入模板 ↗</a><span class="label muted">02 / 14</span></div>
       </section>
 
       <section class="slide dark">
@@ -867,25 +967,25 @@
           <div class="floor-rebuild-ledger" data-anim="fade-up" data-delay="3">
             <article class="floor-rebuild-row">
               <div class="floor-marker"><strong>1F</strong><span>PUBLIC</span></div>
-              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-01.png" alt="一层原始图纸" /><span class="asset-strip">INPUT · page-01.png</span></a>
-              <div class="floor-distinction"><div><h3 class="h3">公共生活层</h3><div class="floor-diff-list"><span>客餐厨连续轴</span><span>餐厨玻璃门</span><span>卫生间不分离</span></div></div></div>
-              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="一层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-1-top-material.png</span></a>
+              <a class="floor-source" href="../references/input-contract.md"><img src="skill-intro-assets/floor1-spatial-schematic.svg" alt="一层公共生活动线教学示意" /><span class="asset-strip">SCHEMATIC · 非施工图</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">公共生活层</h3><div class="floor-diff-list"><span>进入与会客</span><span>客餐厨通行</span><span>门窗开启净空</span></div></div></div>
+              <a class="floor-result" href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-1-whole.png" alt="一层公开教学效果示例，非当前项目版本" /><span class="asset-strip">EXAMPLE · 旧版教学素材</span></a>
             </article>
             <article class="floor-rebuild-row">
               <div class="floor-marker"><strong>2F</strong><span>FAMILY</span></div>
-              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-02.png" alt="二层原始图纸" /><span class="asset-strip">INPUT · page-02.png</span></a>
-              <div class="floor-distinction"><div><h3 class="h3">家庭起居层</h3><div class="floor-diff-list"><span>开放式厨房</span><span>家庭起居厅</span><span>卫生间干湿分离</span></div></div></div>
-              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png" alt="二层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-2-top-material.png</span></a>
+              <a class="floor-source" href="../references/input-contract.md"><img src="skill-intro-assets/floor2-spatial-schematic.svg" alt="二层厨房、吧台及家庭起居动线教学示意" /><span class="asset-strip">SCHEMATIC · 非施工图</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">家庭起居层</h3><div class="floor-diff-list"><span>开放厨房与吧台</span><span>阳台衔接</span><span>卧室私密路径</span></div></div></div>
+              <a class="floor-result" href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-2-whole.webp" alt="二层公开教学效果示例，非当前项目版本" /><span class="asset-strip">EXAMPLE · 旧版教学素材</span></a>
             </article>
             <article class="floor-rebuild-row">
               <div class="floor-marker"><strong>3F</strong><span>PRIVATE</span></div>
-              <a class="floor-source" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-03.png" alt="三层原始图纸" /><span class="asset-strip">INPUT · page-03.png</span></a>
-              <div class="floor-distinction"><div><h3 class="h3">私密休憩层</h3><div class="floor-diff-list"><span>独立书房</span><span>卧室与到达平台</span><span>整层俯视 3D</span></div></div></div>
-              <a class="floor-result" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png" alt="三层独立 Blender 模型" /><span class="asset-strip">OUTPUT · floor-3-top-material.png</span></a>
+              <a class="floor-source" href="../references/input-contract.md"><img src="skill-intro-assets/floor3-spatial-schematic.svg" alt="三层卧室、衣帽间与花园动线教学示意" /><span class="asset-strip">SCHEMATIC · 非施工图</span></a>
+              <div class="floor-distinction"><div><h3 class="h3">私密休憩层</h3><div class="floor-diff-list"><span>主卧与衣帽间</span><span>卫浴分区</span><span>露天花园</span></div></div></div>
+              <a class="floor-result" href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-3-whole.png" alt="三层公开教学效果示例，非当前项目版本" /><span class="asset-strip">EXAMPLE · 旧版教学素材</span></a>
             </article>
           </div>
         </div>
-        <div class="slide-foot"><a class="label muted source-link" href="../references/workflow.md">三张图纸 → 三套空间骨架 / 禁止换标签复用 ↗</a><span class="label muted">04 / 14</span></div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/workflow.md">教学示意与旧版效果图只展示方法；实际几何逐层以有出处的图纸为准 ↗</a><span class="label muted">04 / 14</span></div>
       </section>
 
       <section class="slide dark">
@@ -897,26 +997,26 @@
           </div>
           <div class="workflow-asset-graph" data-anim="fade-up" data-delay="3">
             <div class="graph-group graph-group--input">
-              <a class="graph-asset graph-asset--image plan" href="../example/input/yj方案改2.pdf"><img src="../example/output-html/audit/page-01.png" alt="分层图纸输入" /><div class="graph-label"><span class="card-index">SOURCE 01</span><strong>三层图纸</strong><span class="asset-chip">input/yj方案改2.pdf</span></div></a>
-              <a class="graph-asset graph-qa" href="../example/input/DESIGN.md"><div><span class="card-index">SOURCE 02</span><h3 class="h3">DESIGN QA</h3></div><p class="body">空间用途、尺寸、材料、禁忌与逐层要求。</p><span class="asset-chip">input/DESIGN.md</span></a>
+              <a class="graph-asset graph-asset--image plan" href="../references/input-contract.md"><img src="skill-intro-assets/floor1-spatial-schematic.svg" alt="多专业图纸输入教学示意" /><div class="graph-label"><span class="card-index">SOURCE 01</span><strong>分专业原图</strong><span class="asset-chip">建筑 / 结构 / 给排水 / 电气</span></div></a>
+              <a class="graph-asset graph-qa" href="../templates/DESIGN.template.md"><div><span class="card-index">SOURCE 02</span><h3 class="h3">DESIGN QA</h3></div><p class="body">用途、动线、门窗家具、图纸差异与待核查项。</p><span class="asset-chip">templates/DESIGN.template.md</span></a>
             </div>
             <div class="graph-arrow" aria-hidden="true"><span>→</span></div>
             <div class="baseline-hub">
               <div class="baseline-head"><div><span class="card-index">CONTROL / SOURCE OF TRUTH</span><h3 class="h3">分层空间基线</h3></div><div class="baseline-word">BASE</div></div>
-              <div class="baseline-floor-row"><span class="baseline-floor-no">1F</span><div class="baseline-floor-copy"><strong>公共生活骨架</strong><p>客厅—餐厅—厨房连续；餐厨透明玻璃门。</p></div></div>
-              <div class="baseline-floor-row"><span class="baseline-floor-no">2F</span><div class="baseline-floor-copy"><strong>家庭起居骨架</strong><p>开放式厨房；卧室独立；卫生间干湿分离。</p></div></div>
-              <div class="baseline-floor-row"><span class="baseline-floor-no">3F</span><div class="baseline-floor-copy"><strong>私密休憩骨架</strong><p>书房、卧室、到达平台与洞口保护分别校验。</p></div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">1F</span><div class="baseline-floor-copy"><strong>公共生活基线</strong><p>进入、会客、烹饪与通行逐场景核对。</p></div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">2F</span><div class="baseline-floor-copy"><strong>家庭起居基线</strong><p>吧台、阳台、卧室与卫浴分开校对。</p></div></div>
+              <div class="baseline-floor-row"><span class="baseline-floor-no">3F</span><div class="baseline-floor-copy"><strong>私密休憩基线</strong><p>卧室、衣帽间、卫浴、花园及楼梯口。</p></div></div>
               <div class="baseline-files">
                 <a class="asset-chip" href="../example/output-html/plan-facts.json">plan-facts.json ↗</a>
                 <a class="asset-chip" href="../example/output-html/spatial-baseline-v1.json">spatial-baseline-v1.json ↗</a>
-                <a class="asset-chip" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/stair-baseline-v1.json">stair-baseline-v1.json ↗</a>
+                <a class="asset-chip" href="../references/data-schemas.md">asset-provenance.json ↗</a>
               </div>
             </div>
             <div class="graph-arrow" aria-hidden="true"><span>↗<br />→<br />↘</span></div>
             <div class="graph-group graph-group--output">
-              <a class="output-asset-row" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/yj-three-floor-renovation-v9.blend"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="可编辑 Blender 模型" /><span class="output-asset-copy"><span class="card-index">OUTPUT A</span><strong>分层 Blender</strong><span class="asset-chip">output-blender/*.blend</span></span></a>
-              <a class="output-asset-row" href="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp"><img src="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp" alt="逐房间效果图" /><span class="output-asset-copy"><span class="card-index">OUTPUT B</span><strong>逐房间渲染</strong><span class="asset-chip">room-renders/floor-*/</span></span></a>
-              <a class="output-asset-row" href="../example/output-html/room.html"><img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="响应式 HTML 与交互模型" /><span class="output-asset-copy"><span class="card-index">OUTPUT C</span><strong>HTML + Web GLB</strong><span class="asset-chip">output-html/room.html</span></span></a>
+              <a class="output-asset-row" href="../references/blender-iterative-workflow.md"><img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="公开教学三维视频海报" /><span class="output-asset-copy"><span class="card-index">OUTPUT A</span><strong>分层 Blender</strong><span class="asset-chip">output-blender/*.blend</span></span></a>
+              <a class="output-asset-row" href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-1-public-axis.png" alt="公开教学用的逐房间效果示例" /><span class="output-asset-copy"><span class="card-index">OUTPUT B</span><strong>版本化效果图</strong><span class="asset-chip">room-renders/floorN/vNN/</span></span></a>
+              <a class="output-asset-row" href="../references/output-contract.md"><img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="教学视频海报，用于展示输出类型" /><span class="output-asset-copy"><span class="card-index">OUTPUT C</span><strong>按用途分页面</strong><span class="asset-chip">output-html/*.html</span></span></a>
             </div>
           </div>
         </div>
@@ -929,15 +1029,15 @@
           <div class="split-text" data-anim="fade-up" data-delay="1">
             <div class="kicker">不是只讲“风格”</div>
             <h2 class="h2">每个房间都要回答<em>具体问题</em></h2>
-            <p class="lead muted">它在哪一层？和谁相邻？门窗在哪里？家具多大？哪些信息还要追问？</p>
+            <p class="lead muted">它在哪一层？一天中怎样走进去、使用、收纳？开门窗或移动椅子后还能否顺畅通过？</p>
           </div>
           <div class="room-list" data-anim="fade-up" data-delay="2">
-            <div class="room-cell"><span class="card-index">01</span><h3 class="h3">空间关系</h3><p class="caption muted">房间、走道、门洞、采光</p></div>
-            <div class="room-cell"><span class="card-index">02</span><h3 class="h3">关键尺寸</h3><p class="caption muted">桌、床垫、柜体与通道</p></div>
-            <div class="room-cell"><span class="card-index">03</span><h3 class="h3">功能选择</h3><p class="caption muted">开放 / 封闭、干湿分离</p></div>
-            <div class="room-cell"><span class="card-index">04</span><h3 class="h3">材料与气氛</h3><p class="caption muted">地面、墙面、木作、灯光</p></div>
-            <div class="room-cell"><span class="card-index">05</span><h3 class="h3">效果图</h3><p class="caption muted">每房间独立生成且可追溯</p></div>
-            <div class="room-cell"><span class="card-index">06</span><h3 class="h3">待确认项</h3><p class="caption muted">不知道，就继续问</p></div>
+            <div class="room-cell"><span class="card-index">01</span><h3 class="h3">空间关系</h3><p class="caption muted">相邻房间、门洞、窗与采光</p></div>
+            <div class="room-cell"><span class="card-index">02</span><h3 class="h3">生活动线</h3><p class="caption muted">进出、烹饪、洗漱、收纳、夜间</p></div>
+            <div class="room-cell"><span class="card-index">03</span><h3 class="h3">家具与净空</h3><p class="caption muted">床、沙发、桌椅与开门范围</p></div>
+            <div class="room-cell"><span class="card-index">04</span><h3 class="h3">机电接口</h3><p class="caption muted">水、电、灯、排水和设备检修</p></div>
+            <div class="room-cell"><span class="card-index">05</span><h3 class="h3">效果图</h3><p class="caption muted">整层与房间视角逐项核对</p></div>
+            <div class="room-cell"><span class="card-index">06</span><h3 class="h3">待确认项</h3><p class="caption muted">图纸事实与设计意向分开</p></div>
           </div>
         </div>
         <div class="slide-foot"><a class="label muted source-link" href="../references/input-contract.md">Source · User QA Input ↗</a><span class="label muted">06 / 14</span></div>
@@ -952,8 +1052,8 @@
             <ul class="check-list">
               <li>楼层整体俯视 3D 按该层真实长宽比例生成。</li>
               <li>一层、二层、三层不能套用同一个空间骨架。</li>
-              <li>门窗、玻璃门、重点区域必须有对应视觉证据。</li>
-              <li>逐房间 Imagen 体现本层功能与统一装修风格。</li>
+              <li>门窗开启、家具抽拉与常用通道一起校对。</li>
+              <li>整层及逐房间效果图逐项核对水电点位和设计意向。</li>
             </ul>
           </div>
           <figure class="baseline-figure" data-anim="scale-in" data-delay="3">
@@ -967,27 +1067,27 @@
         <div class="slide-chrome"><span class="label muted">07 · Rebuild from Evidence</span><span class="label muted">08</span></div>
         <div class="slide-body">
           <div class="rebuild-editorial">
-            <a class="rebuild-hero" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-stair-plan-review.png" data-anim="scale-in" data-delay="1">
-              <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-stair-plan-review.png" alt="按二层图纸重建的折返楼梯" />
-              <span class="rebuild-hero-label label">BLENDER REBUILD · FLOOR 02 ↗</span>
+            <a class="rebuild-hero" href="../references/safety-and-validation.md" data-anim="scale-in" data-delay="1">
+              <img src="skill-intro-assets/stair-review-schematic.svg" alt="楼梯梯段、平台和梯井复核教学示意，非施工图" />
+              <span class="rebuild-hero-label label">METHOD · NOT A DRAWING ↗</span>
             </a>
             <div class="rebuild-copy" data-anim="fade-up" data-delay="2">
               <div class="kicker">Drawing fact → Editable geometry</div>
-              <h2 class="h2">楼梯不是摆进去的，<br />它从<em>图纸里长出来</em></h2>
-              <p class="lead muted">局部图纸先锁定梯井、梯段与到达方向，再进入可编辑 Blender 场景。</p>
+              <h2 class="h2">楼梯与洞口，<br />必须按<em>本层图纸复核</em></h2>
+              <p class="lead muted">核对梯井、上行方向、平台、净空和护栏；结构与现场信息不足时，标记待专业复核。</p>
             </div>
-            <a class="rebuild-plan-card" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-plan-stair-crop.png" data-anim="fade-up" data-delay="3">
-              <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-plan-stair-crop.png" alt="二层图纸中的楼梯裁切" />
-              <span class="rebuild-plan-caption"><span class="card-index">EVIDENCE / PDF CROP</span><strong>二层梯井与方向</strong></span>
+            <a class="rebuild-plan-card" href="../references/safety-and-validation.md" data-anim="fade-up" data-delay="3">
+              <img src="skill-intro-assets/stair-review-schematic.svg" alt="楼梯梯井抽象教学示意，非结构图" />
+              <span class="rebuild-plan-caption"><span class="card-index">CHECK / SAFETY</span><strong>出处与待核项</strong></span>
             </a>
             <div class="rebuild-audit" data-anim="fade-up" data-delay="4">
-              <div class="rebuild-check"><span class="card-index">01 / LOCATE</span><strong>逐层定位</strong><p>一、二层分别按本层图纸确认梯井与到达方向。</p></div>
-              <div class="rebuild-check"><span class="card-index">02 / BUILD</span><strong>两跑 × 9 级</strong><p>中间平台、净空、扶手和护栏保持连续。</p></div>
-              <div class="rebuild-check"><span class="card-index">03 / STOP</span><strong>顶层正确收口</strong><p>三层只保留到达平台与洞口保护，不复制整套楼梯。</p></div>
+              <div class="rebuild-check"><span class="card-index">01 / LOCATE</span><strong>逐层定位</strong><p>按本层建筑、结构图核对梯井与到达方向。</p></div>
+              <div class="rebuild-check"><span class="card-index">02 / CHECK</span><strong>踏步与净空</strong><p>平台、扶手、护栏和机电接口单独复核。</p></div>
+              <div class="rebuild-check"><span class="card-index">03 / RECORD</span><strong>记录出处</strong><p>尺寸、页码与现场差异进入待确认清单。</p></div>
             </div>
           </div>
         </div>
-        <div class="slide-foot"><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/stair-baseline-v1.json">Geometry baseline ↗</a><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/contact-sheet.html">Review sheet ↗</a><span class="label muted">08 / 14</span></div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/safety-and-validation.md">Source · Safety Checks ↗</a><span class="label muted">08 / 14</span></div>
       </section>
 
       <section class="slide light">
@@ -998,28 +1098,29 @@
             <h2 class="h2" data-anim="fade-up" data-delay="2">每层有自己的功能、开口与<em>空间气质</em></h2>
           </div>
           <div class="floor-proof-grid" data-anim="fade-up" data-delay="3">
-            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-top-material.png" alt="一层材质俯视图" /><figcaption><strong>1F · 连续公共轴</strong><span class="caption">客厅—餐厅—厨房贯通；餐厨透明玻璃门；卫生间不做干湿分离。</span></figcaption></a>
-            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-top-material.png" alt="二层材质俯视图" /><figcaption><strong>2F · 家庭起居层</strong><span class="caption">开放式厨房；卧室与起居空间独立；卫生间干湿分离。</span></figcaption></a>
-            <a class="floor-proof" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-top-material.png" alt="三层材质俯视图" /><figcaption><strong>3F · 私密休憩层</strong><span class="caption">书房、卧室与到达平台各自成立；保留整层俯视 3D。</span></figcaption></a>
+            <a class="floor-proof" href="../references/workflow.md"><img src="skill-intro-assets/floor1-spatial-schematic.svg" alt="一层公共生活动线教学示意，非施工图" /><figcaption><strong>1F · 公共生活</strong><span class="caption">按进入、会客、餐厨、家务与夜间场景逐一检查通道。</span></figcaption></a>
+            <a class="floor-proof" href="../references/workflow.md"><img src="skill-intro-assets/floor2-spatial-schematic.svg" alt="二层共享与私密动线教学示意，非施工图" /><figcaption><strong>2F · 家庭起居</strong><span class="caption">开放厨房、吧台、阳台与卧室分别核对门窗和家具关系。</span></figcaption></a>
+            <a class="floor-proof" href="../references/workflow.md"><img src="skill-intro-assets/floor3-spatial-schematic.svg" alt="三层私密动线教学示意，非施工图" /><figcaption><strong>3F · 私密与花园</strong><span class="caption">主卧、衣帽间、卫浴与露天花园的进出路径单独说明。</span></figcaption></a>
           </div>
         </div>
-        <div class="slide-foot"><a class="label muted source-link" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/iteration-review.yaml">Source · Per-floor Review ↗</a><span class="label muted">09 / 14</span></div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/workflow.md">三张图为教学示意，不表达真实尺寸或施工许可 ↗</a><span class="label muted">09 / 14</span></div>
       </section>
 
       <section class="slide dark">
         <div class="slide-chrome"><span class="label muted">09 · Dual Outputs</span><span class="label muted">10</span></div>
         <div class="slide-body delivery-map">
           <div class="case-copy" data-anim="fade-up" data-delay="1">
-            <div class="kicker">一次建模，两种交付</div>
-            <h2 class="h2">工作证据分别进入<em>HTML 与 Blender</em></h2>
+            <div class="kicker">资料按专业与用途归档</div>
+            <h2 class="h2">效果、动线、施工核对<em>各有入口</em></h2>
             <div class="output-lanes">
-              <a class="output-lane" href="../example/output-html/room.html"><span class="path-chip">work → output-html</span><span><strong>room.html</strong><br /><span class="caption muted">图纸、QA、效果图、逐层交互与定位留言</span></span><span class="lane-arrow">↗</span></a>
-              <a class="output-lane" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/yj-three-floor-renovation-v9.blend"><span class="path-chip">work → output-blender</span><span><strong>.blend / .glb</strong><br /><span class="caption muted">可编辑模型、网页轻量模型与复核证据</span></span><span class="lane-arrow">↗</span></a>
+              <a class="output-lane" href="../references/image-and-3d.md"><span class="path-chip">room-renders</span><span><strong>效果预览</strong><br /><span class="caption muted">floor1/、floor2/、floor3/ 的版本化整层与房间视角</span></span><span class="lane-arrow">↗</span></a>
+              <a class="output-lane" href="../references/workflow.md"><span class="path-chip">circulation-design</span><span><strong>生活动线</strong><br /><span class="caption muted">逐层场景写在对应页面，门窗与家具净空可核对</span></span><span class="lane-arrow">↗</span></a>
+              <a class="output-lane" href="../references/output-contract.md"><span class="path-chip">drawing-evidence</span><span><strong>施工图核对</strong><br /><span class="caption muted">建筑、结构、给排水、电气证据与修改意见</span></span><span class="lane-arrow">↗</span></a>
             </div>
-            <p class="body muted">Imagen 材质参考进入 Blender，Blender 的真实几何再进入网页交互；两条输出共用同一楼层基线。</p>
+            <p class="body muted">复核后的页面进入 output-html/；需要可编辑三维时，模型另存 output-blender/。公开页面使用脱敏素材。</p>
           </div>
-          <a class="model-preview" href="../example/output-blender/yj-home-blender-v9-stair-rebuild/interactive-preview.html" data-anim="scale-in" data-delay="2">
-            <img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/interactive-preview-floor-1.png" alt="Blender GLB 网页交互预览" />
+          <a class="model-preview" href="../references/output-contract.md" data-anim="scale-in" data-delay="2">
+            <img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="公开教学视频的三维预览海报，非当前项目版本" />
           </a>
         </div>
         <div class="slide-foot"><a class="label muted source-link" href="../references/blender-iterative-workflow.md">Source · Blender Workflow ↗</a><span class="label muted">10 / 14</span></div>
@@ -1029,9 +1130,9 @@
         <div class="slide-chrome"><span class="label muted">10 · Light, Material, Life</span><span class="label muted">11</span></div>
         <div class="slide-body mood-layout">
           <div class="mood-gallery" data-anim="scale-in" data-delay="1">
-            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-public-axis.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-1-public-axis.png" alt="一层客餐厨连续轴灯光与材质" /></a>
-            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-open-kitchen.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-2-open-kitchen.png" alt="二层开放式厨房灯光与材质" /></a>
-            <a href="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-study.png"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/floor-3-study.png" alt="三层书房灯光与材质" /></a>
+            <a href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-1-public-axis.png" alt="公开教学用的一层客餐厨灯光与材质示例" /></a>
+            <a href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-2-lounge.png" alt="公开教学用的二层起居灯光与材质示例" /></a>
+            <a href="../references/image-and-3d.md"><img src="skill-intro-video/remotion/public/selected-renders/floor-3-bath.webp" alt="公开教学用的三层卫浴灯光与材质示例" /></a>
           </div>
           <div class="mood-notes" data-anim="fade-up" data-delay="2">
             <div class="kicker">不是传统低模像素感</div>
@@ -1040,25 +1141,25 @@
               <li>日光、吊灯、壁灯与台灯共同塑造层次。</li>
               <li>压住一层过曝，避免全屋平铺式补光。</li>
               <li>木纹、石材、织物与玻璃按真实比例响应光线。</li>
-              <li>家具和常用灯具是真实可编辑的场景对象。</li>
+              <li>家具和常用灯具可编辑，并按生活动线检查摆放。</li>
             </ul>
           </div>
         </div>
-        <div class="slide-foot"><a class="label muted source-link" href="../references/image-and-3d.md">Source · Material & Lighting Rules ↗</a><span class="label muted">11 / 14</span></div>
+        <div class="slide-foot"><a class="label muted source-link" href="../references/image-and-3d.md">公开教学素材仅示范材质与光线，不代表当前设计版本 ↗</a><span class="label muted">11 / 14</span></div>
       </section>
 
       <section class="slide dark">
         <div class="slide-chrome"><span class="label muted">11 · Deliverable</span><span class="label muted">12</span></div>
         <div class="slide-body" style="display:flex; flex-direction:column; gap:var(--gap-md)">
           <div>
-            <div class="kicker" data-anim="fade-in" data-delay="1">最终交付，不是一堆散图</div>
-            <h2 class="h2" data-anim="fade-up" data-delay="2">一个可在手机打开、可讨论、可回溯的<em>HTML</em></h2>
+            <div class="kicker" data-anim="fade-in" data-delay="1">最终交付，按阅读任务分开</div>
+            <h2 class="h2" data-anim="fade-up" data-delay="2">预览、动线与图纸复核<em>各自清楚</em></h2>
           </div>
           <div class="output-grid" data-anim="fade-up" data-delay="3">
-            <a class="card" href="../references/output-contract.md"><span class="card-media plan"><img src="../example/output-html/audit/page-01.png" alt="一层原始图纸素材" /></span><span class="card-index">01 / DRAWING</span><h3 class="h3">图纸与分区</h3><p class="body card-copy">嵌入清晰底图，展示楼层与空间事实。</p></a>
-            <a class="card" href="../references/output-contract.md"><span class="card-media"><img src="../example/output-html/room-renders/embedded/floor-1-revision-v2/f1-public-axis-v2.webp" alt="一层客餐厨逐房间效果素材" /></span><span class="card-index">02 / ROOMS</span><h3 class="h3">逐房间说明</h3><p class="body card-copy">尺寸、选择、材料、待确认项和效果图。</p></a>
-            <a class="card" href="../references/image-and-3d.md"><span class="card-media"><img src="../example/output-blender/yj-home-blender-v9-stair-rebuild/review-stair/interactive-preview-floor-1.png" alt="一层交互三维预览素材" /></span><span class="card-index">03 / 3D</span><h3 class="h3">交互 3D</h3><p class="body card-copy">每层独立模型，保留交互与降级方案。</p></a>
-            <a class="card" href="../references/public-review-and-notes.md"><span class="card-media"><img src="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-poster.png" alt="电脑与手机跨设备预览素材" /></span><span class="card-index">04 / REVIEW</span><h3 class="h3">定位留言</h3><p class="body card-copy">浮球拖动、区域定位、历史记录与导出。</p></a>
+            <a class="card" href="../references/image-and-3d.md"><span class="card-media"><img src="skill-intro-video/remotion/public/selected-renders/floor-1-public-axis.png" alt="公开教学用的房间效果示例" /></span><span class="card-index">01 / VISUAL</span><h3 class="h3">效果预览</h3><p class="body card-copy">整层与逐房间效果图，保留视角和版本出处。</p></a>
+            <a class="card" href="../references/workflow.md"><span class="card-media plan"><img src="skill-intro-assets/floor2-spatial-schematic.svg" alt="二层生活动线教学示意，非施工图" /></span><span class="card-index">02 / ROUTE</span><h3 class="h3">逐层动线</h3><p class="body card-copy">生活场景放进对应楼层页面，说明门窗家具净空。</p></a>
+            <a class="card" href="../references/output-contract.md"><span class="card-media plan"><img src="skill-intro-assets/floor3-spatial-schematic.svg" alt="三层图纸核对流程教学示意，非施工图" /></span><span class="card-index">03 / DRAWING</span><h3 class="h3">施工图核对</h3><p class="body card-copy">图纸证据、设计差异和责任专业逐条对应。</p></a>
+            <a class="card" href="../references/image-and-3d.md"><span class="card-media"><img src="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-poster.png" alt="公开教学三维视频海报，非当前项目版本" /></span><span class="card-index">04 / 3D</span><h3 class="h3">可编辑三维</h3><p class="body card-copy">按需交付分层模型、网页预览与无 WebGL 降级。</p></a>
           </div>
         </div>
         <div class="slide-foot"><a class="label muted source-link" href="../references/output-contract.md">Source · Output Contract ↗</a><span class="label muted">12 / 14</span></div>
@@ -1087,7 +1188,7 @@
             <div class="video-copy">
               <div class="kicker">两个版本，两种讲法</div>
               <h2 class="h2">3D 看空间，2D 看完整流程</h2>
-              <p class="body muted">主画面保留 16:9 比例展示逐层模型、切层和交互；辅画面说明输入如何变成最终 HTML。</p>
+              <p class="body muted">这两段是旧版教学视频，用于说明 3D 交互和输入到输出的过程；当前方案以最新页面和图纸复核记录为准。</p>
               <div class="download-links caption">
                 <a href="skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4">3D 轻量版 ↗</a>
                 <a href="skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4">2D 轻量版 ↗</a>
@@ -1183,9 +1284,20 @@
           }
         });
 
+        window.addEventListener('hashchange', function () {
+          const requestedPage = Number.parseInt(window.location.hash.slice(1), 10);
+          if (Number.isFinite(requestedPage)) goTo(requestedPage - 1);
+        });
+
         let wheelCooldown = false;
         document.addEventListener('wheel', function (event) {
           if (event.target.closest('video')) return;
+          const scrollSlide = event.target.closest('.slide');
+          if (window.innerWidth <= 600 && scrollSlide && Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+            const canScrollDown = event.deltaY > 0 && scrollSlide.scrollTop + scrollSlide.clientHeight < scrollSlide.scrollHeight - 2;
+            const canScrollUp = event.deltaY < 0 && scrollSlide.scrollTop > 2;
+            if (canScrollDown || canScrollUp) return;
+          }
           event.preventDefault();
           if (animating || wheelCooldown) return;
           wheelCooldown = true;

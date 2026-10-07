@@ -1,6 +1,6 @@
 ---
 name: interior-renovation-html
-description: Turn single- or multi-floor CAD-exported residential plan PDFs or clear dimensioned plan images, style references, and living requirements into a checked renovation concept with per-floor plan analysis, room-by-room explanations, door/window visuals, floor-specific Three.js previews and ImageGen renders, materials, budget, sourcing keywords, one downloadable HTML, and optional public review notes. Use for whole-home, multi-storey, selected-floor, room-scope, or shared-review interior planning; do not present the result as structural engineering or construction drawings.
+description: Turn residential architectural, structural and MEP drawings, dimensioned plans, style references and living requirements into a traceable renovation concept with floor-specific circulation, door/window and furniture clearance checks, room renders, optional 3D, and separate visual and drawing-review pages when useful. Use for whole-home, multi-storey, selected-floor, room-scope or shared-review planning; do not present concepts as structural engineering or approved construction drawings.
 metadata:
   short-description: CAD 户型到交互式装修方案
 ---
@@ -11,12 +11,13 @@ Create one coherent renovation proposal from drawing evidence through visualisat
 
 ## Introduction media
 
-Use the original [2D workflow introduction](docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4) when explaining inputs, floor-by-floor processing and the complete HTML output. Use the separate [3D feature introduction](docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4) when presenting independent floor models, camera movement, floor switching and review interaction. Do not splice the 3D reveal into the 2D master. The 1080p masters, posters and subtitles are separated under `docs/skill-intro-video/output/2d/` and `output/3d/`; storyboards and reproducible Remotion source live in `docs/skill-intro-video/`. `docs/skill-intro-slides.html` remains the accompanying presentation.
+Use the [introduction slides](docs/skill-intro-slides.html) for the current input template, evidence roles, circulation checks, versioned renders, and separate visual/drawing review outputs. Their schematic floor diagrams are teaching aids, not construction plans. The [2D workflow introduction](docs/skill-intro-video/output/2d/floorplan-to-renovation-preview-2d-web.mp4) and [3D feature introduction](docs/skill-intro-video/output/3d/floorplan-to-renovation-preview-3d-web.mp4) are earlier teaching videos; use them to explain the process and 3D interaction, not as proof of the current design revision. Their masters, posters, subtitles, storyboards, and Remotion source remain under `docs/skill-intro-video/`.
 
 ## Read in this order
 
 1. Read [references/usage.md](references/usage.md) to understand invocation, expected uploads, and the user-facing hand-off.
 2. Read [references/input-contract.md](references/input-contract.md) for every job.
+   Offer [templates/DESIGN.template.md](templates/DESIGN.template.md) to collect room uses, daily routes, door/window and furniture clearance, drawing provenance, MEP changes, and per-view render review.
 3. Read [references/workflow.md](references/workflow.md) before analysing a plan or producing deliverables.
 4. Read [references/data-schemas.md](references/data-schemas.md) when creating the facts table, coordinate baseline, option variants, staging files, or embedded-asset manifest.
 5. Read [references/safety-and-validation.md](references/safety-and-validation.md) whenever the request touches walls, doors, windows, balconies, stairs, wet areas, local rules, or budgets. This applies to most full renovation jobs.

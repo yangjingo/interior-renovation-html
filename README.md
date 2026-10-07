@@ -61,7 +61,7 @@ The single-file validator needs `sharp` to decode embedded images fully; install
 
 ## Quick Start
 
-1. Put `plan.pdf`, `style-reference.png`, and the completed [`DESIGN.md`](templates/DESIGN.template.md) in one `input/` directory.
+1. Put the available architectural, structural, plumbing, and electrical drawings, any style reference, and a completed [`DESIGN.md`](templates/DESIGN.template.md) in one `input/` directory. The template records drawing versions, per-floor living routes, door/window and furniture clearance, proposed MEP changes, and render review.
 2. Invoke `$interior-renovation-html` and state whether the deliverable needs 3D, room renders, budget guidance, or a public preview.
 3. Review floor switching, drawings, 3D, images, anchored notes, and the mobile layout in a browser.
 

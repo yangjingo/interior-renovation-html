@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">一层公共生活动线教学示意</title>
+  <desc id="desc">抽象分区和箭头仅用于说明读图与动线校对，不代表真实户型或施工尺寸。</desc>
+  <rect width="960" height="600" fill="#17120f"/>
+  <path d="M62 86H898V514H62Z" fill="#25201b" stroke="#c09b72" stroke-width="5"/>
+  <path d="M62 264H898M350 86V514M654 86V514" fill="none" stroke="#8e725a" stroke-width="4"/>
+  <rect x="80" y="282" width="252" height="214" fill="#625345"/>
+  <rect x="370" y="282" width="266" height="214" fill="#4b5b56"/>
+  <rect x="673" y="282" width="207" height="214" fill="#756047"/>
+  <path d="M190 386H762" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-dasharray="15 15"/>
+  <path d="m756 365 32 21-32 21" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f5e9d5" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">
+    <text x="205" y="357">LIVING</text><text x="503" y="357">DINING</text><text x="776" y="357">KITCHEN</text>
+  </g>
+  <g fill="#c8b9a4" font-family="Arial, sans-serif" font-size="20">
+    <text x="84" y="132">FLOOR 01 · PUBLIC ROUTE</text><text x="84" y="182">Doors · furniture · clear passage</text>
+    <text x="84" y="552">SCHEMATIC ONLY / NOT A CONSTRUCTION DRAWING</text>
+  </g>
+</svg>

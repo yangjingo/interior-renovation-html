@@ -61,7 +61,7 @@ GitHub 中的 GIF 会自动播放；点击即可打开清晰度更高的 MP4。�
 
 ## 快速开始
 
-1. 将 `plan.pdf`、`style-reference.png` 和填写后的 [`DESIGN.md`](templates/DESIGN.template.md) 放入同一个 `input/` 目录。
+1. 将已有的建筑、结构、给排水、电气图纸、风格参考和填写后的 [`DESIGN.md`](templates/DESIGN.template.md) 放入同一个 `input/` 目录。模板记录图纸版本、逐层生活动线、门窗及家具净空、拟议机电调整与效果图核对。
 2. 调用 `$interior-renovation-html`，说明是否需要 3D、逐房间效果图、预算或公开预览。
 3. 在浏览器检查楼层切换、图纸、3D、图片、留言定位和移动端布局。
 

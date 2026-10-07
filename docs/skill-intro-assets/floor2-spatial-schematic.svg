@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">二层开放厨房及家庭起居教学示意</title>
+  <desc id="desc">抽象分区和箭头仅用于说明吧台、起居与卧室的动线校对，不代表真实户型或施工尺寸。</desc>
+  <rect width="960" height="600" fill="#17120f"/>
+  <path d="M62 86H898V514H62Z" fill="#25201b" stroke="#c09b72" stroke-width="5"/>
+  <path d="M62 276H898M338 86V514M684 86V514" fill="none" stroke="#8e725a" stroke-width="4"/>
+  <rect x="81" y="104" width="239" height="154" fill="#756047"/>
+  <rect x="358" y="298" width="306" height="198" fill="#4b5b56"/>
+  <rect x="704" y="298" width="174" height="198" fill="#625345"/>
+  <path d="M190 183V385H530H776" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-dasharray="15 15"/>
+  <path d="m772 364 32 21-32 21" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f5e9d5" font-family="Arial, sans-serif" font-size="27" text-anchor="middle">
+    <text x="200" y="186">KITCHEN + BAR</text><text x="511" y="392">FAMILY LOUNGE</text><text x="790" y="392">BEDROOM</text>
+  </g>
+  <g fill="#c8b9a4" font-family="Arial, sans-serif" font-size="20">
+    <text x="370" y="134">FLOOR 02 · SHARED + PRIVATE</text><text x="370" y="182">Bar seating · balcony threshold · doors</text>
+    <text x="84" y="552">SCHEMATIC ONLY / NOT A CONSTRUCTION DRAWING</text>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">三层卧室、衣帽间与露天花园教学示意</title>
+  <desc id="desc">抽象分区和箭头仅用于说明私密动线与室外花园的关系，不代表真实户型或施工尺寸。</desc>
+  <rect width="960" height="600" fill="#17120f"/>
+  <path d="M62 86H898V514H62Z" fill="#25201b" stroke="#c09b72" stroke-width="5"/>
+  <path d="M62 276H898M344 86V514M655 86V514" fill="none" stroke="#8e725a" stroke-width="4"/>
+  <rect x="81" y="294" width="244" height="202" fill="#4b5b56"/>
+  <rect x="364" y="294" width="271" height="202" fill="#625345"/>
+  <rect x="675" y="294" width="203" height="202" fill="#756047"/>
+  <circle cx="175" cy="164" r="45" fill="#55705a"/><circle cx="276" cy="202" r="29" fill="#758466"/>
+  <path d="M768 390H490H205V243" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-dasharray="15 15"/>
+  <path d="m184 249 21-32 21 32" fill="none" stroke="#f4bd79" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#f5e9d5" font-family="Arial, sans-serif" font-size="27" text-anchor="middle">
+    <text x="202" y="395">OPEN GARDEN</text><text x="500" y="395">BEDROOM</text><text x="777" y="395">CLOSET</text>
+  </g>
+  <g fill="#c8b9a4" font-family="Arial, sans-serif" font-size="20">
+    <text x="370" y="134">FLOOR 03 · PRIVATE ROUTE</text><text x="370" y="182">Bathroom · closet · exterior access</text>
+    <text x="84" y="552">SCHEMATIC ONLY / NOT A CONSTRUCTION DRAWING</text>
+  </g>
+</svg>
