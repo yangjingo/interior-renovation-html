@@ -1,6 +1,6 @@
 # YJ Home presentation
 
-The current release is V31. Its two pages have separate roles:
+The current release is V31. Its two entry pages and three floor modules have separate roles:
 
 - `room.html` (also staged as `index.html`) shows the three user-supplied whole-floor previews. Each floor embeds its own interactive circulation page, `floorN-circulation.html`, below the overview.
 - `room-review.html` holds the architectural, structural, water and electrical drawing review, with the five original drawing-set entries. Original PDFs remain local in `../input/` and are not staged.
@@ -11,7 +11,7 @@ The three source ZIP packages are archived unchanged in `../input/archives/`. Th
 
 1. Place a new source package in the private `../input/archives/` directory. Keep its original filename and update the archive manifest after verifying the ZIP entries and SHA-256.
 2. Import accepted images and the matching circulation design HTML with `python scripts/import-preview-packages.py` after setting their actual accepted versions in that script. The importer applies `scripts/circulation-theme-floor12.css` or `scripts/circulation-theme-floor3.css` to the archived HTML; the ZIPs stay unchanged. Do not create a version for an unchanged image.
-3. Run `python scripts/check-current-project-assets.py`, then `node scripts/build-packaged-preview.mjs`. Check the three floor tabs, overview images, circulation scenes, hash navigation, mobile layout and browser console.
+3. Run `node scripts/build-packaged-preview.mjs`, then `python scripts/check-current-project-assets.py`. Check the three floor tabs, overview images, circulation scenes, hash navigation, mobile layout and browser console.
 4. Run `node scripts/stage-yj-home.mjs`. It checks the split pages and stages only the current preview, review and three circulation pages with a release manifest.
 
 The V24 whole-page backups and V29 PDF/image inspection intermediates were removed from `../work/` after checking current references. The earlier [cleanup manifest](cleanup-manifest.json) remains a historical record of its own execution; the new cleanup has a separate inventory.
