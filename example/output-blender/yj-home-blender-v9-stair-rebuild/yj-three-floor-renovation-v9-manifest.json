@@ -120,14 +120,6 @@
       "bytes": 21737996,
       "sha256": "1e9a119af763df916c07491b332a293c59d1fa51a3bfa5b0576df06dbc479ea1"
     },
-    "interactive-preview-hosted.html": {
-      "bytes": 13973,
-      "sha256": "e0076b47d44928a368610fce6ae0d155f6e060d74485d905bc7c57813b887d68"
-    },
-    "interactive-preview-template.html": {
-      "bytes": 14122,
-      "sha256": "673a18bcbbfd6067d4e8225b8b54ababa0e1ec4e5df8b3774fb446c25bf26fe5"
-    },
     "stair-baseline-v1.json": {
       "bytes": 1684,
       "sha256": "6c4a5304382fc2b35442e3f7050804fbf7b67cb950b158ea454d9b7316930278"
@@ -147,18 +139,6 @@
     "review-stair/floor-3-stair-plan-review.png": {
       "bytes": 621293,
       "sha256": "742f0ca34fa804d103c20e2c67ecffb8f9c35259ea64094b900267a97da59981"
-    },
-    "review-stair/interactive-preview-floor-1.png": {
-      "bytes": 373504,
-      "sha256": "79e3738aca1008f1f9d70e7df88975c17a6f2128cae704fe70b47aceb9f52c7e"
-    },
-    "review-stair/interactive-preview-floor-2.png": {
-      "bytes": 371396,
-      "sha256": "9fcba3231d55364e4a45b4bbf897687ae6673bca6cb3e9f165f97b3f223eb0a5"
-    },
-    "review-stair/interactive-preview-floor-3.png": {
-      "bytes": 335575,
-      "sha256": "6149799a678dbbe26ae18a1e0e49c7f38923482740c8fbb2c17ee3a0b1fa13cd"
     }
   }
 }

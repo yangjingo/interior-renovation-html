@@ -1,0 +1,60 @@
+/* YJ HOME CIRCULATION THEME V31: walnut chrome, parchment drawing, copper actions. */
+:root {
+  --paper: #1e1916;
+  --surface: #3b2b23;
+  --ink: #fffaf1;
+  --muted: #c1b3a7;
+  --line: #5d5048;
+  --accent: #d7a77c;
+  --accent-soft: #3b2b23;
+  --pending: #e6af84;
+  --white: #29221e;
+}
+body { background: var(--paper); color: var(--ink); }
+.masthead, .navhost, .stage, .reference-panel, .playback,
+.settings-panel, .picker-dialog, .image-dialog {
+  background: var(--white);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.brand, .eyebrow, .scene-meta, .scene-item .done { color: var(--accent); }
+.search-box input, .variant-select, .setting-row select,
+.reference-toolbar button, .view-switch, .settings summary {
+  background: #352b25;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.search-box input::placeholder { color: #aa9b8d; }
+button[aria-pressed="true"], .scene-item[aria-pressed="true"],
+.scene-item:hover, .filters button[aria-pressed="true"],
+.route-step.is-current, .view-switch button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: #b26943;
+  color: #f4c49e;
+}
+.scene-item[aria-pressed="true"] { box-shadow: inset 3px 0 0 #b26943; }
+button.primary, .play-button {
+  background: #b26943;
+  border-color: #b26943;
+  color: #fffaf1;
+}
+button.primary:hover, .play-button:hover { background: #c67a52; }
+.canvas, .reference-image, .image-viewport { background: #f3eee6; }
+.map-caption, .settings-panel, .pending-note {
+  background: #352b25;
+  color: var(--muted);
+}
+.pending-note { border-color: #b26943; color: #f0bd98; }
+.reference-panel[open] { background: var(--white); }
+.reference-content { border-color: var(--line); }
+.image-dialog::backdrop, .picker-dialog::backdrop { background: #1e1916bf; }
+.dimension-toggle input, .setting-check input, .point input, .timeline input {
+  accent-color: #b26943;
+}
+.cad-measurement rect { fill: #fff8eb; stroke: #b26943; }
+.cad-measurement text { fill: #895735; }
+.cad-dimension-line { stroke: #b26943; }
+.dimension-key span:before { border-color: #b26943; background: #fff1e0; }
+@media (max-width: 700px) {
+  .picker-dialog, .image-dialog { background: var(--white); }
+}

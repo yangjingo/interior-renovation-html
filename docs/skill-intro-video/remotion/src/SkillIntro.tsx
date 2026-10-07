@@ -310,9 +310,9 @@ const renderStories = [
 ];
 
 const showcaseFloors = [
-  {floor: '01', name: '一层', src: '3d-showcase/interactive-floor-1.png', accent: '#c49b68'},
-  {floor: '02', name: '二层', src: '3d-showcase/interactive-floor-2.png', accent: '#a88e6d'},
-  {floor: '03', name: '三层', src: '3d-showcase/interactive-floor-3.png', accent: '#8b846f'},
+  {floor: '01', name: '一层', src: '3d-showcase/floor-1-top-material.png', accent: '#c49b68'},
+  {floor: '02', name: '二层', src: '3d-showcase/floor-2-top-material.png', accent: '#a88e6d'},
+  {floor: '03', name: '三层', src: '3d-showcase/floor-3-top-material.png', accent: '#8b846f'},
 ];
 
 const Keynote3DScene = () => {
@@ -624,7 +624,7 @@ const Keynote3DScene = () => {
         </div>
         <div style={{position: 'relative', width: '100%', height: 552, overflow: 'hidden', background: '#292822'}}>
           <Img
-            src={staticFile('3d-showcase/interactive-floor-1.png')}
+            src={staticFile('3d-showcase/floor-1-top-material.png')}
             style={{position: 'absolute', left: '-20%', top: '-34%', width: '141%', height: '150%', objectFit: 'cover', filter: 'brightness(1.08) contrast(1.08) saturate(.94)'}}
           />
           <AbsoluteFill style={{background: 'linear-gradient(180deg, #292822 0, rgba(41,40,34,.94) 36px, transparent 92px), radial-gradient(circle at 68% 38%, rgba(255,227,184,.14), transparent 42%)'}} />
@@ -740,7 +740,7 @@ const ThreeDOpeningScene = () => {
         }}
       >
         <Img
-          src={staticFile('3d-showcase/interactive-floor-1.png')}
+          src={staticFile('3d-showcase/floor-1-top-material.png')}
           style={{position: 'absolute', left: '-20%', top: '-34%', width: '141%', height: '150%', objectFit: 'cover', filter: 'brightness(1.1) contrast(1.08) saturate(.96)'}}
         />
         <AbsoluteFill style={{background: 'linear-gradient(180deg, #292822 0, rgba(41,40,34,.94) 38px, transparent 96px), radial-gradient(circle at 64% 36%, rgba(255,232,194,.16), transparent 42%), linear-gradient(135deg, rgba(255,255,255,.1), transparent 34%, rgba(0,0,0,.16))'}} />
@@ -753,9 +753,9 @@ const ThreeDOpeningScene = () => {
 };
 
 const interactiveFloors = [
-  {floor: '一层', src: '3d-showcase/interactive-floor-1.png'},
-  {floor: '二层', src: '3d-showcase/interactive-floor-2.png'},
-  {floor: '三层', src: '3d-showcase/interactive-floor-3.png'},
+  {floor: '一层', src: '3d-showcase/floor-1-top-material.png'},
+  {floor: '二层', src: '3d-showcase/floor-2-top-material.png'},
+  {floor: '三层', src: '3d-showcase/floor-3-top-material.png'},
 ];
 
 const ThreeDInteractionScene = () => {
@@ -910,7 +910,7 @@ const ThreeDClosingScene = () => {
         </div>
         <div style={{position: 'relative', height: 624, overflow: 'hidden', background: '#120b07'}}>
           <Img
-            src={staticFile('3d-showcase/interactive-3d-html-scroll.png')}
+            src={staticFile('3d-showcase/floor-1-top-material.png')}
             style={{
               width: '100%',
               height: 'auto',
@@ -921,7 +921,7 @@ const ThreeDClosingScene = () => {
           />
           <AbsoluteFill style={{overflow: 'hidden', background: '#292822', opacity: modelOverlay}}>
             <Img
-              src={staticFile('3d-showcase/interactive-floor-1.png')}
+              src={staticFile('3d-showcase/floor-1-top-material.png')}
               style={{
                 position: 'absolute',
                 left: '-20%',
@@ -1353,7 +1353,7 @@ export const SkillIntro3DPoster = () => (
       <p style={{margin: '28px 0 0', color: '#aaa79f', font: `400 22px/1.7 ${sans}`}}>旋转 · 切层 · 定位 · 讨论</p>
     </div>
     <div style={{position: 'absolute', right: 96, top: 178, width: 920, height: 614, overflow: 'hidden', borderRadius: 28, border: '1px solid rgba(255,255,255,.22)', boxShadow: '0 48px 150px rgba(0,0,0,.62)', transform: 'rotateX(12deg) rotateZ(-4deg)'}}>
-      <Img src={staticFile('3d-showcase/interactive-floor-1.png')} style={{position: 'absolute', left: '-20%', top: '-34%', width: '141%', height: '150%', objectFit: 'cover', filter: 'brightness(1.1) contrast(1.08) saturate(.96)'}} />
+      <Img src={staticFile('3d-showcase/floor-1-top-material.png')} style={{position: 'absolute', left: '-20%', top: '-34%', width: '141%', height: '150%', objectFit: 'cover', filter: 'brightness(1.1) contrast(1.08) saturate(.96)'}} />
       <AbsoluteFill style={{background: 'linear-gradient(180deg, #292822 0, rgba(41,40,34,.94) 38px, transparent 96px), radial-gradient(circle at 66% 38%, rgba(255,228,186,.15), transparent 44%)'}} />
     </div>
   </AbsoluteFill>

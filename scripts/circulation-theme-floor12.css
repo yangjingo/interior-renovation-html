@@ -1,0 +1,79 @@
+/* YJ HOME CIRCULATION THEME V31: walnut chrome, parchment drawing, copper actions. */
+:root {
+  --paper: #1e1916;
+  --card: #29221e;
+  --ink: #fffaf1;
+  --muted: #c1b3a7;
+  --line: #5d5048;
+  --sage: #d7a77c;
+  --sage-bg: #3b2b23;
+  --clay: #b26943;
+  --clay-bg: #493326;
+  color: var(--ink);
+  background: var(--paper);
+}
+body { background: var(--paper); color: var(--ink); }
+.brand, .scene-meta, .reset-filter, .scene-card[aria-pressed=true] .card-title {
+  color: var(--sage);
+}
+.navigator, .map-card, .inspector, .plan-reference {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink);
+}
+.segmented, .search-box input, .category-row select, .room-choices button,
+.nav-btn, .replay, .speed, .close-drawer, .plan-controls button {
+  background: #352b25;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.segmented button[aria-selected=true], .scene-card[aria-pressed=true],
+.room-choices button[aria-pressed=true], .view-switch button[aria-pressed=true],
+.labels-btn[aria-pressed=true], .route-item.active .step-btn,
+.plan-controls button[aria-pressed=true] {
+  background: var(--sage-bg);
+  border-color: var(--clay);
+  color: #f4c49e;
+}
+.scene-card:hover, .room-choices button:hover, .view-switch button:hover {
+  background: #49382e;
+}
+.scene-card[aria-pressed=true] .card-title, .route-item.active .step-btn {
+  color: #f4c49e;
+}
+.search-box input::placeholder { color: #aa9b8d; }
+.search-icon, .card-num, .card-arrow, .map-head strong, .map-stamp,
+.keyboard-hint, .keyboard-hint kbd, .nav-footer p, .list-meta,
+.app-subtitle, .card-sub, .scene-desc, .choice-label, .legend, .footer {
+  color: var(--muted);
+}
+.keyboard-hint kbd, .labels-btn, .view-switch, .plan-controls button {
+  border-color: var(--line);
+}
+.keyboard-hint kbd { background: #352b25; }
+.nav-footer, .plan-caption { border-color: var(--line); }
+.play {
+  background: var(--clay);
+  color: #fffaf1;
+}
+.play:hover:not(:disabled) { background: #c67a52; }
+.status-box { background: #3b2b23; }
+.status-box.warn, .uncertain-flag { background: var(--clay-bg); color: #f0bd98; }
+.map-stage, .plan-scroll { background: #f3eee6; }
+.route-path[stroke="#356d64"], .route-trail[stroke="#356d64"] {
+  stroke: #b26943;
+}
+.marker-dot[fill="#356d64"] { fill: #b26943; }
+.map-stamp { color: #7e6f64; }
+.scene-list { scrollbar-color: #8e6b54 transparent; }
+.scene-card[aria-pressed=true] { box-shadow: inset 3px 0 0 var(--clay); }
+.choose-scenes { background: var(--sage-bg); color: #f4c49e; border-color: var(--clay); }
+.backdrop { background: #1e1916ad; }
+.cad-dimension rect { stroke: #a47d5d; }
+.cad-dimension text, .cad-index b { fill: #895735; color: #d7a77c; }
+.cad-dim-line, .cad-dim-leader { stroke: #b26943; }
+.cad-key span::before { background: #b26943; }
+@media (max-width: 700px) {
+  .navigator { background: var(--card); }
+  .close-drawer { background: #352b25; color: var(--ink); }
+}

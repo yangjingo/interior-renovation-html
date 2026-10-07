@@ -29,6 +29,8 @@ example/output-blender/BLENDER-WALKTHROUGH.md
 
 # Private working project evidence and generated review artifacts
 example/input/*.pdf
+example/input/archives/
 example/work/
+example/output-html/work-cleanup-v31.json
 example/output-html/room-review.html
 example/output-html/room-input-manifest.yaml
